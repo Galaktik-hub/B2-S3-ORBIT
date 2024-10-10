@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    color: white;
+}
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: starTwinkle 5s infinite ease-in-out, starMove 10s linear infinite;
+}
+
+.planet {
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
+    animation: planetOrbit 20s infinite linear;
+}
+
+.planet-small {
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, rgba(255,100,100,1) 0%, rgba(100,0,0,1) 100%);
+}
+
+.planet-medium {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(100,255,100,1) 0%, rgba(0,100,0,1) 100%);
+}
+
+.planet-large {
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(100,100,255,1) 0%, rgba(0,0,100,1) 100%);
+}
+
+@keyframes starTwinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+@keyframes starMove {
+    0% {
+        transform: translateX(100vw); 
+    }
+    100% {
+        transform: translateX(-100vw); 
+    }
+}
+
+@keyframes planetOrbit {
+    0% { transform: translate(-200px, -200px) scale(1); }
+    50% { transform: translate(200px, 200px) scale(1.2); }
+    100% { transform: translate(-200px, -200px) scale(1); }
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+    }
+    to {
+        text-shadow: 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+    }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+.container {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    max-width: 400px;
+    width: 100%;
+    animation: fadeIn 1s ease-in-out;
+    z-index: 999;
+}
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 20px;
+    font-size: 32px;
+    letter-spacing: 2px;
+    color: #00ffcc;
+    text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+    animation: glow 2s infinite alternate;
+    text-align: center;
+}
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all 0.3s ease;
+}
+input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+}
+button {
+    background-color: #00ffcc;
+    color: black;
+    border: none;
+    padding: 12px 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+button:hover {
+    background-color: #00cccc;
+    transform: scale(1.05);
+}
+.footer {
+    margin-top: 20px;
+    font-size: 14px;
+    opacity: 0.7;
+}
+.footer a {
+    color: #00ffcc;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.footer a:hover {
+    text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+}
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+    }
+    to {
+        text-shadow: 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+    }
+}
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+    display: none;
+}
