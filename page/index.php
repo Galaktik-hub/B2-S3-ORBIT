@@ -11,6 +11,7 @@ checkLogin();
     <title>Galactic Traveler - Accueil</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/starwars.css">
 </head>
 
 <body>
@@ -66,6 +67,6 @@ checkLogin();
         </div>
     </footer>
 
-    <script src="../js/main.js"></script>
+    <script src="../js/starwars.js"></script> 
 </body>
 </html>
