@@ -16,16 +16,19 @@ function createStars() {
 }
 
 function createPlanets() {
+    console.log('Creating planets'); 
+
     const planetsContainer = document.querySelector('.planets');
-    const planetSizes = ['planet-small', 'planet-medium', 'planet-large'];
+    const planetClasses = ['planet-small', 'planet-medium', 'planet-large', 'planet-extra-large', 'planet-giant'];
     
-    for (let i = 0; i < 5; i++) {
+    planetClasses.forEach((planetClass) => {
         const planet = document.createElement('div');
-        const randomSize = planetSizes[Math.floor(Math.random() * planetSizes.length)];
-        planet.classList.add('planet', randomSize);
+
+        planet.classList.add('planet', planetClass); 
         planet.style.top = `${Math.random() * 100}vh`;
         planet.style.left = `${Math.random() * 100}vw`;
-        planet.style.animationDuration = `${15 + Math.random() * 10}s`; 
+        planet.style.animationDuration = `${15 + Math.random() * 10}s`;
+        
         planetsContainer.appendChild(planet);
-    }
+    });
 }
