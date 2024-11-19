@@ -16,16 +16,9 @@ checkLogin();
 
 <body>
 
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <a href="index.php">Galactic Traveler</a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="../back/logout.php">Déconnexion</a></li>
-            </ul>
-        </div>
-    </nav>
+    <?php
+    include('../include/navbar.php');
+    ?>
 
     <div class="space">
         <div class="stars"></div>
