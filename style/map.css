@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #000;
+    color: white;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+}
+
+h1 {
+    margin: 0;
+    padding: 20px;
+    height: 50px; 
+}
+
+#galaxy-map {
+    width: 99%;
+    height: 88.75%;
+    margin: 0 auto;
+    border: 2px solid #ffffff;
+    position: relative;
+    overflow: hidden;
+    background-color: #000;
+}
+
+/* Style pour les étoiles */
+.star {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    width: 2px;
+    height: 2px;
+    animation: twinkle 3s infinite;
+    opacity: 0.8;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
