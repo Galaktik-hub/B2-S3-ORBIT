@@ -1,3 +1,8 @@
+<?php
+include('../back/back_function.php');
+checkLogin();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
