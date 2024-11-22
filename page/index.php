@@ -5,6 +5,7 @@ checkLogin();
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +26,28 @@ checkLogin();
         <div class="planets"></div>
     </div>
 
-    <script src="../js/starwars.js"></script> 
+    <main>
+        <div class="topTitle">
+            <input type="text" placeholder="Choisir son itinéraire">
+        </div>
+
+        <div class="containerLink">
+            <a href="" class="link">
+                <img src="../images/warning.png" alt="">
+                <p>Info Trafic</p>
+            </a>
+            <a href="" class="link">
+                <img src="../images/horraire.png" alt="">
+                <p>Horraire des Arrêts</p>
+            </a>
+            <a href="map.php" class="link">
+                <img src="../images/carte.png" alt="">
+                <p>Carte et Plans</p>
+            </a>
+        </div>
+    </main>
+
+    <script src="../js/starwars.js"></script>
 </body>
+
 </html>
