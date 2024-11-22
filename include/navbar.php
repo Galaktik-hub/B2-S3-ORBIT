@@ -6,13 +6,36 @@
             <a href="index.php">Galactic Traveler</a>
         </div>
         <ul class="nav-links">
-            <li><a href="../back/logout.php">Déconnexion</a></li>
-            <li><a href="">
-                    <img src="../images/settings.svg" id="svg-settings-icon" alt="Paramètres">
-                </a></li>
+            <li>
+                <a href="../back/logout.php">Déconnexion</a>
+            </li>
+            <li id="overlayButton">
+                <img src="../images/settings.svg" id="svg-settings-icon" alt="Paramètres">
+            </li>
         </ul>
     </div>
 </nav>
+
+<div class="overlay">
+    <div class="cross">
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <ul>
+        <a href="index.php">
+            <div class="img">
+                <img src="../images/carte.png" alt="">
+            </div>
+            <p>Accueil</p>
+        </a>
+        <a href="map.php">
+            <div class="img">
+                <img src="../images/carte.png" alt="">
+            </div>
+            <p>Carte et Plans</p>
+        </a>
+    </ul>
+</div>
 
 <script>
     const svgIcon = document.getElementById('svg-settings-icon');
@@ -21,6 +44,18 @@
     });
 
     svgIcon.addEventListener('mouseout', () => {
-        svgIcon.style.filter = 'none'; 
+        svgIcon.style.filter = 'none';
+    });
+
+    const overlay = document.querySelector('.overlay');
+    const cross = document.querySelector('.cross');
+    const overlayButton = document.getElementById('overlayButton');
+
+    overlayButton.addEventListener('click', () => {
+        overlay.classList.add('show');
+    });
+
+    cross.addEventListener('click', () => {
+        overlay.classList.remove('show');
     });
 </script>
