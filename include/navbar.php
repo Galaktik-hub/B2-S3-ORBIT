@@ -22,15 +22,15 @@
         <div class="bar"></div>
     </div>
     <ul>
-        <a href="index.php">
-            <div class="img">
-                <img src="../images/carte.png" alt="">
+        <a href="account.php">
+            <div class="svg">
+                <?php echo svg('account'); ?>
             </div>
-            <p>Accueil</p>
+            <p>Compte</p>
         </a>
         <a href="map.php">
-            <div class="img">
-                <img src="../images/carte.png" alt="">
+            <div class="svg">
+                <?php echo svg('map'); ?>
             </div>
             <p>Carte et Plans</p>
         </a>

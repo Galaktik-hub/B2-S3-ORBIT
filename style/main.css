@@ -7,7 +7,7 @@
 html, body {
     font-family: 'Montserrat', sans-serif;
     color: #fff;
-    background-color: #000;
+    background-color: #000000;
     overflow-x: hidden;
     height: 100%;
     margin: 0;
@@ -93,6 +93,64 @@ main{
     font-size: 150%;
 }
 
+.containerBloc{
+    width: 70%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bloc{
+    width: 100%;
+    background-color: #1a1a1aee;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.bloc h1{
+    padding: 20px;
+}
+
+.blocContainer{
+    width: 100%;
+    padding: 20px;
+}
+
+.account{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.account form ul{
+    list-style-type: none;
+}
+
+.account form ul li{
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+}
+
+.account form ul li svg{
+    width: 35px;
+    height: 35px;
+}
+
+.account form ul li input {
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #1a1a1ad7;
+    color: snow;
+    font-size: 150%;
+    margin-left: 10px;
+}
 
 @keyframes moveStars {
     from {
