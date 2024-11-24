@@ -41,7 +41,7 @@ checkLogin();
                                     <?php echo svg('account'); ?> <input type="text" placeholder="Pseudo">
                                 </li>
                                 <li>
-                                    <?php echo svg('email'); ?> <input type="text" placeholder="Email">
+                                    <?php echo svg('email'); ?> <input type="email" placeholder="Email">
                                 </li>
                                 <li>
                                     <input type="submit" value="Mettre a jour">
@@ -51,10 +51,10 @@ checkLogin();
                         <form action="">
                             <ul>
                                 <li>
-                                    <?php echo svg('password'); ?> <input type="text" placeholder="Ancien Mot de Passe">
+                                    <?php echo svg('password'); ?> <input type="password" placeholder="Ancien Mot de Passe">
                                 </li>
                                 <li>
-                                    <?php echo svg('password'); ?> <input type="text" placeholder="Nouveau Mot de Passe">
+                                    <?php echo svg('password'); ?> <input type="password" placeholder="Nouveau Mot de Passe">
                                 </li>
                                 <li>
                                     <input type="submit" value="Mettre a jour">

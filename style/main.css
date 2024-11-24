@@ -87,6 +87,7 @@ main{
 
 .containerLink .link svg{
     width: 100px;
+    height: 100px;
 }
 
 .containerLink .link p{
