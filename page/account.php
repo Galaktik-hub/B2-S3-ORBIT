@@ -44,6 +44,9 @@ checkLogin();
                                 <li>
                                     <?php echo svg('email'); ?> <input type="text" placeholder="Email">
                                 </li>
+                                <li>
+                                    <input type="submit" value="Mettre a jour">
+                                </li>
                             </ul>
                         </form>
                         <form action="">
@@ -53,6 +56,9 @@ checkLogin();
                                 </li>
                                 <li>
                                     <?php echo svg('password'); ?> <input type="text" placeholder="Nouveau Mot de Passe">
+                                </li>
+                                <li>
+                                    <input type="submit" value="Mettre a jour">
                                 </li>
                             </ul>
                         </form>

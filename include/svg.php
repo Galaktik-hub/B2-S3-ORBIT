@@ -10,6 +10,10 @@ function svg($iconName)
         'email' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#ffffff">
   <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 18v-9l8 6 8-6v9H4z"/>
 </svg>',
+        'validate' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#ffffff">
+  <path d="M9 16.2l-4.2-4.2-1.4 1.4L9 19l12-12-1.4-1.4z"/>
+</svg>',
+
     ];
 
     return $icons[$iconName] ?? null;
