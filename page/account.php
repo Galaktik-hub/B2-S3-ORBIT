@@ -1,6 +1,5 @@
 <?php
 include('../back/back_function.php');
-include('../include/svg.php');
 checkLogin();
 ?>
 

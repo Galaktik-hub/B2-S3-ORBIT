@@ -85,7 +85,7 @@ main{
     transition: 0.2s;
 }
 
-.containerLink .link img{
+.containerLink .link svg{
     width: 100px;
 }
 

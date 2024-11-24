@@ -1,4 +1,7 @@
 <link rel="stylesheet" href="../style/navbar.css">
+<?php
+include('../include/svg.php');
+?>
 
 <nav class="navbar">
     <div class="container">
@@ -22,6 +25,12 @@
         <div class="bar"></div>
     </div>
     <ul>
+        <a href="index.php">
+            <div class="svg">
+                <?php echo svg('home'); ?>
+            </div>
+            <p>Accueil</p>
+        </a>
         <a href="account.php">
             <div class="svg">
                 <?php echo svg('account'); ?>
