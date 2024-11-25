@@ -37,13 +37,22 @@ checkLogin();
                         <form action="../back/back_updateAccount.php" method="post">
                             <ul>
                                 <li>
-                                    <?php echo svg('account'); ?> <input type="text" value="<?php echo $infoUser->username; ?>" name="username">
+                                    <div>
+                                        <?php echo svg('account'); ?> <label for="username" class="responsiveLabel">Username:</label>
+                                    </div>
+                                    <input type="text" value="<?php echo $infoUser->username; ?>" name="username">
                                 </li>
                                 <li>
-                                    <?php echo svg('account'); ?> <input type="text" value="<?php echo $infoUser->pseudo; ?>" name="pseudo">
+                                    <div>
+                                        <?php echo svg('account'); ?> <label for="pseudo" class="responsiveLabel">Pseudo:</label>
+                                    </div>
+                                    <input type="text" value="<?php echo $infoUser->pseudo; ?>" name="pseudo">
                                 </li>
                                 <li>
-                                    <?php echo svg('email'); ?> <input type="email" value="<?php echo $infoUser->email; ?>" name="email">
+                                    <div>
+                                        <?php echo svg('email'); ?> <label for="email" class="responsiveLabel">Email :</label>
+                                    </div>
+                                    <input type="email" value="<?php echo $infoUser->email; ?>" name="email">
                                 </li>
                                 <li>
                                     <input type="submit" value="Mettre a jour">
@@ -53,10 +62,16 @@ checkLogin();
                         <form action="">
                             <ul>
                                 <li>
-                                    <?php echo svg('password'); ?> <input type="password" placeholder="Ancien Mot de Passe">
+                                    <div>
+                                        <?php echo svg('password'); ?> <label for="password" class="responsiveLabel">Ancien:</label>
+                                    </div>
+                                    <input type="password" placeholder="Ancien Mot de Passe" name="password">
                                 </li>
                                 <li>
-                                    <?php echo svg('password'); ?> <input type="password" placeholder="Nouveau Mot de Passe">
+                                    <div>
+                                        <?php echo svg('password'); ?> <label for="password2" class="responsiveLabel">Nouveau:</label>
+                                    </div>
+                                    <input type="password" placeholder="Nouveau Mot de Passe" name="password2">
                                 </li>
                                 <li>
                                     <input type="submit" value="Mettre a jour">

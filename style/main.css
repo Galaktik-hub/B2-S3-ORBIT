@@ -185,6 +185,10 @@ main{
     transform: scale(0.95);
 }
 
+.account form ul li div label.responsiveLabel{
+    display: none;
+}
+
 .infoTrafic{
     width: 80%;
     margin-top: 100px;
@@ -331,5 +335,30 @@ ul{
 
     .topTitle input{
         font-size: 150%;
+    }
+
+    .account{
+        flex-direction: column;
+    }
+
+    .account form ul li input{
+        font-size: 100%;
+    }
+
+    .account form ul li {
+        flex-direction: column;
+    }
+
+    .account form ul li div label.responsiveLabel{
+        display: block;
+    }
+
+    .account form ul li div{
+        display: flex;
+        align-items: center;
+    }
+
+    .containerBloc{
+        margin: 150px 0;
     }
 }
