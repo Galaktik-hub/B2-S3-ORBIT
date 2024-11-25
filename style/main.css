@@ -151,6 +151,7 @@ main{
     color: snow;
     font-size: 150%;
     margin-left: 10px;
+    padding: 10px;
 }
 
 .account form ul li input[type="submit"] {

@@ -1,5 +1,6 @@
 <?php
 include('../back/back_function.php');
+$infoUser = getInfo();
 checkLogin();
 ?>
 
@@ -13,6 +14,7 @@ checkLogin();
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/starwars.css">
+    <link rel="stylesheet" href="../style/modal.css">
 </head>
 
 <body>
@@ -32,16 +34,16 @@ checkLogin();
                 <h1>Compte</h1>
                 <div class="blocContainer">
                     <div class="account">
-                        <form action="">
+                        <form action="../back/back_updateAccount.php" method="post">
                             <ul>
                                 <li>
-                                    <?php echo svg('account'); ?> <input type="text" placeholder="Nom">
+                                    <?php echo svg('account'); ?> <input type="text" value="<?php echo $infoUser->username; ?>" name="username">
                                 </li>
                                 <li>
-                                    <?php echo svg('account'); ?> <input type="text" placeholder="Pseudo">
+                                    <?php echo svg('account'); ?> <input type="text" value="<?php echo $infoUser->pseudo; ?>" name="pseudo">
                                 </li>
                                 <li>
-                                    <?php echo svg('email'); ?> <input type="email" placeholder="Email">
+                                    <?php echo svg('email'); ?> <input type="email" value="<?php echo $infoUser->email; ?>" name="email">
                                 </li>
                                 <li>
                                     <input type="submit" value="Mettre a jour">
@@ -67,7 +69,16 @@ checkLogin();
         </div>
     </main>
 
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header" id="modal-header"></div>
+            <div class="modal-body" id="modal-body"></div>
+            <button class="close-btn" id="close-modal">Close</button>
+        </div>
+    </div>
+
     <script src="../js/starwars.js"></script>
+    <script src="../js/modal.js"></script>
 </body>
 
 </html>
