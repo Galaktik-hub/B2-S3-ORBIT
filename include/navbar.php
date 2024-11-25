@@ -43,6 +43,12 @@ include('../include/svg.php');
             </div>
             <p>Carte et Plans</p>
         </a>
+        <a href="info_trafic.php">
+            <div class="svg">
+                <?php echo svg('attention'); ?>
+            </div>
+            <p>Info Trafic</p>
+        </a>
     </ul>
 </div>
 
