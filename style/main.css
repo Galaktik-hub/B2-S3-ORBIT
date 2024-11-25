@@ -47,6 +47,9 @@ main{
     width: 600px;
     height: 75px;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .topTitle input {
@@ -180,6 +183,53 @@ main{
     background-color: #009977;
     box-shadow: inset 0 0 10px #007755;
     transform: scale(0.95);
+}
+
+.infoTrafic{
+    width: 80%;
+    margin-top: 100px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbarTrafic{
+    background-color: #1a1a1ad7;
+}
+
+.navbarTrafic ul{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.navbarTrafic ul li {
+    font-size: 150%;
+    padding: 20px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.navbarTrafic ul li::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px; 
+    background: #00cc99; 
+    transition: width 0.3s ease-in-out; 
+    box-shadow: 0 0 5px #00ffcc, 0 0 15px #00ffcc;
+}
+
+.navbarTrafic ul li:hover::after {
+    width: 100%; 
+}
+
+
+ul{
+    list-style-type: none;
 }
 
 @keyframes moveStars {

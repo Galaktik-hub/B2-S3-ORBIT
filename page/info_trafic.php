@@ -27,13 +27,19 @@ checkLogin();
     </div>
 
     <main>
-        <div class="containerBloc">
-            <div class="bloc">
-                <h1>Info Trafic</h1>
-                <div class="blocContainer">
-                </div>
+        <div class="topTitle">
+            <h1>Info Trafic</h1>
+        </div>
+
+        <div class="infoTrafic">
+            <div class="navbarTrafic">
+                <ul>
+                    <li id="navette">Navette</li>
+                    <li id="vaisseau">Vaisseau</li>
+                </ul>
             </div>
         </div>
+
     </main>
 
     <script src="../js/starwars.js"></script>
