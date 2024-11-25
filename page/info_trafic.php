@@ -38,9 +38,59 @@ checkLogin();
                     <li id="vaisseau">Vaisseau</li>
                 </ul>
             </div>
+
+            <div class="traficInformation">
+
+            </div>
         </div>
 
     </main>
+
+    <script>
+        const svgIcons = {
+            account: `<?php echo svg('account'); ?>`,
+            home: `<?php echo svg('home'); ?>`,
+            settings: `<?php echo svg('settings'); ?>`,
+            map: `<?php echo svg('map'); ?>`,
+            password: `<?php echo svg('password'); ?>`,
+            email: `<?php echo svg('email'); ?>`,
+            validate: `<?php echo svg('validate'); ?>`,
+            clock: `<?php echo svg('clock'); ?>`,
+            attention: `<?php echo svg('attention'); ?>`
+        };
+
+        const navetteButton = document.getElementById('navette');
+        const vaisseauButton = document.getElementById('vaisseau');
+        const traficInformation = document.querySelector('.traficInformation');
+
+        function generateTraficInfo(type) {
+            traficInformation.innerHTML = '';
+
+            for (let i = 1; i <= 25; i++) {
+                const div = document.createElement('div');
+                div.className = 'trafic-item';
+
+                const textNode = document.createElement('span');
+                textNode.textContent = `${type} ${i}`;
+                div.appendChild(textNode);
+
+                const svgWrapper = document.createElement('div');
+                svgWrapper.className = 'svg-icon';
+                svgWrapper.innerHTML = svgIcons.validate;
+                div.appendChild(svgWrapper);
+
+                traficInformation.appendChild(div);
+            }
+        }
+
+        navetteButton.addEventListener('click', () => {
+            generateTraficInfo('Navette');
+        });
+
+        vaisseauButton.addEventListener('click', () => {
+            generateTraficInfo('Vaisseau');
+        });
+    </script>
 
     <script src="../js/starwars.js"></script>
 </body>
