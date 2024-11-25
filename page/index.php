@@ -36,7 +36,7 @@ checkLogin();
                 <?php echo svg('attention'); ?>
                 <p>Info Trafic</p>
             </a>
-            <a href="" class="link">
+            <a href="horraire.php" class="link">
                 <?php echo svg('clock'); ?>
                 <p>Horraire des Arrêts</p>
             </a>

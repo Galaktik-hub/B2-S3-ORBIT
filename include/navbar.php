@@ -49,6 +49,18 @@ include('../include/svg.php');
             </div>
             <p>Info Trafic</p>
         </a>
+        <a href="horraire.php">
+            <div class="svg">
+                <?php echo svg('clock'); ?>
+            </div>
+            <p>Horraires</p>
+        </a>
+        <a href="../back/logout.php">
+            <div class="svg">
+                <?php echo svg('logout'); ?>
+            </div>
+            <p>Déconnexion</p>
+        </a>
     </ul>
 </div>
 

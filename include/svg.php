@@ -27,6 +27,9 @@ function svg($iconName)
     'attention' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#F44336">
       <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
     </svg>',
+    'logout' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#F44336">
+  <path d="M16 13v-2H7V9l-5 4 5 4v-2h9zm4-11H4a2 2 0 00-2 2v14a2 2 0 002 2h16a2 2 0 002-2V4a2 2 0 00-2-2zm0 16H4V4h16z"/>
+</svg>',
   ];
 
   return $icons[$iconName] ?? null;
