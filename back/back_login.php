@@ -21,11 +21,11 @@ if ($user) {
         header("Location: ../page/index.php");
         exit();
     } else {
-        header("Location: ../index.html?message=Incorrect password&type=error");
+        header("Location: ../index.html?message=Login ou mot de passe incorect&type=error");
         exit();
     }
 } else {
-    header("Location: ../index.html?message=User not found or not activated&type=error");
+    header("Location: ../index.html?message=Login ou mot de passe incorect&type=error");
     exit();
 }
 

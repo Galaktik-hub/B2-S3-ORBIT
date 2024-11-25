@@ -10,16 +10,14 @@ checkLogin();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carte Galactique Étoilée</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/map.css">
     <link rel="stylesheet" href="../style/main.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
 <body>
     <?php include '../include/navbar.php'; ?>
-    <div id="galaxy-map"></div>
 
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="../js/galaxy.js"></script>
 </body>
 
