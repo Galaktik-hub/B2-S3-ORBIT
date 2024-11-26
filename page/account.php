@@ -66,7 +66,7 @@ checkLogin();
                                 </li>
                             </ul>
                         </form>
-                        <form action="">
+                        <form action="../back/back_updatePassword.php" method="post">
                             <ul>
                                 <li>
                                     <div>
