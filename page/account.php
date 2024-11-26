@@ -53,7 +53,7 @@ checkLogin();
                                 </li>
                             </ul>
                         </form>
-                        <form action="../back/back_updatepp.php" method="post">
+                        <form action="../back/back_updatepp.php" method="post" enctype="multipart/form-data">
                             <ul>
                                 <li>
                                     <img src="<?php echo $infoUser->pp; ?>" alt="PP" class="pp">
