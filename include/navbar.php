@@ -6,7 +6,7 @@ include('../include/svg.php');
 <nav class="navbar">
     <div class="container">
         <div class="logo">
-            <a href="index.php">Galactic Traveler</a>
+            <a href="index.php">ORBIT</a>
         </div>
         <ul class="nav-links">
             <li>
