@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="../style/navbar.css">
 <?php
 include('../include/svg.php');
+$infoUser = getInfo();
 ?>
 
 <nav class="navbar">
@@ -14,6 +15,9 @@ include('../include/svg.php');
             </li>
             <li id="overlayButton">
                 <img src="../images/settings.svg" id="svg-settings-icon" alt="Paramètres">
+            </li>
+            <li id="overlayButton">
+                <img src="<?php echo $infoUser->pp; ?>" class="accountpp" alt="Paramètres">
             </li>
         </ul>
     </div>
