@@ -2,7 +2,6 @@
 include 'cnx.php';
 include 'sendmail.php';
 
-$username = $_POST['username'];
 $pseudo = $_POST['pseudo'];
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -36,9 +35,8 @@ $token = bin2hex(random_bytes(32));
 $token_expiry = date("Y-m-d H:i:s", strtotime("+2 hours +15 minutes"));
 $is_active = 0;
 
-$sql = "INSERT INTO users (username, pseudo, email, password, salt, token, token_expiry, is_active) VALUES (:username, :pseudo, :email, :password, :salt, :token, :token_expiry, :is_active)";
+$sql = "INSERT INTO users (pseudo, email, password, salt, token, token_expiry, is_active) VALUES (:pseudo, :email, :password, :salt, :token, :token_expiry, :is_active)";
 $stmt = $pdo->prepare($sql);
-$stmt->bindParam(':username', $username);
 $stmt->bindParam(':pseudo', $pseudo);
 $stmt->bindParam(':email', $email);
 $stmt->bindParam(':password', $hashed_password);

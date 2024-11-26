@@ -2,12 +2,12 @@
 session_start();
 include 'cnx.php';
 
-$username = $_POST['username'];
+$pseudo = $_POST['pseudo'];
 $password = $_POST['password'];
 
-$sql = "SELECT * FROM users WHERE username = :username AND is_active = 1";
+$sql = "SELECT * FROM users WHERE pseudo = :pseudo AND is_active = 1";
 $stmt = $pdo->prepare($sql);
-$stmt->bindParam(':username', $username);
+$stmt->bindParam(':pseudo', $pseudo);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
