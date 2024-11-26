@@ -38,12 +38,6 @@ checkLogin();
                             <ul>
                                 <li>
                                     <div>
-                                        <?php echo svg('account'); ?> <label for="username" class="responsiveLabel">Username:</label>
-                                    </div>
-                                    <input type="text" value="<?php echo $infoUser->username; ?>" name="username">
-                                </li>
-                                <li>
-                                    <div>
                                         <?php echo svg('account'); ?> <label for="pseudo" class="responsiveLabel">Pseudo:</label>
                                     </div>
                                     <input type="text" value="<?php echo $infoUser->pseudo; ?>" name="pseudo">
@@ -53,6 +47,19 @@ checkLogin();
                                         <?php echo svg('email'); ?> <label for="email" class="responsiveLabel">Email :</label>
                                     </div>
                                     <input type="email" value="<?php echo $infoUser->email; ?>" name="email">
+                                </li>
+                                <li>
+                                    <input type="submit" value="Mettre a jour">
+                                </li>
+                            </ul>
+                        </form>
+                        <form action="../back/back_updateAccount.php" method="post">
+                            <ul>
+                                <li>
+                                    <img src="<?php echo $infoUser->pp; ?>" alt="PP" class="pp">
+                                </li>
+                                <li>
+                                    <input type="file" name="image" id="image" required>
                                 </li>
                                 <li>
                                     <input type="submit" value="Mettre a jour">

@@ -4,14 +4,23 @@ include 'back_function.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $username = $_POST['username'];
     $pseudo = $_POST['pseudo'];
     $email = $_POST['email'];
     $id = getId();
 
-    $sql = "UPDATE users SET username = :username, pseudo = :pseudo, email = :email WHERE id = :id";
+    $sql = "SELECT COUNT(*) FROM users WHERE pseudo = :pseudo";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':pseudo', $pseudo);
+    $stmt->execute();
+    $pseudo_count = $stmt->fetchColumn();
+
+    if ($pseudo_count > 0) {
+        header("Location: ../page/account.php?message=Pseudo Invalide&type=error");
+        exit();
+    }
+
+    $sql = "UPDATE users SET pseudo = :pseudo, email = :email WHERE id = :id";
+    $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':pseudo', $pseudo);
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':id', $id);

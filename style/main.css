@@ -257,6 +257,11 @@ main{
     background: #00ffcc; 
 }
 
+.pp{
+    width: 200px;
+    border-radius: 50%;
+}
+
 .trafic-item {
     padding: 10px;
     margin: 10px 0;
