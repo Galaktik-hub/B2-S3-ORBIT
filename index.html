@@ -37,6 +37,14 @@
             <h1>S'inscrire à la galaxie</h1>
             <form action="back/back_inscription.php" method="post">
                 <input type="text" name="pseudo" placeholder="Pseudo" required>
+                <input type="file" name="image" id="image">
+                <select name="role" id="">
+                    <option value="">Non définie</option>
+                    <option value="">Sith</option>
+                    <option value="">Jedi</option>
+                    <option value="">Rebelle</option>
+                    <option value="">Espion de l'empire</option>
+                </select>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <input type="password" name="confirm_password" placeholder="Confirm Password" required>
