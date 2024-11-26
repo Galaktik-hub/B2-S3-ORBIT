@@ -53,7 +53,7 @@ checkLogin();
                                 </li>
                             </ul>
                         </form>
-                        <form action="../back/back_updateAccount.php" method="post">
+                        <form action="../back/back_updatepp.php" method="post">
                             <ul>
                                 <li>
                                     <img src="<?php echo $infoUser->pp; ?>" alt="PP" class="pp">
