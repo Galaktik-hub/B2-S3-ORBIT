@@ -3,7 +3,7 @@
     width: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     padding: 15px 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .navbar .container {
@@ -75,23 +75,28 @@
     width: 100%;
 }
 
-.overlay ul a .img img{
-    width: 75px;
+.overlay ul a:first-child{
+    margin-top: 50px;
 }
 
-.overlay ul a .img{
+.overlay ul a .svg{
     width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .overlay ul a p{
     width: 70%;
 }
 
-.overlay ul a{
+.overlay ul a {
     color: snow;
     text-decoration: none;
-    transition: 0.2s;
+    transition: color 0.2s, text-shadow 0.2s;
     padding: 10px;
+    position: relative;
+    overflow: hidden; 
 }
 
 .overlay ul a:hover{
@@ -100,11 +105,28 @@
     text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
 }
 
+.overlay ul a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #00ffcc;
+    transition: width 0.3s ease;
+}
+
+.overlay ul a:hover::after {
+    width: 100%; 
+}
+
 .cross{
     position: fixed;
-    right: 25px;
-    top: 50px;
+    right: 0px;
+    top: 0;
+    padding: 30px;
     cursor: pointer;
+    z-index: 50;
 }
 
 .bar{

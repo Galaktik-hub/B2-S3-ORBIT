@@ -32,16 +32,16 @@ checkLogin();
         </div>
 
         <div class="containerLink">
-            <a href="" class="link">
-                <img src="../images/warning.png" alt="">
+            <a href="info_trafic.php" class="link">
+                <?php echo svg('attention'); ?>
                 <p>Info Trafic</p>
             </a>
-            <a href="" class="link">
-                <img src="../images/horraire.png" alt="">
+            <a href="horraire.php" class="link">
+                <?php echo svg('clock'); ?>
                 <p>Horraire des Arrêts</p>
             </a>
             <a href="map.php" class="link">
-                <img src="../images/carte.png" alt="">
+                <?php echo svg('map'); ?>
                 <p>Carte et Plans</p>
             </a>
         </div>

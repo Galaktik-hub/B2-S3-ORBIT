@@ -1,13 +1,3 @@
-body {
-    text-align: center;
-    background-color: #000;
-    color: white;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    height: 100vh;
-}
-
 #galaxy-map {
     width: 99%;
     height: 99.5%;

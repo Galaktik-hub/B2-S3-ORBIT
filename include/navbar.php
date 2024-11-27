@@ -1,4 +1,7 @@
 <link rel="stylesheet" href="../style/navbar.css">
+<?php
+include('../include/svg.php');
+?>
 
 <nav class="navbar">
     <div class="container">
@@ -23,16 +26,40 @@
     </div>
     <ul>
         <a href="index.php">
-            <div class="img">
-                <img src="../images/carte.png" alt="">
+            <div class="svg">
+                <?php echo svg('home'); ?>
             </div>
             <p>Accueil</p>
         </a>
+        <a href="account.php">
+            <div class="svg">
+                <?php echo svg('account'); ?>
+            </div>
+            <p>Compte</p>
+        </a>
         <a href="map.php">
-            <div class="img">
-                <img src="../images/carte.png" alt="">
+            <div class="svg">
+                <?php echo svg('map'); ?>
             </div>
             <p>Carte et Plans</p>
+        </a>
+        <a href="info_trafic.php">
+            <div class="svg">
+                <?php echo svg('attention'); ?>
+            </div>
+            <p>Info Trafic</p>
+        </a>
+        <a href="horraire.php">
+            <div class="svg">
+                <?php echo svg('clock'); ?>
+            </div>
+            <p>Horraires</p>
+        </a>
+        <a href="../back/logout.php">
+            <div class="svg">
+                <?php echo svg('logout'); ?>
+            </div>
+            <p>Déconnexion</p>
         </a>
     </ul>
 </div>
