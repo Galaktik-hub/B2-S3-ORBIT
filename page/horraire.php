@@ -9,7 +9,7 @@ checkLogin();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galactic Traveler - Horraires</title>
+    <title>ORBIT - Horraires</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/starwars.css">
@@ -48,12 +48,7 @@ checkLogin();
 
     <script>
         const svgIcons = {
-            account: `<?php echo svg('account'); ?>`,
-            home: `<?php echo svg('home'); ?>`,
             settings: `<?php echo svg('settings'); ?>`,
-            map: `<?php echo svg('map'); ?>`,
-            password: `<?php echo svg('password'); ?>`,
-            email: `<?php echo svg('email'); ?>`,
             validate: `<?php echo svg('validate'); ?>`,
             clock: `<?php echo svg('clock'); ?>`,
             attention: `<?php echo svg('attention'); ?>`
@@ -76,7 +71,7 @@ checkLogin();
 
                 const svgWrapper = document.createElement('div');
                 svgWrapper.className = 'svg-icon';
-                svgWrapper.innerHTML = svgIcons.validate;
+                svgWrapper.innerHTML = svgIcons.clock;
                 div.appendChild(svgWrapper);
 
                 traficInformation.appendChild(div);

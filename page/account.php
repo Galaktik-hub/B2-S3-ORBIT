@@ -10,7 +10,7 @@ checkLogin();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galactic Traveler - Compte</title>
+    <title>ORBIT - Compte</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/starwars.css">
@@ -38,12 +38,6 @@ checkLogin();
                             <ul>
                                 <li>
                                     <div>
-                                        <?php echo svg('account'); ?> <label for="username" class="responsiveLabel">Username:</label>
-                                    </div>
-                                    <input type="text" value="<?php echo $infoUser->username; ?>" name="username">
-                                </li>
-                                <li>
-                                    <div>
                                         <?php echo svg('account'); ?> <label for="pseudo" class="responsiveLabel">Pseudo:</label>
                                     </div>
                                     <input type="text" value="<?php echo $infoUser->pseudo; ?>" name="pseudo">
@@ -59,7 +53,20 @@ checkLogin();
                                 </li>
                             </ul>
                         </form>
-                        <form action="">
+                        <form action="../back/back_updatepp.php" method="post" enctype="multipart/form-data">
+                            <ul>
+                                <li>
+                                    <img src="<?php echo $infoUser->pp; ?>" alt="PP" class="pp">
+                                </li>
+                                <li>
+                                    <input type="file" name="image" id="image" required>
+                                </li>
+                                <li>
+                                    <input type="submit" value="Mettre a jour">
+                                </li>
+                            </ul>
+                        </form>
+                        <form action="../back/back_updatePassword.php" method="post">
                             <ul>
                                 <li>
                                     <div>

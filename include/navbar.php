@@ -1,12 +1,13 @@
 <link rel="stylesheet" href="../style/navbar.css">
 <?php
 include('../include/svg.php');
+$infoUser = getInfo();
 ?>
 
 <nav class="navbar">
     <div class="container">
         <div class="logo">
-            <a href="index.php">Galactic Traveler</a>
+            <a href="index.php">ORBIT</a>
         </div>
         <ul class="nav-links">
             <li>
@@ -14,6 +15,10 @@ include('../include/svg.php');
             </li>
             <li id="overlayButton">
                 <img src="../images/settings.svg" id="svg-settings-icon" alt="Paramètres">
+            </li>
+            <li id="overlayButton">
+                <a href="account.php"><img src="<?php echo $infoUser->pp; ?>" class="accountpp" alt="PP"></a>
+                
             </li>
         </ul>
     </div>

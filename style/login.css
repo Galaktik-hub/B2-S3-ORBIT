@@ -63,6 +63,22 @@ input:focus {
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
 }
+select{
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #00ffcc;
+    transition: all 0.3s ease;
+}
+select:focus{
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+}
 button {
     background-color: #00ffcc;
     color: black;
