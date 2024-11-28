@@ -53,13 +53,13 @@ points.forEach(function(point) {
     var content = ''; // Contenu du popup
 
     // Différencier départ, arrivée et autres planètes
-    if (name === 'startPlanet') {
+    if (name === startPlanet) {
         content = `
             <b>Type:</b> Departure<br>
             <b>Name:</b> ${point.name}<br>
             <img src="${imageUrl}" alt="${point.name}" style="width: 100px; height: 100px; object-fit: cover;">
         `;
-    } else if (name === 'endPlanet') {
+    } else if (name === endPlanet) {
         content = `
             <b>Type:</b> Arrival<br>
             <b>Name:</b> ${point.name}<br>
@@ -77,7 +77,7 @@ points.forEach(function(point) {
     var radius = getDiameterScale(diameter);
 
     // Créer le cercle pour chaque planète
-    var circle = name === 'startPlanet' || name === 'endPlanet' ? L.circle([y, x], {
+    var circle = name === startPlanet || name === endPlanet ? L.circle([y, x], {
         radius: getPlanetRadius(diameter), // Ajuster la taille du point
         color:  '#cdcdcd', // Couleur du bord du cercle
         fillColor: '#cdcdcd', // Couleur du remplissage du cercle
@@ -90,11 +90,11 @@ points.forEach(function(point) {
     }).bindPopup(content).openPopup().addTo(map);
 
     // Comparer les noms et assigner les coordonnées et cercles spécifiques
-    if (name === 'startPlanet') {
+    if (name === startPlanet) {
         xDepart = x;
         yDepart = y;
         departCircle = circle; // Stocker le cercle de départ
-    } else if (name === 'endPlanet') {
+    } else if (name === endPlanet) {
         xArrive = x;
         yArrive = y;
         arriveCircle = circle; // Stocker le cercle d'arrivée

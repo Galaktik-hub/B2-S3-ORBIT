@@ -1,6 +1,8 @@
 <?php
 include('../back/back_function.php');
 checkLogin();
+
+include '../back/back_planets_search.php';
 ?>
 
 <!DOCTYPE html>
@@ -27,9 +29,10 @@ checkLogin();
     </div>
 
     <main>
-        <div class="topTitle">
-            <input type="text" placeholder="Choisir son itinéraire">
-        </div>
+        <form action="travel_form.php" method="post" class="topTitle">
+            <input type="text" name="endPlanet" id="endPlanet" placeholder="Votre destination" required>
+            <input type="submit" value="Voyager" class="submit-button">
+        </form>
 
         <div class="containerLink">
             <a href="info_trafic.php" class="link">
@@ -47,7 +50,11 @@ checkLogin();
         </div>
     </main>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <script src="../js/starwars.js"></script>
+    <script src="../js/travel_form.js"></script>
 </body>
 
 </html>

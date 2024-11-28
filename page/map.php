@@ -2,6 +2,11 @@
 include('../back/back_function.php');
 checkLogin();
 include('../back/back_map.php');
+
+$startPlanet = $_POST["startPlanet"] ?? null;
+$endPlanet = $_POST["endPlanet"] ?? null;
+
+
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +34,8 @@ include('../back/back_map.php');
         // Only for php variables
         var bounds = [[<?php echo $minY; ?>, <?php echo $minX; ?>], [<?php echo $maxY; ?>, <?php echo $maxX; ?>]];
         var points = <?php echo json_encode($planetDetails); ?>;
+        var startPlanet = <?php echo json_encode(strtolower($startPlanet)); ?>;
+        var endPlanet = <?php echo json_encode(strtolower($endPlanet)); ?>;
     </script>
     <script src="../js/galaxy.js"></script>
 </body>

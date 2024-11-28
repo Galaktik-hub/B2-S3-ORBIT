@@ -146,7 +146,8 @@ main{
     height: 35px;
 }
 
-.account form ul li input {
+.account form ul li input,
+.account form ul li select {
     width: 100%;
     text-align: center;
     border-radius: 10px;
