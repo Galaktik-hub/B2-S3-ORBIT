@@ -177,53 +177,34 @@ void removeNode(TwinHeap th, int i) {
     }
 }
 
-int findDeepestNode(TwinHeap th) {
-    for (int i = th.len - 1; i >= 0; i--) {
-        if (existsInHeap(th, i)) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-//Q10 return the index (in data array) of the element with the smallest key, remove it from the heap.
 int popMinimum(TwinHeap th) {
     assert(!emptyHeap(th));
 
-    // Index et données associées au minimum
     int smallestDataIndex = th.heap[0];
-
-    // Met la clé du minimum à None
     th.data[smallestDataIndex].key = None;
 
-    // Réorganise le tas avec des swaps successifs
-    int i = 0;
-    while (existsInHeap(th, lChild(i))) {
-        int left = lChild(i);
-        int right = rChild(i);
+    int currentIndex = 0;
 
-        // Trouver le plus petit enfant
+    // Boucle pour descendre progressivement l'index 0
+    while (existsInHeap(th, lChild(currentIndex))) {
+        int left = lChild(currentIndex);
+        int right = rChild(currentIndex);
+
         int smallestChild = left;
         if (existsInHeap(th, right) && key(th, right) < key(th, left)) {
             smallestChild = right;
         }
 
-        // Swap avec le plus petit enfant
-        swap(th, i, smallestChild);
-        i = smallestChild;
+        swap(th, currentIndex, smallestChild);
+
+        currentIndex = smallestChild;
     }
 
-    // Marque le dernier nœud visité comme None
-    th.heap[i] = None;
-    th.data[th.heap[i]].indexInHeap = None;
-
-    // Nettoie le tas à partir de la racine
-    cleanDown(th, 0);
+    th.data[th.heap[currentIndex]].indexInHeap = None;
+    th.heap[currentIndex] = None;
 
     return smallestDataIndex;
 }
-
-
 
 
 int main() {
@@ -232,6 +213,7 @@ int main() {
     editKey(th, 3, 12);
     printNiceHeap(th);
     printf("min = %d \n", popMinimum(th));
+    printNiceHeap(th);
     printf("min = %d \n", popMinimum(th));
     printNiceHeap(th);
     editKey(th, 2, 200);
