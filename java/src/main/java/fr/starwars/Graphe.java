@@ -1,5 +1,3 @@
-package fr.starwars;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,13 +23,13 @@ public class Graphe {
 
     public int getLength() { return aretes.size(); }
 
-    // Trouver une planète par son ID
-    public Planete findPlaneteById(int id) {
-        for (Planete p : this.getPlanetes()) {
-            if (p.getId() == id) {
-                return p;
+    public int getNumberOfArete(Planete planete) {
+        int n = 0;
+        for (Arete arete : aretes) {
+            if (arete.getSource().getId() == planete.getId() || arete.getDestination().getId() == planete.getId()) {
+                n++;
             }
         }
-        return null;
+        return n;
     }
 }
