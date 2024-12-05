@@ -177,35 +177,34 @@ void removeNode(TwinHeap th, int i) {
     }
 }
 
+//Q10 return the index (in data array) of the element with the smallest key, remove it from the heap.
 int popMinimum(TwinHeap th) {
     assert(!emptyHeap(th));
 
     int smallestDataIndex = th.heap[0];
     th.data[smallestDataIndex].key = None;
 
-    int currentIndex = 0;
+    int i = 0;
+    while (1) {
+        int left = lChild(i);
+        int right = rChild(i);
 
-    // Boucle pour descendre progressivement l'index 0
-    while (existsInHeap(th, lChild(currentIndex))) {
-        int left = lChild(currentIndex);
-        int right = rChild(currentIndex);
+        if (!existsInHeap(th, right) && !existsInHeap(th, left)) break;
 
-        int smallestChild = left;
-        if (existsInHeap(th, right) && key(th, right) < key(th, left)) {
+        int smallestChild = existsInHeap(th, left) ? left : right;
+        if (existsInHeap(th, right) && key(th, right) < key(th, smallestChild)) {
             smallestChild = right;
         }
 
-        swap(th, currentIndex, smallestChild);
-
-        currentIndex = smallestChild;
+        swap(th, i, smallestChild);
+        i = smallestChild;
     }
 
-    th.data[th.heap[currentIndex]].indexInHeap = None;
-    th.heap[currentIndex] = None;
+    th.heap[i] = None;
+    th.data[smallestDataIndex].indexInHeap = None;
 
     return smallestDataIndex;
 }
-
 
 int main() {
     TwinHeap th = newTwinHeap(10, 100);
