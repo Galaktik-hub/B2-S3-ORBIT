@@ -1,8 +1,11 @@
 package fr.starwars;
 
+import java.util.Objects;
+
 public class GraphSerializer {
 
     public static String serializeGraph(Graphe graph) {
+        Objects.requireNonNull(graph, "graph must not be null");
         StringBuilder sbPlanets = new StringBuilder();
         StringBuilder sbArete = new StringBuilder();
 

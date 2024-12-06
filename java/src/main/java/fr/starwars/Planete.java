@@ -11,8 +11,12 @@ public class Planete {
     private final float sub_gridY;
 
     public Planete(int id, String nom, int coordX, int coordY, float sub_gridX, float sub_gridY) {
+        if (id < 0) throw new IllegalArgumentException("id < 0");
+        if (coordX < 0 || coordY < 0 || sub_gridX < 0 || sub_gridY < 0) {
+            throw new IllegalArgumentException("coords must be not negative");
+        }
         this.id = id;
-        this.nom = Objects.requireNonNull(nom);
+        this.nom = Objects.requireNonNull(nom, "nom must not be null");
         this.coordX = coordX;
         this.coordY = coordY;
         this.sub_gridX = sub_gridX;
