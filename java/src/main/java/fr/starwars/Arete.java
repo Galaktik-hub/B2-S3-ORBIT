@@ -46,6 +46,10 @@ public class Arete {
 
     public int getShipId() { return shipId; }
 
+    public int getDistance() {
+        return 0;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();

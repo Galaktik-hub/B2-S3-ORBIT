@@ -1,3 +1,5 @@
+package fr.starwars;
+
 public class GraphSerializer {
 
     public static String serializeGraph(Graphe graph) {
@@ -8,8 +10,8 @@ public class GraphSerializer {
 
         for (Planete p : graph.getPlanetes()) {
             int numberOfArete = graph.getNumberOfArete(p);
-            sbPlanets.append(p.getId()).append("\n")
-                     .append(counter).append("\n")
+            sbPlanets.append(p.getId()).append(" ")
+                     .append(counter).append(" ")
                      .append(numberOfArete).append("\n");
             counter += numberOfArete;
         }

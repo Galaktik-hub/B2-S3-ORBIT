@@ -1,3 +1,5 @@
+package fr.starwars;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,5 +33,14 @@ public class Graphe {
             }
         }
         return n;
+    }
+
+    public Planete findPlaneteById(int id) {
+        for (Planete p : this.getPlanetes()) {
+            if (p.getId() == id) {
+                return p;
+            }
+        }
+        return null;
     }
 }
