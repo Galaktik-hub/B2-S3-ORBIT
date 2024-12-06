@@ -46,8 +46,13 @@ public class Arete {
 
     public int getShipId() { return shipId; }
 
-    public int getDistance() {
-        return 0;
+    public float getDistance() {
+        float x1 = (source.getCoordX() + source.getSub_gridX()) * 6;
+        float y1 = (source.getCoordY() + source.getSub_gridY()) * 6;
+        float x2 = (destination.getCoordX() + destination.getSub_gridX()) * 6;
+        float y2 = (destination.getCoordY() + destination.getSub_gridY()) * 6;
+
+        return (float) Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 
     @Override
