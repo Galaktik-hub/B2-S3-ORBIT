@@ -50,6 +50,10 @@
     object-fit: cover;
 }
 
+.navbar #overlayButton {
+    cursor: pointer;
+}
+
 .overlay{
     transform: translateX(500px);
     transition: 0.2s ease;

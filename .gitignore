@@ -1,3 +1,5 @@
 lib
 cnx.php
-./idea
+.idea/
+
+cmake-build-debug/

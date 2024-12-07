@@ -1,6 +1,12 @@
 <?php
 include('../back/back_function.php');
 checkLogin();
+include('../back/back_map.php');
+
+$startPlanet = $_POST["startPlanet"] ?? null;
+$endPlanet = $_POST["endPlanet"] ?? null;
+
+
 ?>
 
 <!DOCTYPE html>
@@ -13,11 +19,24 @@ checkLogin();
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/map.css">
     <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
 <body>
     <?php include '../include/navbar.php'; ?>
+    <div class="container-map">
+        <div id="galaxy-map"></div>
+        <div class="legend" id="legend"></div>
+    </div>
 
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Only for php variables
+        var bounds = [[<?php echo $minY; ?>, <?php echo $minX; ?>], [<?php echo $maxY; ?>, <?php echo $maxX; ?>]];
+        var points = <?php echo json_encode($planetDetails); ?>;
+        var startPlanet = <?php echo json_encode(strtolower($startPlanet)); ?>;
+        var endPlanet = <?php echo json_encode(strtolower($endPlanet)); ?>;
+    </script>
     <script src="../js/galaxy.js"></script>
 </body>
 
