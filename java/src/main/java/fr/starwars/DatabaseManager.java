@@ -3,15 +3,11 @@ package fr.starwars;
 import java.sql.*;
 
 public class DatabaseManager {
-    private static final String URL = "jdbc:mysql://localhost:3306/travia";
-    private static final String USER = "travia";
-    private static final String PASSWORD = "travia";
-
     private Connection connection;
 
     // Initialize connection
     public void connect() throws SQLException {
-        connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        connection = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD);
         System.out.println("Connected to the database!");
     }
 
