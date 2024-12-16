@@ -47,19 +47,26 @@ public class Main {
             }
 
             // Afficher les résultats
-            System.out.println("Planètes : ");
-            for (Planete p : graphe.getPlanetes()) {
-                System.out.println(p);
-            }
-
-            System.out.println("\nTrajets : ");
-            for (Arete a : graphe.getAretes()) {
-                System.out.println(a);
-            }
-
-            System.out.println(GraphSerializer.serializeGraph(graphe));
+//            System.out.println("Planètes : ");
+//            for (Planete p : graphe.getPlanetes()) {
+//                System.out.println(p);
+//            }
+//
+//            System.out.println("\nTrajets : ");
+//            for (Arete a : graphe.getAretes()) {
+//                System.out.println(a);
+//            }
+//
+//            System.out.println(GraphSerializer.serializeGraph(graphe));
 
             System.out.println("\nNombre d'arrêtes : " + graphe.getLength());
+
+            boolean success = GraphSerializer.writeSerializedGraph(graphe);
+            if (success) {
+                System.out.println("\nGraphe séralisé avec succès.");
+            } else {
+                System.out.println("\nUne erreur est survenue.");
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
