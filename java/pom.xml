@@ -2,12 +2,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.example</groupId>
-  <artifactId>java</artifactId>
+  <groupId>fr.starwars</groupId>
+  <artifactId>but2-sae4-orbit</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>java</name>
+  <name>BUT2 SAE4 Alter ORBIT</name>
   <url>http://maven.apache.org</url>
 
   <properties>
