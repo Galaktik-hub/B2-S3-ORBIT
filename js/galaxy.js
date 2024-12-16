@@ -1,5 +1,6 @@
 var map = L.map('galaxy-map', {
     crs: L.CRS.Simple,
+    minZoom: 3,
 });
 
 document.getElementById('galaxy-map').style.backgroundColor = 'black';
