@@ -1,15 +1,20 @@
+package fr.starwars;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Graphe {
-    private List<Planete> planetes = new ArrayList<>();
-    private List<Arete> aretes = new ArrayList<>();
+    private final List<Planete> planetes = new ArrayList<>();
+    private final List<Arete> aretes = new ArrayList<>();
 
     public void ajouterPlanete(Planete planete) {
+        Objects.requireNonNull(planete, "planete must not be null");
         planetes.add(planete);
     }
 
     public void ajouterArete(Arete arete) {
+        Objects.requireNonNull(arete, "arete must not be null");
         aretes.add(arete);
     }
 
@@ -24,12 +29,22 @@ public class Graphe {
     public int getLength() { return aretes.size(); }
 
     public int getNumberOfArete(Planete planete) {
+        Objects.requireNonNull(planete, "planete must not be null");
         int n = 0;
         for (Arete arete : aretes) {
-            if (arete.getSource().getId() == planete.getId() || arete.getDestination().getId() == planete.getId()) {
+            if (arete.getSource().getId() == planete.getId()) {
                 n++;
             }
         }
         return n;
+    }
+
+    public Planete findPlaneteById(int id) {
+        for (Planete p : this.getPlanetes()) {
+            if (p.getId() == id) {
+                return p;
+            }
+        }
+        return null;
     }
 }
