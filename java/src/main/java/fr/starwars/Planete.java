@@ -1,16 +1,26 @@
 package fr.starwars;
 
-public class Planete {
-    private int id;
-    private String nom;
-    private float coordX;
-    private float coordY;
+import java.util.Objects;
 
-    public Planete(int id, String nom, float coordX, float coordY) {
+public class Planete {
+    private final int id;
+    private final String nom;
+    private final int coordX;
+    private final int coordY;
+    private final float sub_gridX;
+    private final float sub_gridY;
+
+    public Planete(int id, String nom, int coordX, int coordY, float sub_gridX, float sub_gridY) {
+        if (id < 0) throw new IllegalArgumentException("id < 0");
+        if (coordX < 0 || coordY < 0 || sub_gridX < 0 || sub_gridY < 0) {
+            throw new IllegalArgumentException("coords must be not negative");
+        }
         this.id = id;
-        this.nom = nom;
+        this.nom = Objects.requireNonNull(nom, "nom must not be null");
         this.coordX = coordX;
         this.coordY = coordY;
+        this.sub_gridX = sub_gridX;
+        this.sub_gridY = sub_gridY;
     }
 
     public int getId() {
@@ -28,6 +38,10 @@ public class Planete {
     public float getCoordY() {
         return coordY;
     }
+
+    public float getSub_gridX() { return sub_gridX; }
+
+    public float getSub_gridY() { return sub_gridY; }
 
     @Override
     public String toString() {

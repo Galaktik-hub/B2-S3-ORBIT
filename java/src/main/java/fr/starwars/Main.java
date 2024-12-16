@@ -11,14 +11,17 @@ public class Main {
 
             Connection connection = db.getConnection();
             // Charger les planètes
-            String queryPlanetes = "SELECT id, name, x, y FROM planets";
+            String queryPlanetes = "SELECT id, name, x, y, sub_grid_x, sub_grid_y FROM planets";
             try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(queryPlanetes)) {
                 while (rs.next()) {
                     int id = rs.getInt("id");
                     String nom = rs.getString("name");
-                    float x = rs.getFloat("x");
-                    float y = rs.getFloat("y");
-                    Planete planete = new Planete(id, nom, x, y);
+                    int x = rs.getInt("x");
+                    int y = rs.getInt("y");
+                    float sub_gridX = rs.getFloat("sub_grid_x");
+                    float sub_gridY = rs.getFloat("sub_grid_y");
+
+                    Planete planete = new Planete(id, nom, x, y, sub_gridX, sub_gridY);
                     graphe.ajouterPlanete(planete);
                 }
             }
@@ -44,18 +47,26 @@ public class Main {
             }
 
             // Afficher les résultats
-            System.out.println("Planètes : ");
-            for (Planete p : graphe.getPlanetes()) {
-//                System.out.println(p.getId() + " " + p.getNom());
-                System.out.println(p);
-            }
-
+//            System.out.println("Planètes : ");
+//            for (Planete p : graphe.getPlanetes()) {
+//                System.out.println(p);
+//            }
+//
 //            System.out.println("\nTrajets : ");
 //            for (Arete a : graphe.getAretes()) {
 //                System.out.println(a);
 //            }
+//
+//            System.out.println(GraphSerializer.serializeGraph(graphe));
 
             System.out.println("\nNombre d'arrêtes : " + graphe.getLength());
+
+            boolean success = GraphSerializer.writeSerializedGraph(graphe);
+            if (success) {
+                System.out.println("\nGraphe séralisé avec succès.");
+            } else {
+                System.out.println("\nUne erreur est survenue.");
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
