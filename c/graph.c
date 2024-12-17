@@ -1,15 +1,15 @@
 #include "graph.h"
 
 // Initialise le graphe avec un nombre défini de sommets et d'arêtes
-void initialiser_graphe(Graphe* graphe, int nombre_sommets, int nombre_aretes) {
+int initialiser_graphe(Graphe* graphe, int nombre_sommets, int nombre_aretes) {
     graphe->nombre_sommets = nombre_sommets;
     graphe->nombre_aretes = nombre_aretes;
     graphe->sommets = (Sommet*)malloc(sizeof(Sommet) * (nombre_sommets + 1)); // id 0 non utilisé
     graphe->aretes = (Arete*)malloc(sizeof(Arete) * nombre_aretes);
 
     if (!graphe->sommets || !graphe->aretes) {
-        fprintf(stderr, "Erreur d'allocation mémoire.\n");
-        exit(EXIT_FAILURE);
+        fprintf(stderr, "Erreur d'allocation mémoire pour le graphe.\n");
+        return 1;
     }
 
     for (int i = 0; i < nombre_sommets + 1; i++) {
@@ -23,6 +23,8 @@ void initialiser_graphe(Graphe* graphe, int nombre_sommets, int nombre_aretes) {
         graphe->aretes[i].distance = 0;
         graphe->aretes[i].id_planet_arrival = -1;
     }
+
+    return 0;
 }
 
 // Libère la mémoire utilisée par le graphe
@@ -34,11 +36,11 @@ void liberer_graphe(Graphe* graphe) {
 }
 
 // Lecture du fichier et création dynamique du graphe
-void lire_fichier_et_creer_graphe(const char* chemin_fichier, Graphe* graphe) {
+int lire_fichier_et_creer_graphe(const char* chemin_fichier, Graphe* graphe) {
     FILE* fichier = fopen(chemin_fichier, "r");
     if (!fichier) {
         perror("Erreur d'ouverture du fichier");
-        exit(EXIT_FAILURE);
+        return 1;
     }
 
     char ligne[BUFFER_SIZE];
@@ -47,17 +49,18 @@ void lire_fichier_et_creer_graphe(const char* chemin_fichier, Graphe* graphe) {
     if (!fgets(ligne, sizeof(ligne), fichier)) {
         fprintf(stderr, "Erreur : fichier vide ou format incorrect.\n");
         fclose(fichier);
-        exit(EXIT_FAILURE);
+        return 1;
     }
 
     int nombre_aretes, nombre_sommets;
     if (sscanf(ligne, "%d %d", &nombre_aretes, &nombre_sommets) != 2) {
         fprintf(stderr, "Erreur : format de la première ligne incorrect.\n");
         fclose(fichier);
-        exit(EXIT_FAILURE);
+        return 1;
     }
 
-    initialiser_graphe(graphe, nombre_sommets, nombre_aretes);
+    if (initialiser_graphe(graphe, nombre_sommets, nombre_aretes) != 0)
+        return 1;
 
     int lecture_arretes = 0;
     int index_arete = 0;
@@ -88,6 +91,8 @@ void lire_fichier_et_creer_graphe(const char* chemin_fichier, Graphe* graphe) {
     }
 
     fclose(fichier);
+
+    return 0;
 }
 
 // Affiche le graphe
