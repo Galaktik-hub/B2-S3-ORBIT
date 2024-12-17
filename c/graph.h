@@ -28,9 +28,9 @@ typedef struct {
 } Graphe;
 
 // Fonctions pour gérer le graphe
-void initialiser_graphe(Graphe* graphe, int nombre_sommets, int nombre_aretes);
+int initialiser_graphe(Graphe* graphe, int nombre_sommets, int nombre_aretes);
 void liberer_graphe(Graphe* graphe);
-void lire_fichier_et_creer_graphe(const char* chemin_fichier, Graphe* graphe);
+int lire_fichier_et_creer_graphe(const char* chemin_fichier, Graphe* graphe);
 void afficher_graphe(const Graphe* graphe);
 void save_graphe_in_file(const Graphe* graphe, const char* chemin_fichier);
 

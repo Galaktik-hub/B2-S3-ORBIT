@@ -1,19 +1,38 @@
-#include <stdio.h>
 #include "graph.h"
+#include "astar.h"
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
-int main() {
+int main(int argc, char *argv[]) {
+    // Vérifier le nombre d'arguments
+    if (argc != 4) {
+        fprintf(stderr, "Usage: %s <graph_file> <id_planet_departure> <id_planet_arrival>\n", argv[0]);
+        return 1;
+    }
+
+    // Conversion des IDs des planètes en entiers
+    int id_planet_departure = atoi(argv[2]);
+    int id_planet_arrival = atoi(argv[3]);
+
+    // Chargement du graphe
     Graphe graphe;
+    if (lire_fichier_et_creer_graphe(argv[1], &graphe) != 0) {
+        fprintf(stderr, "Erreur : impossible de lire ou de créer le graphe depuis le fichier %s.\n", argv[1]);
+        return 1;
+    }
 
-    lire_fichier_et_creer_graphe("../data/serialized_graph.txt", &graphe);
+    // Exécution de l'algorithme A*
+    printf("Recherche du chemin entre les planètes %d et %d...\n", id_planet_departure, id_planet_arrival);
+    astar(&graphe, id_planet_departure, id_planet_arrival);
 
-    // appel astar
-    // struct plus court chemin
+    // Sauvegarde du graphe (décommenter si nécessaire)
+    // if (save_graphe_in_file(&graphe, "../data/graph_output.txt") != 0) {
+    //     fprintf(stderr, "Erreur : impossible de sauvegarder le graphe dans le fichier spécifié.\n");
+    // }
 
-    save_graphe_in_file(&graphe, "../data/graph_output.txt");
-
+    // Libération des ressources
     liberer_graphe(&graphe);
-
-    // printf(sortie_plus_court_chemin);
 
     return 0;
 }
