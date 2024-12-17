@@ -28,7 +28,9 @@ void initialiser_graphe(Graphe* graphe, int nombre_sommets, int nombre_aretes) {
 // Libère la mémoire utilisée par le graphe
 void liberer_graphe(Graphe* graphe) {
     free(graphe->sommets);
+    graphe->sommets = NULL;
     free(graphe->aretes);
+    graphe->aretes = NULL;
 }
 
 // Lecture du fichier et création dynamique du graphe
@@ -117,7 +119,7 @@ void save_graphe_in_file(const Graphe* graphe, const char* chemin_fichier) {
 
     fprintf(fichier, "Graphe : %d sommets, %d arêtes\n", graphe->nombre_sommets, graphe->nombre_aretes);
 
-    for (int i = 0; i < graphe->nombre_sommets + 1; i++) {
+    for (int i = 0; i < graphe->nombre_sommets; i++) {
         const Sommet* sommet = &graphe->sommets[i];
         fprintf(fichier, "Sommet %d : %d arêtes, début à l'index %d\n",
                 sommet->id_planet,
