@@ -6,7 +6,7 @@ int main() {
 
     lire_fichier_et_creer_graphe("../data/serialized_graph.txt", &graphe);
     
-    astar(&graphe, 1, 5444);
+    astar(&graphe, 3, 1);
 
     //save_graphe_in_file(&graphe, "../data/graph_output.txt");
 

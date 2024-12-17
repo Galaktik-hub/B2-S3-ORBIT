@@ -45,13 +45,12 @@ int compareParHeuristique(const void* a, const void* b) {
 void reconstituerChemin(Node* nodes, int depart, int objectif) {
     printf("Chemin trouvé :\n");
     int current = objectif;
-    int sum;
+    printf("Distance : %lf\n", nodes[current].cout);
     while (current != depart) {
         printf("%d <- ", current);
         current = nodes[current].parent;
     }
     printf("%d\n", depart);
-    printf("Distance : %d", )
 }
 
 // Fonction principale de l'algorithme A*
