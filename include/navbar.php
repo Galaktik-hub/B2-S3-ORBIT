@@ -13,12 +13,11 @@ $infoUser = getInfo();
             <li>
                 <a href="../back/logout.php">Déconnexion</a>
             </li>
-            <li id="overlayButton">
-                <img src="../images/settings.svg" id="svg-settings-icon" alt="Paramètres">
+            <li>
+                <a href="account.php"><img src="<?php echo $infoUser->pp; ?>" class="accountpp" alt="PP"></a>
             </li>
             <li id="overlayButton">
-                <a href="account.php"><img src="<?php echo $infoUser->pp; ?>" class="accountpp" alt="PP"></a>
-                
+                <img src="../images/settings.svg" id="svg-settings-icon" alt="Paramètres">
             </li>
         </ul>
     </div>
