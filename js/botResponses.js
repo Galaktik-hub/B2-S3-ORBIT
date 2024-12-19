@@ -139,7 +139,7 @@ function modifyKeyword(oldKeyword, newKeyword) {
         const response = botResponses[key];
         const index = response.keywords.indexOf(oldKeyword);
         if (index !== -1) {
-            response.keywords[index] = newKeyword;  // Modifier le mot-clé
+            response.keywords[index] = newKeyword; 
             keywordFound = true;
             break;
         }

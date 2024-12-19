@@ -59,6 +59,12 @@ $infoUser = getInfo();
             </div>
             <p>Horraires</p>
         </a>
+        <a href="travel_form.php">
+            <div class="svg">
+                <?php echo svg('route-planning'); ?>
+            </div>
+            <p>Planifier un voyage</p>
+        </a>
         <a href="../back/logout.php">
             <div class="svg">
                 <?php echo svg('logout'); ?>

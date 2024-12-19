@@ -6,7 +6,7 @@ include '../back/back_planets_search.php';
 include '../back/back_ships_search.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//    $_SESSION['endPlanet'] = $_POST["endPlanet"];
+    //    $_SESSION['endPlanet'] = $_POST["endPlanet"];
     $endPlanet = $_POST["endPlanet"];
 }
 ?>
@@ -37,8 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <main>
         <div class="containerBloc">
             <div class="bloc">
-<!--                Changer le nom des sections/balises car c'est un simple copier/coller de account.php -->
-                <h1>Compte</h1>
+                <!-- Changer le nom des sections/balises car c'est un simple copier/coller de account.php -->
+                <h1>Planifier un voyage</h1>
                 <div class="blocContainer">
                     <div class="account">
                         <form action="map.php" method="post">
