@@ -29,6 +29,7 @@ $endPlanet = $_POST["endPlanet"] ?? null;
         <div class="legend" id="legend"></div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/js-md5"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         // Only for php variables
