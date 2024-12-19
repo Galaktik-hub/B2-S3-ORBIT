@@ -5,7 +5,7 @@ $infoUser = getInfo();
 ?>
 
 <nav class="navbar">
-    <div class="container">
+    <div class="container-nav">
         <div class="logo">
             <a href="index.php">ORBIT</a>
         </div>
@@ -13,12 +13,11 @@ $infoUser = getInfo();
             <li>
                 <a href="../back/logout.php">Déconnexion</a>
             </li>
-            <li id="overlayButton">
-                <img src="../images/settings.svg" id="svg-settings-icon" alt="Paramètres">
+            <li>
+                <a href="account.php"><img src="<?php echo $infoUser->pp; ?>" class="accountpp" alt="PP"></a>
             </li>
             <li id="overlayButton">
-                <a href="account.php"><img src="<?php echo $infoUser->pp; ?>" class="accountpp" alt="PP"></a>
-                
+                <img src="../images/settings.svg" id="svg-settings-icon" alt="Paramètres">
             </li>
         </ul>
     </div>
@@ -59,6 +58,12 @@ $infoUser = getInfo();
                 <?php echo svg('clock'); ?>
             </div>
             <p>Horraires</p>
+        </a>
+        <a href="travel_form.php">
+            <div class="svg">
+                <?php echo svg('route-planning'); ?>
+            </div>
+            <p>Planifier un voyage</p>
         </a>
         <a href="../back/logout.php">
             <div class="svg">
