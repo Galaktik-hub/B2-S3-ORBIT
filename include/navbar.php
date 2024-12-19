@@ -5,7 +5,7 @@ $infoUser = getInfo();
 ?>
 
 <nav class="navbar">
-    <div class="container">
+    <div class="container-nav">
         <div class="logo">
             <a href="index.php">ORBIT</a>
         </div>
