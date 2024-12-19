@@ -18,15 +18,15 @@ double distance_heuristique(const Graphe* graphe, int sommet_actuel, int objecti
             }
         }
     }
-    return min_distance == INF ? 0 : min_distance; // Si aucune arête directe, renvoie 0
+    return min_distance == INF ? 0 : min_distance;
 }
 
 // Structure pour un nœud dans l'algorithme A*
 typedef struct {
-    int sommet;          // Identifiant du sommet
-    double cout;         // Coût accumulé
-    double heuristique;  // Heuristique totale (cout + distance)
-    int parent;          // Parent dans le chemin pour la reconstitution
+    int sommet;
+    double cout;
+    double heuristique;
+    int parent;
 } Node;
 
 // Comparaison des nœuds par leur heuristique (pour la file de priorité)
@@ -60,12 +60,13 @@ void astar(Graphe* graphe, int depart, int objectif) {
         exit(1);
     }
 
-    TwinHeap openList = newTwinHeap(graphe->nombre_sommets + 1, INF); // Créer un tas de priorité
-    int closedList[graphe->nombre_sommets + 1]; // Marqueur des nœuds explorés
-    Node nodes[graphe->nombre_sommets + 1];     // Informations sur chaque sommet
+    TwinHeap openList = newTwinHeap(graphe->nombre_sommets + 1, INF);
+    int closedList[graphe->nombre_sommets + 1];
+    Node nodes[graphe->nombre_sommets + 1];
 
     for (int i = 0; i <= graphe->nombre_sommets; i++) {
-        closedList[i] = 0; // Aucun sommet n'est exploré au départ
+        // Aucun sommet n'est exploré au départ
+        closedList[i] = 0;
         nodes[i] = (Node){i, INF, INF, -1};
     }
 
@@ -76,23 +77,26 @@ void astar(Graphe* graphe, int depart, int objectif) {
     editKey(openList, depart, nodes[depart].heuristique);
 
     while (!emptyHeap(openList)) {
-        int u = popMinimum(openList); // Extraire le sommet avec la plus petite heuristique
+        // Extraire le sommet avec la plus petite heuristique
+        int u = popMinimum(openList);
 
-        if (u == objectif) { // Objectif atteint
+        if (u == objectif) {
+            // Objectif atteint
             reconstituerChemin(nodes, depart, objectif);
             return;
         }
 
-        closedList[u] = 1; // Marquer comme exploré
+        // Marquer comme exploré
+        closedList[u] = 1;
 
         // Parcourir tous les voisins de u
         for (int i = graphe->sommets[u].debut_in_array;
              i < graphe->sommets[u].debut_in_array + graphe->sommets[u].nombre_aretes; i++) {
             int v = graphe->aretes[i].id_planet_arrival;
-            double poids = graphe->aretes[i].distance; // Utilisation correcte de la distance depuis Arete
+            double poids = graphe->aretes[i].distance;
 
             if (closedList[v])
-                continue; // Ignorer si déjà exploré
+                continue;
 
             double nouveauCout = nodes[u].cout + poids;
 
