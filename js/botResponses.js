@@ -19,6 +19,14 @@ const initialBotResponses = {
         "response": "Besoin d'aide pour trouver le trajets le plus rapide ou le moins cher ? Utilisez notre outil d'optimisation disponible sur <a href='../page/optimization.php'>Optimisation des trajets</a>.",
         "keywords": ["optimisation", "rapide", "économique", "itinéraire"]
     },
+    "Problèmes": {
+        "response": "Rencontrez-vous des problèmes ou des bugs ? Contactez-nous via le formulaire <a href='../page/contact.php'>Contact</a>. Nous sommes là pour vous aider !",
+        "keywords": ["problème", "bug", "aide", "support", "contact"]
+    },
+    "Empire": {
+        "response": "Si vous souhaiter évité les planètes sous contrôle de l'Empire, activez l'option \"Éviter l'Empire\" lors de votre réservation.",
+        "keywords": ["Empire", "contrôle", "sécurité", "éviter"]
+    }
 };
 
 function levenshtein(a, b) {
