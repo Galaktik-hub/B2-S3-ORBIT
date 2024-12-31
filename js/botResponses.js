@@ -1,7 +1,7 @@
 const initialBotResponses = {
     "Voyage": {
-        response: "Afin de pouvoir réserver un voyage, veuiller vous rendre sur la page <a href='../page/travel_form.php'>Réservation de voyage</a>.",
-        keywords: ["réserver", "planifier", "voyager", "réservation"]
+        "response": "Pour réserver un voyage, rendez-vous sur la page <a href='../page/travel_form.php'>Réservation de voyage</a>. Vous pouvez y choisir votre destination, votre moyen de transport et définir vos préférences.",
+        "keywords": ["réserver", "planifier", "voyager", "réservation", "trajet"]
     },
 };
 
