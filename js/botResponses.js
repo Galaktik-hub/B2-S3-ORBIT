@@ -1,8 +1,32 @@
 const initialBotResponses = {
-    "test": {
-        response: "J'espère avoir pu vous aidez !",
-        keywords: ["test"]
+    "Voyage": {
+        "response": "Pour réserver un voyage, rendez-vous sur la page <a href='../page/travel_form.php'>Réservation de voyage</a>. Vous pouvez y choisir votre destination, votre moyen de transport et définir vos préférences.",
+        "keywords": ["réserver", "planifier", "voyager", "réservation", "trajet"]
     },
+    "Planètes": {
+        "response": "Vous cherchez des informations sur une planète ? Rendez-vous sur la page <a href='../page/planets.php'>Exploration des planètes</a>. Vous y trouverez des détails sur chaque planète, comme ses caractéristiques et les restrictions liées à l'Empire.",
+        "keywords": ["planète", "exploration", "Empire", "caractéristiques"]
+    },
+    "Transport": {
+        "response": "Pour connaître les moyens de transport disponibles, visitez <a href='../page/transport_network.php'>Réseau de transport</a>. Vous y trouverez des informations sur les navettes publiques, les taxis interstellaires et les options privées.",
+        "keywords": ["transport", "navette", "taxi", "réseau", "vaisseau"]
+    },
+    "Horaires": {
+        "response": "Consultez les horaires des navettes et des transports publics sur <a href='../page/schedules.php'>Horaires des transports</a>. Planifiez votre voyage en fonction des disponibilités.",
+        "keywords": ["horaires", "disponibilités", "départ", "arrivée"]
+    },
+    "Optimisation": {
+        "response": "Besoin d'aide pour trouver le trajet le plus rapide ou le moins cher ? Utilisez notre outil d'optimisation disponible sur <a href='../page/optimization.php'>Optimisation des trajets</a>.",
+        "keywords": ["optimisation", "rapide", "économique", "itinéraire"]
+    },
+    "Problèmes": {
+        "response": "Rencontrez-vous des problèmes ou des bugs ? Contactez-nous via le formulaire <a href='../page/contact.php'>Contact</a>. Nous sommes là pour vous aider !",
+        "keywords": ["problème", "bug", "aide", "support", "contact"]
+    },
+    "Empire": {
+        "response": "Si vous souhaitez éviter les planètes sous contrôle de l'Empire, activez l'option \"Éviter l'Empire\" lors de votre réservation.",
+        "keywords": ["Empire", "contrôle", "sécurité", "éviter"]
+    }
 };
 
 function levenshtein(a, b) {
