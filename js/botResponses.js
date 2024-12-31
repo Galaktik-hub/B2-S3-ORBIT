@@ -3,6 +3,10 @@ const initialBotResponses = {
         "response": "Pour réserver un voyage, rendez-vous sur la page <a href='../page/travel_form.php'>Réservation de voyage</a>. Vous pouvez y choisir votre destination, votre moyen de transport et définir vos préférences.",
         "keywords": ["réserver", "planifier", "voyager", "réservation", "trajet"]
     },
+    "Planètes": {
+        "response": "Vous chercher des informations sur une planète ? Rendez-vous sur la page <a href='../page/planets.php'>Exploration des planètes</a>. Vous y trouverez des détails sur chaque planète, comme ses caractéristiques et les restrictions liées à l'Empire.",
+        "keywords": ["planète", "exploration", "Empire", "caractéristiques"]
+    },
 };
 
 function levenshtein(a, b) {
