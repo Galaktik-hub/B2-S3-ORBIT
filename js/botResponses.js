@@ -7,6 +7,10 @@ const initialBotResponses = {
         "response": "Vous chercher des informations sur une planète ? Rendez-vous sur la page <a href='../page/planets.php'>Exploration des planètes</a>. Vous y trouverez des détails sur chaque planète, comme ses caractéristiques et les restrictions liées à l'Empire.",
         "keywords": ["planète", "exploration", "Empire", "caractéristiques"]
     },
+    "Transport": {
+        "response": "Pour connaître les moyen de transport disponible, visitez <a href='../page/transport_network.php'>Réseau de transport</a>. Vous y trouverez des informations sur les navettes publiques, les taxis interstellaires et les options privées.",
+        "keywords": ["transport", "navette", "taxi", "réseau", "vaisseau"]
+    },
 };
 
 function levenshtein(a, b) {
