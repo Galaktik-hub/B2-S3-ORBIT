@@ -1,7 +1,7 @@
 const initialBotResponses = {
-    "test": {
-        response: "J'espère avoir pu vous aidez !",
-        keywords: ["test"]
+    "Voyage": {
+        response: "Afin de pouvoir réserver un voyage, veuiller vous rendre sur la page <a href='../page/travel_form.php'>Réservation de voyage</a>.",
+        keywords: ["réserver", "planifier", "voyager", "réservation"]
     },
 };
 
