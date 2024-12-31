@@ -11,6 +11,14 @@ const initialBotResponses = {
         "response": "Pour connaître les moyen de transport disponible, visitez <a href='../page/transport_network.php'>Réseau de transport</a>. Vous y trouverez des informations sur les navettes publiques, les taxis interstellaires et les options privées.",
         "keywords": ["transport", "navette", "taxi", "réseau", "vaisseau"]
     },
+    "Horaires": {
+        "response": "Consultez les horaires des navettes et des transports publics sur <a href='../page/schedules.php'>Horaires des transports</a>. Planifiez votre voyage en fonction des disponibilités.",
+        "keywords": ["horaires", "disponibilités", "départ", "arrivée"]
+    },
+    "Optimisation": {
+        "response": "Besoin d'aide pour trouver le trajets le plus rapide ou le moins cher ? Utilisez notre outil d'optimisation disponible sur <a href='../page/optimization.php'>Optimisation des trajets</a>.",
+        "keywords": ["optimisation", "rapide", "économique", "itinéraire"]
+    },
 };
 
 function levenshtein(a, b) {
