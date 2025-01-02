@@ -1,11 +1,10 @@
 #include <stdio.h>
+#include <assert.h>
 #include "graph.h"
 #include "heap.h"
 
 #define INF 1e9 // Infini pour les distances
 
-// Fonction heuristique pour A* : retourne 0 pour simuler Dijkstra (aucune heuristique)
-// Heuristique basée sur la distance directe minimale entre deux sommets
 double distance_heuristique(const Graphe* graphe, int sommet_actuel, int objectif) {
     double min_distance = INF;
 
@@ -45,8 +44,12 @@ int compareParHeuristique(const void* a, const void* b) {
 void reconstituerChemin(Node* nodes, int depart, int objectif) {
     printf("Chemin trouvé :\n");
     int current = objectif;
+
+    assert(current != -1);
+
     printf("Distance : %lf\n", nodes[current].cout);
     while (current != depart) {
+        assert(current != -1);
         printf("%d <- ", current);
         current = nodes[current].parent;
     }
@@ -55,28 +58,31 @@ void reconstituerChemin(Node* nodes, int depart, int objectif) {
 
 // Fonction principale de l'algorithme A*
 void astar(Graphe* graphe, int depart, int objectif) {
-    if (objectif > graphe->nombre_sommets || objectif < 1 || depart > graphe->nombre_sommets || depart < 1) {
+    if (objectif >= graphe->nombre_sommets || objectif < 0 || depart >= graphe->nombre_sommets || depart < 0) {
         fprintf(stderr, "One of the two IDs does not match any planet: departure %d, arrival %d\n", depart, objectif);
         exit(1);
     }
 
-    TwinHeap openList = newTwinHeap(graphe->nombre_sommets + 1, INF); // Créer un tas de priorité
+    TwinHeap openList = newTwinHeap(graphe->nombre_sommets + 1, INF); // Création heap
     int closedList[graphe->nombre_sommets + 1]; // Marqueur des nœuds explorés
-    Node nodes[graphe->nombre_sommets + 1];     // Informations sur chaque sommet
+    Node nodes[graphe->nombre_sommets + 1];
 
     for (int i = 0; i <= graphe->nombre_sommets; i++) {
-        closedList[i] = 0; // Aucun sommet n'est exploré au départ
+        closedList[i] = 0;  // Initialisation sommets
         nodes[i] = (Node){i, INF, INF, -1};
     }
 
-    // Initialisation du point de départ
+    // Initialisation point de départ
     nodes[depart].cout = 0;
     nodes[depart].heuristique = distance_heuristique(graphe, depart, objectif);
     nodes[depart].parent = depart;
     editKey(openList, depart, nodes[depart].heuristique);
 
     while (!emptyHeap(openList)) {
-        int u = popMinimum(openList); // Extraire le sommet avec la plus petite heuristique
+        int u = popMinimum(openList);
+
+        if (nodes[u].parent == -1)  // Sommet non atteignable
+            break;
 
         if (u == objectif) { // Objectif atteint
             reconstituerChemin(nodes, depart, objectif);
@@ -89,7 +95,7 @@ void astar(Graphe* graphe, int depart, int objectif) {
         for (int i = graphe->sommets[u].debut_in_array;
              i < graphe->sommets[u].debut_in_array + graphe->sommets[u].nombre_aretes; i++) {
             int v = graphe->aretes[i].id_planet_arrival;
-            double poids = graphe->aretes[i].distance; // Utilisation correcte de la distance depuis Arete
+            double poids = graphe->aretes[i].distance; 
 
             if (closedList[v])
                 continue; // Ignorer si déjà exploré

@@ -1,8 +1,6 @@
 #include "graph.h"
 #include "astar.h"
 #include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 
 int main(int argc, char *argv[]) {
     // Vérifier le nombre d'arguments
