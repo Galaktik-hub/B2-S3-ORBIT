@@ -14,6 +14,7 @@ public class GraphSerializer {
         StringBuilder sbArete = new StringBuilder();
 
         int counter = 0;
+        int lastId = 0;
 
         for (Planete p : graph.getPlanetes()) {
             int numberOfArete = graph.getNumberOfArete(p);
@@ -21,6 +22,7 @@ public class GraphSerializer {
                     .append(counter).append(" ")
                     .append(numberOfArete).append("\n");
             counter += numberOfArete;
+            lastId = p.getId();
         }
 
         for (Arete a : graph.getAretes()) {
@@ -29,14 +31,13 @@ public class GraphSerializer {
                     .append(a.getDestination().getId()).append("\n");
         }
 
-        return sbPlanets + "-\n" + sbArete;
+        return counter + " " + lastId + "\n" + sbPlanets + "-\n" + sbArete;
     }
 
-    public static boolean writeSerializedGraph(Graphe graph) {
+    public static boolean writeSerializedGraph(Graphe graph, String fileName) {
         Objects.requireNonNull(graph, "Graph must not be null");
 
         String serializedGraph = serializeGraph(graph);
-        String fileName = "data/serialized_graph.txt"; // Output file
 
         File outputFile = new File(fileName);
 

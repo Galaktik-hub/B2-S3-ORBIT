@@ -21,6 +21,7 @@ include '../back/back_planets_search.php';
 
     <?php
     include('../include/navbar.php');
+    include('../include/chat-bot.html');
     ?>
 
     <div class="space">

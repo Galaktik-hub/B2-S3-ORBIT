@@ -30,6 +30,12 @@ function svg($iconName)
     'logout' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#F44336">
   <path d="M16 13v-2H7V9l-5 4 5 4v-2h9zm4-11H4a2 2 0 00-2 2v14a2 2 0 002 2h16a2 2 0 002-2V4a2 2 0 00-2-2zm0 16H4V4h16z"/>
 </svg>',
+    'route-planning' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M5 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4z" fill="#4CAF50"/>
+  <path d="M19 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4z" fill="#FF5722"/>
+  <path d="M5 5v5c0 3 2.5 5 5.5 5h3c1.5 0 2.5 1 2.5 2.5V19"/>
+  <path d="M5 5l2.5 2.5M19 19l-2.5-2.5"/>
+</svg>',
   ];
 
   return $icons[$iconName] ?? null;

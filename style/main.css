@@ -4,7 +4,8 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     font-family: 'Montserrat', sans-serif;
     color: #fff;
     background-color: #000000;
@@ -21,17 +22,25 @@ html, body {
     from {
         text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
     }
+
     to {
         text-shadow: 0 0 20px #00ffcc, 0 0 30px #00ffcc;
     }
 }
 
 @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(-20px); }
-    100% { opacity: 1; transform: translateY(0); }
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-main{
+main {
     margin-top: 4%;
     width: 100%;
     display: flex;
@@ -41,7 +50,7 @@ main{
     z-index: 999;
 }
 
-.topTitle{
+.topTitle {
     text-align: center;
     background-color: #1a1a1abe;
     width: 600px;
@@ -62,14 +71,14 @@ main{
     color: snow;
 }
 
-.containerLink{
+.containerLink {
     display: flex;
     width: 100%;
     justify-content: space-around;
     margin-top: 150px;
 }
 
-.containerLink .link{
+.containerLink .link {
     width: 20%;
     background-color: #1a1a1ad7;
     padding: 20px;
@@ -83,21 +92,21 @@ main{
     text-decoration: none;
 }
 
-.containerLink .link:hover{
+.containerLink .link:hover {
     transform: scale(1.05);
     transition: 0.2s;
 }
 
-.containerLink .link svg{
+.containerLink .link svg {
     width: 50px;
     height: 50px;
 }
 
-.containerLink .link p{
+.containerLink .link p {
     font-size: 150%;
 }
 
-.containerBloc{
+.containerBloc {
     width: 70%;
     height: 90vh;
     display: flex;
@@ -106,7 +115,7 @@ main{
     justify-content: center;
 }
 
-.bloc{
+.bloc {
     width: 100%;
     background-color: #1a1a1aee;
     display: flex;
@@ -116,32 +125,32 @@ main{
     border-radius: 10px;
 }
 
-.bloc h1{
+.bloc h1 {
     padding: 20px;
 }
 
-.blocContainer{
+.blocContainer {
     width: 100%;
     padding: 20px;
 }
 
-.account{
+.account {
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.account form ul{
+.account form ul {
     list-style-type: none;
 }
 
-.account form ul li{
+.account form ul li {
     display: flex;
     justify-content: center;
     margin: 30px;
 }
 
-.account form ul li svg{
+.account form ul li svg {
     width: 35px;
     height: 35px;
 }
@@ -186,124 +195,141 @@ main{
     transform: scale(0.95);
 }
 
-.account form ul li div label.responsiveLabel{
+.account form ul li div label.responsiveLabel {
     display: none;
 }
 
-.infoTrafic{
-    width: 80%;
-    margin-top: 100px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.navbarTrafic{
-    background-color: #1a1a1ad7;
-    border-radius: 10px;
-}
-
-.navbarTrafic ul{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-}
-
-.navbarTrafic ul li {
-    font-size: 150%;
-    padding: 20px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-.navbarTrafic ul li::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px; 
-    background: #00cc99; 
-    transition: width 0.3s ease-in-out; 
-    box-shadow: 0 0 5px #00ffcc, 0 0 15px #00ffcc;
-}
-
-.navbarTrafic ul li:hover::after {
-    width: 100%; 
-}
-
-.traficInformation{
-    margin-top: 50px;
-    background-color: #1a1a1ad7;
-    border-radius: 20px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 20px; 
-    padding: 20px;
-    max-height: 450px;
-    overflow-y: auto;
-}
-
-.traficInformation::-webkit-scrollbar {
-    width: 10px; 
-}
-
-.traficInformation::-webkit-scrollbar-thumb {
-    background: #00cc99; 
-    border-radius: 5px;
-}
-
-.traficInformation::-webkit-scrollbar-thumb:hover {
-    background: #00ffcc; 
-}
-
-.pp{
+.pp {
     width: 200px;
     height: 200px;
     border-radius: 50%;
 }
 
-.accountpp{
+.accountpp {
     border-radius: 50%;
 }
 
-.trafic-item {
-    padding: 10px;
-    margin: 10px 0;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    color: white;
+.infoTrafic {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.navbarTrafic {
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.navbarTrafic ul {
+    list-style: none;
+    padding: 0;
+}
+
+.navbarTrafic ul li {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: #333;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 150%;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.navbarTrafic ul li:hover {
+    background-color: #00cc99;
+    color: #fff;
+}
+
+.traficInformation {
+    display: grid;
+    background-color: #1a1a1ad7;
+    border-radius: 20px 20px 0px 0 ;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    height: 200px;
+    align-items: center;
+    justify-content: center;
 }
 
 .trafic-item {
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #292929d7;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    color: #fff;
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.2em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 75px;
+    animation: fadeIn 0.5s ease-in-out;
+    cursor: pointer;
+}
+
+.trafic-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 204, 153, 0.5);
 }
 
 .trafic-item .svg-icon {
     position: absolute;
-    bottom: 5px;
-    right: 5px;
-    width: 20px; 
-    height: 20px;
+    bottom: 0;
+    right: 0;
+    width: 30px; 
+    height: 30px; 
 }
 
-ul{
+.trafic-item .svg-icon svg {
+    animation: fadeIn 0.5s ease-in-out;
+    fill: #00cc99;
+}
+
+.bottomMessageArea {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #1a1a1ad7;
+    border-radius: 0px 0px 20px 20px ;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+ul {
     list-style-type: none;
 }
 
@@ -311,6 +337,7 @@ ul{
     from {
         background-position: 0 0;
     }
+
     to {
         background-position: -10000px 10000px;
     }
@@ -320,13 +347,14 @@ ul{
     from {
         background-position: 0 0;
     }
+
     to {
         background-position: -10000px 10000px;
     }
 }
 
-@media screen and (max-width: 900px){
-    .containerLink{
+@media screen and (max-width: 900px) {
+    .containerLink {
         flex-direction: column;
         width: 100%;
         justify-content: center;
@@ -334,25 +362,25 @@ ul{
         margin-top: 50px;
     }
 
-    .containerLink .link{
+    .containerLink .link {
         width: 80%;
         margin-bottom: 50px;
     }
 
-    .topTitle{
+    .topTitle {
         margin-top: 100px;
         width: 350px;
     }
 
-    .topTitle input{
+    .topTitle input {
         font-size: 150%;
     }
 
-    .account{
+    .account {
         flex-direction: column;
     }
 
-    .account form ul li input{
+    .account form ul li input {
         font-size: 100%;
     }
 
@@ -360,16 +388,31 @@ ul{
         flex-direction: column;
     }
 
-    .account form ul li div label.responsiveLabel{
+    .account form ul li div label.responsiveLabel {
         display: block;
     }
 
-    .account form ul li div{
+    .account form ul li div {
         display: flex;
         align-items: center;
     }
 
-    .containerBloc{
+    .containerBloc {
         margin: 150px 0;
     }
+}
+
+.ui-autocomplete {
+    position: absolute;
+    border: 1px solid #ccc;
+    background: #fff;
+    list-style: none;
+    color: #000;
+    padding: 0;
+    margin: 0;
+    z-index: 1000;
+}
+
+ui-helper-hidden-accessible div {
+    display: none;
 }
