@@ -8,14 +8,14 @@ public class DatabaseManager {
     // Initialize connection
     public void connect() throws SQLException {
         connection = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USER, DatabaseConfig.PASSWORD);
-        System.out.println("Connected to the database!");
+//        System.out.println("Connected to the database!");
     }
 
     // Close connection
     public void disconnect() throws SQLException {
         if (connection != null && !connection.isClosed()) {
             connection.close();
-            System.out.println("Database connection closed.");
+//            System.out.println("Database connection closed.");
         }
     }
 
