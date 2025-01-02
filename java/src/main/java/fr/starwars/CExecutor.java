@@ -6,14 +6,15 @@ import java.io.InputStreamReader;
 
 public class CExecutor {
     public static void main(String[] args) {
-        String cProgramPath = "./shortest_path"; // Chemin vers l'exécutable
-        String graphFile = "graphe.txt";         // Fichier d'entrée
-        String resultFile = "result.txt";        // Fichier de sortie
+        if (args.length != 4) {
+            System.err.println("Usage : ");
+            System.exit(1);
+        }
 
         try {
             // Construire la commande
-            ProcessBuilder pb = new ProcessBuilder(cProgramPath, graphFile, resultFile);
-            pb.directory(new File(".")); // Répertoire de travail
+            ProcessBuilder pb = new ProcessBuilder(args[0], args[1], args[2], args[3]);
+            pb.directory(new File("."));
 
             // Démarrer le processus
             Process process = pb.start();

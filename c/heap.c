@@ -1,20 +1,5 @@
-#include "stdlib.h"
-#include "stdio.h"
-#include "assert.h"
+#include "heap.h"
 
-typedef int Key;
-typedef struct {
-    int key;
-    int indexInHeap;
-} Data;
-
-typedef struct {
-    int len;
-    int* heap;
-    Data* data;
-} TwinHeap;
-
-#define None -1
 /* Q1: 
     newTwinHeap: init new twinHEap struct, 
         allocate heap and data arrays, 
@@ -205,64 +190,3 @@ int popMinimum(TwinHeap th) {
 
     return smallestDataIndex;
 }
-
-int main() {
-    TwinHeap th = newTwinHeap(10, 100);
-    printNiceHeap(th);
-    editKey(th, 3, 12);
-    printNiceHeap(th);
-    printf("min = %d \n", popMinimum(th));
-    printNiceHeap(th);
-    printf("min = %d \n", popMinimum(th));
-    printNiceHeap(th);
-    editKey(th, 2, 200);
-    editKey(th, 4, 85);
-    editKey(th, 5, 333);
-    printNiceHeap(th);
-}
-
-/*
-expected output
-heapIndex  dataIndex
-     0         0 [key=100]
-     1          1 [key=100]
-     3           3 [key=100]
-     7            7 [key=100]
-     8            8 [key=100]
-     4           4 [key=100]
-     9            9 [key=100]
-     2          2 [key=100]
-     5           5 [key=100]
-     6           6 [key=100]
-heapIndex  dataIndex
-     0         3 [key=12]
-     1          0 [key=100]
-     3           1 [key=100]
-     7            7 [key=100]
-     8            8 [key=100]
-     4           4 [key=100]
-     9            9 [key=100]
-     2          2 [key=100]
-     5           5 [key=100]
-     6           6 [key=100]
-min = 3 
-min = 0 
-heapIndex  dataIndex
-     0         1 [key=100]
-     1          7 [key=100]
-     3           8 [key=100]
-     4           4 [key=100]
-     9            9 [key=100]
-     2          2 [key=100]
-     5           5 [key=100]
-     6           6 [key=100]
-heapIndex  dataIndex
-     0         4 [key=85]
-     1          1 [key=100]
-     3           8 [key=100]
-     4           7 [key=100]
-     9            9 [key=100]
-     2          6 [key=100]
-     5           2 [key=200]
-     6           5 [key=333]
-*/

@@ -4,4 +4,8 @@ project(SAE_StarWars C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(SAE_StarWars
-        c/heap.c)
+        c/main.c
+        c/graph.c
+        c/heap.c
+        c/astar.c
+)

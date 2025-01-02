@@ -1,6 +1,15 @@
+package fr.starwars;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Objects;
+
 public class GraphSerializer {
 
     public static String serializeGraph(Graphe graph) {
+        Objects.requireNonNull(graph, "graph must not be null");
         StringBuilder sbPlanets = new StringBuilder();
         StringBuilder sbArete = new StringBuilder();
 
@@ -8,9 +17,9 @@ public class GraphSerializer {
 
         for (Planete p : graph.getPlanetes()) {
             int numberOfArete = graph.getNumberOfArete(p);
-            sbPlanets.append(p.getId()).append("\n")
-                     .append(counter).append("\n")
-                     .append(numberOfArete).append("\n");
+            sbPlanets.append(p.getId()).append(" ")
+                    .append(counter).append(" ")
+                    .append(numberOfArete).append("\n");
             counter += numberOfArete;
         }
 
@@ -20,6 +29,37 @@ public class GraphSerializer {
                     .append(a.getDestination().getId()).append("\n");
         }
 
-        return sbPlanets + "\n-\n" + sbArete;
+        return sbPlanets + "-\n" + sbArete;
+    }
+
+    public static boolean writeSerializedGraph(Graphe graph) {
+        Objects.requireNonNull(graph, "Graph must not be null");
+
+        String serializedGraph = serializeGraph(graph);
+        String fileName = "data/serialized_graph.txt"; // Output file
+
+        File outputFile = new File(fileName);
+
+        try {
+            // Vérifie si le fichier existe, sinon le crée
+            if (!outputFile.exists()) {
+                if (outputFile.createNewFile()) {
+                    System.out.println("Fichier créé : " + outputFile.getAbsolutePath());
+                } else {
+                    System.err.println("Impossible de créer le fichier.");
+                    return false;
+                }
+            }
+
+            // Écriture dans le fichier
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
+                writer.write(serializedGraph);
+                return true; // Succès
+            }
+        } catch (IOException e) {
+            System.err.println("Erreur lors de l'écriture dans le fichier : " + e.getMessage());
+            e.printStackTrace();
+            return false; // Échec
+        }
     }
 }
