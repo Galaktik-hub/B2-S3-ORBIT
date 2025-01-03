@@ -21,7 +21,6 @@ int main(int argc, char *argv[]) {
     }
 
     // Exécution de l'algorithme A*
-    printf("Recherche du chemin entre les planètes %d et %d...\n", id_planet_departure, id_planet_arrival);
     astar(&graphe, id_planet_departure, id_planet_arrival);
 
     // Sauvegarde du graphe (décommenter si nécessaire)
