@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $image_path = $default_image; 
 
     if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
-        $upload_dir = '../images/pp/';
+        $upload_dir = '../assets/images/pp/';
         $uploaded_file = $upload_dir . basename($_FILES['image']['name']);
         $filename = $_FILES['image']['tmp_name'] . "_" . $pseudo;
 
