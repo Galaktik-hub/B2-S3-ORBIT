@@ -17,7 +17,7 @@ $infoUser = getInfo();
                 <a href="account.php"><img src="<?php echo $infoUser->pp; ?>" class="accountpp" alt="PP"></a>
             </li>
             <li id="overlayButton">
-                <img src="../images/settings.svg" id="svg-settings-icon" alt="Paramètres">
+                <img src="../assets/images/settings.svg" id="svg-settings-icon" alt="Paramètres">
             </li>
         </ul>
     </div>
