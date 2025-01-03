@@ -51,15 +51,16 @@ public class CExecutor {
             // Lire la sortie du programme C
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
+            StringBuilder sb = new StringBuilder();
             while ((line = reader.readLine()) != null) {
-                System.out.println(line);
+                sb.append(line);
             }
 
             // Attendre la fin de l'exécution
             int exitCode = process.waitFor();
             boolean deleted = true;
             if (exitCode == 0) {
-                System.out.println("Programme C exécuté avec succès !");
+                System.out.println(sb.toString());
             } else {
                 System.err.println("Erreur lors de l'exécution du programme C, code : " + exitCode);
             }
