@@ -37,8 +37,6 @@ public class CExecutor {
             if (!success) {
                 System.err.println("Erreur lors de la sérialisation du graphe depuis la base de données.");
                 System.exit(1);
-            } else {
-                System.out.println("Graphe sérialisé avec succès !");
             }
 
             // Construire la commande
