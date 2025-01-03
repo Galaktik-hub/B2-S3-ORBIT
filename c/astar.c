@@ -42,7 +42,6 @@ int compareParHeuristique(const void* a, const void* b) {
 
 // Reconstitution du chemin depuis le sommet de destination
 void reconstituerChemin(Node* nodes, int depart, int objectif) {
-    printf("Chemin trouvé :\n");
     int current = objectif;
 
     assert(current != -1);
