@@ -7,6 +7,7 @@ public class GraphProvider {
         DatabaseManager db = new DatabaseManager();
 
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             db.connect();
             Graphe graphe = new Graphe();
 
@@ -28,13 +29,7 @@ public class GraphProvider {
             }
 
             // Charger les trajets (trips) avec filtre basé sur le camp
-            String queryTrips = """
-                SELECT t.id, t.planet_id, t.day_of_week, t.destination_planet_id,
-                       t.departure_time, t.ship_id
-                FROM trips t
-                JOIN ships s ON t.ship_id = s.id
-                WHERE s.camp = ? OR ? = 'Neutre';
-            """;
+            String queryTrips = "SELECT t.id, t.planet_id, t.day_of_week, t.destination_planet_id, t.departure_time, t.ship_id FROM trips t JOIN ships s ON t.ship_id = s.id WHERE s.camp = ? OR ? = 'Neutre';";
 
             try (PreparedStatement stmt = connection.prepareStatement(queryTrips)) {
                 stmt.setString(1, legion);
@@ -62,7 +57,7 @@ public class GraphProvider {
             db.disconnect();
 
             return success;
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 

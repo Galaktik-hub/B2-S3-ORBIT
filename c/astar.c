@@ -95,7 +95,7 @@ void astar(Graphe* graphe, int depart, int objectif) {
         for (int i = graphe->sommets[u].debut_in_array;
              i < graphe->sommets[u].debut_in_array + graphe->sommets[u].nombre_aretes; i++) {
             int v = graphe->aretes[i].id_planet_arrival;
-            double poids = graphe->aretes[i].distance; 
+            double poids = graphe->aretes[i].distance;
 
             if (closedList[v])
                 continue; // Ignorer si déjà exploré

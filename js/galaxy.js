@@ -1,11 +1,11 @@
 var map = L.map('galaxy-map', {
     crs: L.CRS.Simple,
     minZoom: 3,
+    attributionControl: false
 });
 
 document.getElementById('galaxy-map').style.backgroundColor = 'black';
 
-map.setMaxBounds(bounds);
 map.fitBounds(bounds);
 
 var regionColors = {
@@ -36,6 +36,15 @@ function getPlanetRadius(diameter, scale = 4) {
     // Le diamètre de base est 2, donc on ajuste proportionnellement
     return (diameter / 50000) * scale; // Ajuster l'échelle ici si nécessaire
 }
+function generatePlanetImageUrl(image) {
+    if (image) {
+        const imageName = image.replace(/\s+/g, '_');
+        const md5Hash = md5(imageName);
+        const url = `https://static.wikia.nocookie.net/starwars/images/${md5Hash[0]}/${md5Hash.substring(0, 2)}/${imageName}`;
+        return url;
+    }
+    return "No image available";
+}
 
 // Couleur par défaut si aucune région n'est trouvée
 var defaultColor = 'gray';
@@ -50,7 +59,7 @@ points.forEach(function(point) {
     var region = point.region; // Accéder à la région pour cette planète
     var name = point.name.trim().toLowerCase(); // Assurer que le nom est en minuscule et sans espaces autour
     var color = regionColors[region] || defaultColor; // Récupérer la couleur de la région ou utiliser le gris par défaut
-    var imageUrl = point.image; // URL de l'image de la planète
+    var imageUrl = generatePlanetImageUrl(point.image); // URL de l'image de la planète
     var content = ''; // Contenu du popup
 
     // Différencier départ, arrivée et autres planètes
