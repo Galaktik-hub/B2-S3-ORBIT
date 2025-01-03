@@ -89,8 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
         var startPlanet = <?php echo json_encode(strtolower($startPlanet ?? '')); ?>;
         var endPlanet = <?php echo json_encode(strtolower($endPlanet ?? '')); ?>;
 
-        var routePlanets = <?php echo json_encode($routeNames); ?>;
-        console.log('Route Planets:', routePlanets);
+        var routePlanets = <?php echo json_encode($routeNames ?? ''); ?>;
     </script>
     <script src="../js/galaxy.js"></script>
 </body>

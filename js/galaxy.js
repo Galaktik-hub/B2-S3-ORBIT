@@ -102,17 +102,19 @@ points.forEach(function(point) {
         arriveCircle = circle;
     }
 });
-routePlanets.forEach(function(routePlanet) {
-    var planet = points.find(function(point) {
-        return point.name.trim().toLowerCase() === routePlanet.toLowerCase();
-    });
-    if (planet) {
-        var x = (planet.x + planet.sub_grid_x) * 6;
-        var y = (planet.y + planet.sub_grid_y) * 6;
+if (routePlanets) {
+    routePlanets.forEach(function(routePlanet) {
+        var planet = points.find(function(point) {
+            return point.name.trim().toLowerCase() === routePlanet.toLowerCase();
+        });
+        if (planet) {
+            var x = (planet.x + planet.sub_grid_x) * 6;
+            var y = (planet.y + planet.sub_grid_y) * 6;
 
-        latlngs.push([y, x]);
-    }
-});
+            latlngs.push([y, x]);
+        }
+    });
+}
 if (latlngs.length > 1) {
     var polyline = L.polyline(latlngs, {color: '#cdcdcd'}).addTo(map);
 }
