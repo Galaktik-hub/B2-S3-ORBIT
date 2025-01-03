@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <div>
                                         <label for="startPlanet" class="responsiveLabel">Départ :</label>
                                     </div>
-                                    <select id="legion" class="form-control" required>
+                                    <select id="legion" name="legion" class="form-control" required>
                                         <option value="" selected disabled>Légion</option>
                                         <option value="Empire">Empire</option>
                                         <option value="Neutre">Neutre</option>

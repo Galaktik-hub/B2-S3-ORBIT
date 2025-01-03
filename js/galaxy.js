@@ -9,19 +9,19 @@ document.getElementById('galaxy-map').style.backgroundColor = 'black';
 map.fitBounds(bounds);
 
 var regionColors = {
-    'Deep Core': '#6baed6',  // Bleu clair lumineux
-    'Core': '#4292c6',      // Bleu vif
-    'Colonies': '#2171b5',  // Bleu riche
-    'Expansion Region': '#084594',  // Bleu profond mais éclatant
-    'Extragalactic': '#fd8d3c',  // Orange vif
-    'Hutt Space': '#fc4e2a',     // Rouge-orange intense
-    'Inner Rim Territories': '#e31a1c',  // Rouge éclatant
-    'Mid Rim Territories': '#bd0026',    // Rouge pur
-    'Outer Rim Territories': '#800026',  // Rouge riche et chaud
-    'Talcene Sector': '#ff4500',         // Rouge-orangé chaleureux
-    'The Centrality': '#ff7f00',         // Orange doré vif
-    'Tingel Arm': '#ffbf00',             // Jaune doré
-    'Wild Space': '#ffe100'              // Jaune clair éclatant
+    'Deep Core': '#6baed6',
+    'Core': '#4292c6',
+    'Colonies': '#2171b5',
+    'Expansion Region': '#084594',
+    'Extragalactic': '#fd8d3c',
+    'Hutt Space': '#fc4e2a',
+    'Inner Rim Territories': '#e31a1c',
+    'Mid Rim Territories': '#bd0026',
+    'Outer Rim Territories': '#800026',
+    'Talcene Sector': '#ff4500',
+    'The Centrality': '#ff7f00',
+    'Tingel Arm': '#ffbf00',
+    'Wild Space': '#ffe100'
 };
 
 function getDiameterScale(diameter) {
@@ -46,23 +46,20 @@ function generatePlanetImageUrl(image) {
     return "No image available";
 }
 
-// Couleur par défaut si aucune région n'est trouvée
 var defaultColor = 'gray';
 
-// Variables pour stocker les objets Leaflet des cercles de départ et d'arrivée
 var departCircle, arriveCircle;
 var xDepart, yDepart, xArrive, yArrive;
+var latlngs = [];
 
-// Boucler à travers chaque point (planète) et ajouter un cercle avec une couleur basée sur la région
 points.forEach(function(point) {
-    var diameter = point.diameter || 0; // Assigner 0 si Diameter est null ou undefined
-    var region = point.region; // Accéder à la région pour cette planète
-    var name = point.name.trim().toLowerCase(); // Assurer que le nom est en minuscule et sans espaces autour
-    var color = regionColors[region] || defaultColor; // Récupérer la couleur de la région ou utiliser le gris par défaut
-    var imageUrl = generatePlanetImageUrl(point.image); // URL de l'image de la planète
-    var content = ''; // Contenu du popup
+    var diameter = point.diameter || 0;
+    var region = point.region;
+    var name = point.name.trim().toLowerCase();
+    var color = regionColors[region] || defaultColor;
+    var imageUrl = generatePlanetImageUrl(point.image);
+    var content = '';
 
-    // Différencier départ, arrivée et autres planètes
     if (name === startPlanet) {
         content = `
             <b>Type:</b> Departure<br>
@@ -87,82 +84,45 @@ points.forEach(function(point) {
     var radius = getDiameterScale(diameter);
 
     // Créer le cercle pour chaque planète
-    var circle = name === startPlanet || name === endPlanet ? L.circle([y, x], {
-        radius: getPlanetRadius(diameter), // Ajuster la taille du point
-        color:  '#cdcdcd', // Couleur du bord du cercle
-        fillColor: '#cdcdcd', // Couleur du remplissage du cercle
-        fillOpacity: 1 // Opacité complète pour un point solide
-    }).bindPopup(content, {autoClose: false}).addTo(map).openPopup() : L.circle([y, x], {
-        radius: radius, // Ajuster la taille du point
-        color: color, // Couleur du bord du cercle
-        fillColor: color, // Couleur du remplissage du cercle
-        fillOpacity: 1 // Opacité complète pour un point solide
+    var planetInRoute = routePlanets.includes(name);
+    var circle = L.circle([y, x], {
+        radius: name === startPlanet || name === endPlanet ? getPlanetRadius(diameter) : radius,
+        color: planetInRoute ? '#cdcdcd' : color,
+        fillColor: planetInRoute ? '#cdcdcd' : color,
+        fillOpacity: 1
     }).bindPopup(content).addTo(map);
 
-    // Comparer les noms et assigner les coordonnées et cercles spécifiques
     if (name === startPlanet) {
         xDepart = x;
         yDepart = y;
-        departCircle = circle; // Stocker le cercle de départ
+        departCircle = circle;
     } else if (name === endPlanet) {
         xArrive = x;
         yArrive = y;
-        arriveCircle = circle; // Stocker le cercle d'arrivée
+        arriveCircle = circle;
     }
 });
-// Ajouter la polyline après avoir amené les cercles au-dessus
-if (xDepart !== undefined && yDepart !== undefined && xArrive !== undefined && yArrive !== undefined) {
-    var latlngs = [
-        [yDepart, xDepart],
-        [yArrive, xArrive]
-    ];
+routePlanets.forEach(function(routePlanet) {
+    var planet = points.find(function(point) {
+        return point.name.trim().toLowerCase() === routePlanet.toLowerCase();
+    });
+    if (planet) {
+        var x = (planet.x + planet.sub_grid_x) * 6;
+        var y = (planet.y + planet.sub_grid_y) * 6;
 
-    // Créer et ajouter la polyline
+        latlngs.push([y, x]);
+    }
+});
+if (latlngs.length > 1) {
     var polyline = L.polyline(latlngs, {color: '#cdcdcd'}).addTo(map);
 }
 
-// Une fois la boucle terminée, mettre en avant les cercles de départ et d'arrivée
 if (departCircle) {
-    departCircle.bringToFront(); // Met le cercle de départ au-dessus
-    departCircle.color = 'black'
+    departCircle.bringToFront();
 }
-
 if (arriveCircle) {
-    arriveCircle.bringToFront(); // Met le cercle d'arrivée au-dessus
+    arriveCircle.bringToFront();
 }
-
-// Boucle pour dessiner la grille et ajouter les labels
-// var gridMargin = -20;
-// var gridSpacing = 5;
-// var labelSpacing = gridSpacing * 2; // Labels à chaque deux lignes
-/*
-    for (var i = Math.round((<?php echo $minX; ?> + gridMargin) / labelSpacing) * labelSpacing; i <= <?php echo $maxX; ?> - gridMargin; i += labelSpacing) {
-// Ligne verticale de la grille
-L.polyline([[<?php echo $minY; ?> + gridMargin, i], [<?php echo $maxY; ?> - gridMargin, i]], {color: 'white', weight: 0.5, opacity: 0.5}).addTo(map);
-
-// Ajouter les labels arrondis sur chaque ligne
-L.marker([<?php echo $minY; ?> + gridMargin, i], {
-    icon: L.divIcon({
-        className: 'label-icon',
-        html: `<span style="color: white; font-size: 10px;">${Math.round(i)}</span>`,
-        iconSize: [30, 12]
-    })
-}).addTo(map);
-}
-
-for (var j = Math.round((<?php echo $minY; ?> + gridMargin) / labelSpacing) * labelSpacing; j <= <?php echo $maxY; ?> - gridMargin; j += labelSpacing) {
-// Ligne horizontale de la grille
-L.polyline([[j, <?php echo $minX; ?> + gridMargin], [j, <?php echo $maxX; ?> - gridMargin]], {color: 'white', weight: 0.5, opacity: 0.5}).addTo(map);
-
-// Ajouter les labels arrondis sur chaque ligne
-L.marker([j, <?php echo $minX; ?> + gridMargin], {
-    icon: L.divIcon({
-        className: 'label-icon',
-        html: `<span style="color: white; font-size: 10px;">${Math.round(j)}</span>`,
-        iconSize: [30, 12]
-    })
-}).addTo(map);
-}*/
 
 // Existing code for creating the region color legend
 var legend = document.getElementById("legend");
