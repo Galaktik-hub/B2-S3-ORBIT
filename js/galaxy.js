@@ -92,12 +92,12 @@ points.forEach(function(point) {
         color:  '#cdcdcd', // Couleur du bord du cercle
         fillColor: '#cdcdcd', // Couleur du remplissage du cercle
         fillOpacity: 1 // Opacité complète pour un point solide
-    }).bindPopup(content).addTo(map) : L.circle([y, x], {
+    }).bindPopup(content, {autoClose: false}).addTo(map).openPopup() : L.circle([y, x], {
         radius: radius, // Ajuster la taille du point
         color: color, // Couleur du bord du cercle
         fillColor: color, // Couleur du remplissage du cercle
         fillOpacity: 1 // Opacité complète pour un point solide
-    }).bindPopup(content).openPopup().addTo(map);
+    }).bindPopup(content).addTo(map);
 
     // Comparer les noms et assigner les coordonnées et cercles spécifiques
     if (name === startPlanet) {
