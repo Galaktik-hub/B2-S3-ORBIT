@@ -47,6 +47,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (move_uploaded_file($_FILES['image']['tmp_name'], $uploaded_file)) {
             $image_path = $uploaded_file;
         }
+
+        $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+        if (!in_array($_FILES['image']['type'], $allowed_types)) {
+            $message = "Type de fichier non autorisé";
+            header("Location: ../page/account.php?message=" . urlencode($message) . "&type=error");
+            exit();
+        }
+
+        if ($_FILES['image']['size'] > 5_000_000) {
+            $message = "Fichier trop lourd, le maximum autorisé est de 5 Mo.";
+            header("Location: ../page/account.php?message=" . urlencode($message) . "&type=error");
+            exit();
+        }
     }
 
     $custom_salt = bin2hex(random_bytes(32));

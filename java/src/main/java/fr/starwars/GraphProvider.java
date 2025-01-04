@@ -29,7 +29,7 @@ public class GraphProvider {
             }
 
             // Charger les trajets (trips) avec filtre basé sur le camp
-            String queryTrips = "SELECT t.id, t.planet_id, t.day_of_week, t.destination_planet_id, t.departure_time, t.ship_id FROM trips t JOIN ships s ON t.ship_id = s.id WHERE s.camp = ? OR ? = 'Neutre';";
+            String queryTrips = "SELECT t.id, t.planet_id, t.day_of_week, t.destination_planet_id, t.departure_time, t.ship_id FROM trips t JOIN ships s ON t.ship_id = s.id WHERE s.camp = ? OR ? = 'Neutre' ORDER BY t.planet_id;";
 
             try (PreparedStatement stmt = connection.prepareStatement(queryTrips)) {
                 stmt.setString(1, legion);

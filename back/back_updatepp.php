@@ -17,9 +17,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
         exit();
     }
 
-    $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+    $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
     if (!in_array($_FILES['image']['type'], $allowed_types)) {
         $message = "Type de fichier non autorisé";
+        header("Location: ../page/account.php?message=" . urlencode($message) . "&type=error");
+        exit();
+    }
+
+    if ($_FILES['image']['size'] > 5_000_000) {
+        $message = "Fichier trop lourd, le maximum autorisé est de 5 Mo.";
         header("Location: ../page/account.php?message=" . urlencode($message) . "&type=error");
         exit();
     }
