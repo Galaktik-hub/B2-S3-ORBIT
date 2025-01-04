@@ -12,7 +12,7 @@ int initialiser_graphe(Graphe* graphe, int nombre_sommets, int nombre_aretes) {
         return 1;
     }
 
-    for (int i = 0; i < nombre_sommets + 1; i++) {
+    for (int i = 0; i <= nombre_sommets; i++) {
         graphe->sommets[i].id_planet = -1;
         graphe->sommets[i].debut_in_array = -1;
         graphe->sommets[i].nombre_aretes = 0;

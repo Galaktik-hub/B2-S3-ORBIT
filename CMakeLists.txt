@@ -9,3 +9,5 @@ add_executable(SAE_StarWars
         c/heap.c
         c/astar.c
 )
+
+set_target_properties(SAE_StarWars PROPERTIES OUTPUT_NAME "orbit")

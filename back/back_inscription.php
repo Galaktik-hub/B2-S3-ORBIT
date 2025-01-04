@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $password)) {
-        header("Location: ../index.html?message=Password must be at least 8 characters long and include both letters and numbers&type=error");
+        header("Location: ../index.html?message=Le mot de passe doit comporter au moins 8 caractères et inclure des lettres et des chiffres&type=error");
         exit();
     }
 
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $image_path = $default_image; 
 
     if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
-        $upload_dir = '../images/pp/';
+        $upload_dir = '../assets/images/pp/';
         $uploaded_file = $upload_dir . basename($_FILES['image']['name']);
         $filename = $_FILES['image']['tmp_name'] . "_" . $pseudo;
 

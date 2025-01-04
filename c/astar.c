@@ -1,38 +1,23 @@
 #include <stdio.h>
 #include <assert.h>
-#include <math.h>
 #include "graph.h"
 #include "heap.h"
 
 #define INF 1e9 // Infini pour les distances
 
 double distance_heuristique(const Graphe* graphe, int sommet_actuel, int objectif) {
-    // Vérification des indices valides
-    if (sommet_actuel < 0 || sommet_actuel >= graphe->nombre_sommets ||
-        objectif < 0 || objectif >= graphe->nombre_sommets) {
-        return INF;
-    }
-
     double min_distance = INF;
 
-    // Parcourir les arêtes sortantes du sommet actuel
+    // Parcourir toutes les arêtes pour trouver la distance minimale entre sommet_actuel et objectif
     for (int i = graphe->sommets[sommet_actuel].debut_in_array;
          i < graphe->sommets[sommet_actuel].debut_in_array + graphe->sommets[sommet_actuel].nombre_aretes; i++) {
         if (graphe->aretes[i].id_planet_arrival == objectif) {
-            min_distance = graphe->aretes[i].distance;
-            break; // Si une connexion directe est trouvée, on peut arrêter
+            if (graphe->aretes[i].distance < min_distance) {
+                min_distance = graphe->aretes[i].distance;
+            }
         }
     }
-
-    // Si aucune connexion directe, fournir une estimation
-    if (min_distance == INF) {
-        // Retour d'une estimation heuristique, la distance euclidienne
-        double dx = graphe->sommets[sommet_actuel].x - graphe->sommets[objectif].x;
-        double dy = graphe->sommets[sommet_actuel].y - graphe->sommets[objectif].y;
-        min_distance = sqrt(dx * dx + dy * dy);
-    }
-
-    return min_distance;
+    return min_distance == INF ? 0 : min_distance; // Si aucune arête directe, renvoie 0
 }
 
 // Structure pour un nœud dans l'algorithme A*
@@ -61,7 +46,7 @@ void reconstituerChemin(Node* nodes, int depart, int objectif) {
 
     assert(current != -1);
 
-    printf("Distance:%lf:Chemin:", nodes[current].cout);
+    printf("Distance:%lf|Chemin:", nodes[current].cout);
     while (current != depart) {
         assert(current != -1);
         printf("%d<-", current);
@@ -109,7 +94,7 @@ void astar(Graphe* graphe, int depart, int objectif) {
         for (int i = graphe->sommets[u].debut_in_array;
              i < graphe->sommets[u].debut_in_array + graphe->sommets[u].nombre_aretes; i++) {
             int v = graphe->aretes[i].id_planet_arrival;
-            double poids = graphe->aretes[i].distance; 
+            double poids = graphe->aretes[i].distance;
 
             if (closedList[v])
                 continue; // Ignorer si déjà exploré

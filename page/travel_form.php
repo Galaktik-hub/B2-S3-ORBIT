@@ -78,12 +78,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <label for="shipName" class="responsiveLabel">Vaisseaux :</label>
                                     </div>
                                     <select id="shipName" class="form-control" required>
-                                        <option value="" selected disabled>Any</option>
+                                        <option value="" selected disabled>Vaisseaux</option>
                                         <?php
                                         foreach ($shipNames as $shipName) {
                                             echo "<option value=\"{$shipName['name']}\">{$shipName['name']}</option>";
                                         }
                                         ?>
+                                    </select>
+                                </li>
+                                <li>
+                                    <div>
+                                        <label for="startPlanet" class="responsiveLabel">Départ :</label>
+                                    </div>
+                                    <select id="legion" name="legion" class="form-control" required>
+                                        <option value="" selected disabled>Légion</option>
+                                        <option value="Empire">Empire</option>
+                                        <option value="Neutre">Neutre</option>
+                                        <option value="Rebelles">Rebelles</option>
                                     </select>
                                 </li>
                                 <li>

@@ -3,6 +3,7 @@ package fr.starwars;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 
 public class CExecutor {
     public static void main(String[] args) {
@@ -12,16 +13,17 @@ public class CExecutor {
         }
 
         try {
+            System.setOut(new PrintStream(System.out, true, "UTF-8"));
             String graph_path = "";
             switch (args[3]) {
                 case "Neutre":
-                    graph_path = "data/serialized_graph_neutral.txt";
+                    graph_path = "../data/serialized_graph_neutral.txt";
                     break;
                 case "Rebelles":
-                    graph_path = "data/serialized_graph_rebelles.txt";
+                    graph_path = "../data/serialized_graph_rebelles.txt";
                     break;
                 case "Empire":
-                    graph_path = "data/serialized_graph_empires.txt";
+                    graph_path = "../data/serialized_graph_empires.txt";
                     break;
                 default:
                     System.err.println("Invalid legion name. Choose between Neutre, Rebelles, Empire.");
@@ -35,8 +37,6 @@ public class CExecutor {
             if (!success) {
                 System.err.println("Erreur lors de la sérialisation du graphe depuis la base de données.");
                 System.exit(1);
-            } else {
-                System.out.println("Graphe sérialisé avec succès !");
             }
 
             // Construire la commande
