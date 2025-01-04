@@ -15,21 +15,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pseudo_count = $stmt->fetchColumn();
 
     if ($pseudo_count > 0) {
-        header("Location: ../index.html?message=Pseudo already exists&type=error");
+        $message = urlencode("Pseudo déjà utilisé");
+        $type = urlencode("error");
+        header("Location: ../index.html?message=$message&type=$type");
         exit();
     }
 
     if ($password !== $confirm_password) {
-        header("Location: ../index.html?message=Passwords do not match&type=error");
+        $message = urlencode("Les mots de passes ne correspondent pas");
+        $type = urlencode("error");
+        header("Location: ../index.html?message=$message&type=$type");
         exit();
     }
 
     if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $password)) {
-        header("Location: ../index.html?message=Le mot de passe doit comporter au moins 8 caractères et inclure des lettres et des chiffres&type=error");
+        $message = urlencode("Le mot de passe doit comporter au moins 8 caractères et inclure des lettres et des chiffres");
+        $type = urlencode("error");
+        header("Location: ../index.html?message=$message&type=$type");
         exit();
     }
 
-    $default_image = '../images/pp/account.png';
+    $default_image = '../assets/images/pp/account.png';
     $image_path = $default_image; 
 
     if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
@@ -79,9 +85,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </html>
     ";
         email($email, $subject, $message);
-        header("Location: ../index.html?message=Inscription terminé, consultez vos mails&type=success");
+        $message = urlencode("Inscription terminé, consultez vos mails");
+        $type = urlencode("success");
+        header("Location: ../index.html?message=$message&type=$type");
     } else {
-        header("Location: ../index.html?message=Erreur lors de l'inscription&type=error");
+        $message = urlencode("Erreur lors de l'inscription");
+        $type = urlencode("error");
+        header("Location: ../index.html?message=$message&type=$type");
     }
 
     $stmt = null;

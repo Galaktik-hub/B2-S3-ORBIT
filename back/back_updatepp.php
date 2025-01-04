@@ -5,8 +5,8 @@ include 'cnx.php';
 $pseudo = $_SESSION['pseudo'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
-    $upload_dir = '../images/pp/';
-    $default_image = '../images/pp/account.png';
+    $upload_dir = '../assets/images/pp/';
+    $default_image = '../assets/images/pp/account.png';
 
     $tmp_name = $_FILES['image']['tmp_name'];
     $file_name = uniqid() . "_" . basename($_FILES['image']['name']); // Nom unique
@@ -32,16 +32,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
             $stmt->bindParam(':pseudo', $pseudo);
 
             if ($stmt->execute()) {
-                header("Location: ../page/account.php?message=Photo de profil mise à jour&type=success");
+                $message = urlencode("Photo de profil mise à jour");
+                $type = urlencode("success");
+                header("Location: ../page/account.php?message=$message&type=$type");
             } else {
-                header("Location: ../page/account.php?message=Erreur lors de la mise à jour&type=error");
+                $message = urlencode("Erreur lors de la mise à jour");
+                $type = urlencode("error");
+                header("Location: ../page/account.php?message=$message&type=$type");
             }
         } else {
-            header("Location: ../page/account.php?message=Erreur lors de l'upload&type=error");
+            $message = urlencode("Erreur lors de l'upload");
+            $type = urlencode("error");
+            header("Location: ../page/account.php?message=$message&type=$type");
         }
     } catch (Exception $e) {
-        header("Location: ../page/account.php?message=Erreur interne&type=error");
+        $message = urlencode("Erreur interne");
+        $type = urlencode("error");
+        header("Location: ../page/account.php?message=$message&type=$type");
     }
 } else {
-    header("Location: ../page/account.php?message=Requête invalide&type=error");
+    $message = urlencode("Requête invalide");
+    $type = urlencode("error");
+    header("Location: ../page/account.php?message=$message&type=$type");
 }

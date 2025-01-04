@@ -7,7 +7,7 @@ if (message) {
     const modalHeader = document.getElementById('modal-header');
     const modalBody = document.getElementById('modal-body');
 
-    modalHeader.textContent = (type === 'success') ? "Success" : "Error";
+    modalHeader.textContent = (type === 'success') ? "Succès" : "Erreur";
     modalBody.textContent = message;
 
     modal.style.display = 'flex'; 
