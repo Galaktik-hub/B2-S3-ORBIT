@@ -23,11 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: ../page/index.php");
             exit();
         } else {
-            header("Location: ../index.html?message=Login ou mot de passe incorect&type=error");
+            $message = urlencode("Login ou mot de passe incorect");
+            $type = urlencode("error");
+            header("Location: ../index.html?message=$message&type=$type");
             exit();
         }
     } else {
-        header("Location: ../index.html?message=Login ou mot de passe incorect&type=error");
+        $message = urlencode("Login ou mot de passe incorect");
+        $type = urlencode("error");
+        header("Location: ../index.html?message=$message&type=$type");
         exit();
     }
 

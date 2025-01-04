@@ -95,4 +95,12 @@ $infoUser = getInfo();
     cross.addEventListener('click', () => {
         overlay.classList.remove('show');
     });
+
+    document.addEventListener('click', (event) => {
+        if (overlay.classList.contains('show')
+            && !overlay.contains(event.target)
+            && !overlayButton.contains(event.target)) {
+            overlay.classList.remove('show');
+        }
+    });
 </script>

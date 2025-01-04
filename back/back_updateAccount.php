@@ -15,7 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pseudo_count = $stmt->fetchColumn();
 
     if ($pseudo_count > 0) {
-        header("Location: ../page/account.php?message=Pseudo Invalide&type=error");
+        $message = urlencode("Pseudo Invalide");
+        $type = urlencode("error");
+        header("Location: ../page/account.php?message=$message&type=$type");
         exit();
     }
 
@@ -27,9 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         $_SESSION['pseudo'] = $pseudo;
-        header("Location: ../page/account.php?message=Information Modifier !&type=success");
+        $message = urlencode("Information modifiées avec succès");
+        $type = urlencode("success");
+        header("Location: ../page/account.php?message=$message&type=$type");
     } else {
-        header("Location: ../page/account.php?message=Error during modification&type=error");
+        $message = urlencode("Erreur durant la modification");
+        $type = urlencode("error");
+        header("Location: ../page/account.php?message=$message&type=$type");
     }
 
     $stmt = null;

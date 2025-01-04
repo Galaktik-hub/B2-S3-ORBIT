@@ -1,6 +1,7 @@
 <?php
 include 'cnx.php';
 include 'sendmail.php';
+include 'back_function.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pseudo = $_POST['pseudo'];
@@ -15,21 +16,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pseudo_count = $stmt->fetchColumn();
 
     if ($pseudo_count > 0) {
-        header("Location: ../index.html?message=Pseudo already exists&type=error");
+        $message = urlencode("Pseudo déjà utilisé");
+        $type = urlencode("error");
+        header("Location: ../index.html?message=$message&type=$type");
         exit();
     }
 
     if ($password !== $confirm_password) {
-        header("Location: ../index.html?message=Passwords do not match&type=error");
+        $message = urlencode("Les mots de passes ne correspondent pas");
+        $type = urlencode("error");
+        header("Location: ../index.html?message=$message&type=$type");
         exit();
     }
 
     if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $password)) {
-        header("Location: ../index.html?message=Le mot de passe doit comporter au moins 8 caractères et inclure des lettres et des chiffres&type=error");
+        $message = urlencode("Le mot de passe doit comporter au moins 8 caractères et inclure des lettres et des chiffres");
+        $type = urlencode("error");
+        header("Location: ../index.html?message=$message&type=$type");
         exit();
     }
 
-    $default_image = '../images/pp/account.png';
+    $default_image = '../assets/images/pp/account.png';
     $image_path = $default_image; 
 
     if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
@@ -63,25 +70,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(':pp', $image_path);
 
     if ($stmt->execute()) {
-        $verification_link = "localhost/sae-starwars/back/back_verifyToken.php?token=" . $token;
-        $subject = "Email Verification - Activate your account";
+        $verification_link = "localhost:63342/SAE_StarWars/back/back_verifyToken.php?token=" . $token;
+
+        if (isOnProd()) {
+            $verification_link = "https://orbit.julien-synaeve.fr/back/back_verifyToken.php?token=" . $token;
+
+            $emailAdmin = 'julien.synaeve@gmail.com';
+            $subjectAdmin = "Email d'information - Un utilisateur a créé un compte";
+            $messageAdmin = "
+                <html>
+                <head>
+                <title>Information de création de compte</title>
+                </head>
+                <body>
+                <p>Bonjour Admin,</p>
+                <p>\"$pseudo\" vient tout juste de créer son compte sur le site <a href='http://orbit.julien-synaeve.fr/'>O.R.B.I.T.</a></p>
+                </body>
+                </html>
+            ";
+            email($emailAdmin, $subjectAdmin, $messageAdmin);
+        }
+
+        $subject = "Email de vérification - Activez votre compte";
         $message = "
-        <html>
-        <head>
-        <title>Email Verification</title>
-        </head>
-        <body>
-        <p>Hello $pseudo,</p>
-        <p>Thank you for registering. Please click the link below to verify your email and activate your account:</p>
-        <a href='$verification_link'>Verify Email</a>
-        <p>This link will expire in 2 hours and 15 minutes.</p>
-        </body>
-        </html>
-    ";
+            <html>
+            <head>
+            <title>Email de vérification</title>
+            </head>
+            <body>
+            <p>Bonjour $pseudo,</p>
+            <p>Merci de vous être inscrit. Veuillez cliquer sur le lien ci-dessous pour vérifier votre adresse mail et activer votre compte :</p>
+            <a href='$verification_link'>Vérifiez mon mail</a>
+            <p>Ce lien expirera dans 2 heures et 15 minutes.</p>
+            </body>
+            </html>
+        ";
         email($email, $subject, $message);
-        header("Location: ../index.html?message=Inscription terminé, consultez vos mails&type=success");
+
+        $message = urlencode("Inscription terminé, consultez vos mails");
+        $type = urlencode("success");
+        header("Location: ../index.html?message=$message&type=$type");
     } else {
-        header("Location: ../index.html?message=Erreur lors de l'inscription&type=error");
+        $message = urlencode("Erreur lors de l'inscription");
+        $type = urlencode("error");
+        header("Location: ../index.html?message=$message&type=$type");
     }
 
     $stmt = null;

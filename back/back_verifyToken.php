@@ -15,13 +15,19 @@ if ($user) {
     $update_stmt->bindParam(':id', $user['id']);
     
     if ($update_stmt->execute()) {
-        header("Location: ../index.html?message=Account successfully activated&type=success");
+        $message = urlencode("Compte activer aves succès");
+        $type = urlencode("success");
+        header("Location: ../index.html?message=$message&type=$type");
         exit();
     } else {
-        header("Location: ../index.html?message=Error activating account&type=error");
+        $message = urlencode("Erreur lors de l'activation du compte");
+        $type = urlencode("error");
+        header("Location: ../index.html?message=$message&type=$type");
     }
 } else {
-    header("Location: ../index.html?message=Invalid or expired token&type=error");
+    $message = urlencode("Token invalide ou expiré");
+    $type = urlencode("error");
+    header("Location: ../index.html?message=$message&type=$type");
 }
 
 $stmt = null;
