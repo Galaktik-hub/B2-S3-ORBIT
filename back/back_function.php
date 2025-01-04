@@ -38,4 +38,9 @@ function getId() {
     }
 }
 
+function isOnProd() {
+    // Define if the project is in prod or local
+    return true;
+}
+
 ?>

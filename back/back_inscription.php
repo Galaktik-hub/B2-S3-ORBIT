@@ -1,6 +1,7 @@
 <?php
 include 'cnx.php';
 include 'sendmail.php';
+include 'back_function.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pseudo = $_POST['pseudo'];
@@ -69,22 +70,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(':pp', $image_path);
 
     if ($stmt->execute()) {
-        $verification_link = "localhost/sae-starwars/back/back_verifyToken.php?token=" . $token;
-        $subject = "Email Verification - Activate your account";
+        $verification_link = "localhost:63342/SAE_StarWars/back/back_verifyToken.php?token=" . $token;
+
+        if (isOnProd()) {
+            $verification_link = "https://orbit.julien-synaeve.fr/back/back_verifyToken.php?token=" . $token;
+
+            $emailAdmin = 'julien.synaeve@gmail.com';
+            $subjectAdmin = "Email d'information - Un utilisateur a créé un compte";
+            $messageAdmin = "
+                <html>
+                <head>
+                <title>Information de création de compte</title>
+                </head>
+                <body>
+                <p>Bonjour Admin,</p>
+                <p>\"$pseudo\" vient tout juste de créer son compte sur le site <a href='http://orbit.julien-synaeve.fr/'>O.R.B.I.T.</a></p>
+                </body>
+                </html>
+            ";
+            email($emailAdmin, $subjectAdmin, $messageAdmin);
+        }
+
+        $subject = "Email de vérification - Activez votre compte";
         $message = "
-        <html>
-        <head>
-        <title>Email Verification</title>
-        </head>
-        <body>
-        <p>Hello $pseudo,</p>
-        <p>Thank you for registering. Please click the link below to verify your email and activate your account:</p>
-        <a href='$verification_link'>Verify Email</a>
-        <p>This link will expire in 2 hours and 15 minutes.</p>
-        </body>
-        </html>
-    ";
+            <html>
+            <head>
+            <title>Email de vérification</title>
+            </head>
+            <body>
+            <p>Bonjour $pseudo,</p>
+            <p>Merci de vous être inscrit. Veuillez cliquer sur le lien ci-dessous pour vérifier votre adresse mail et activer votre compte :</p>
+            <a href='$verification_link'>Vérifiez mon mail</a>
+            <p>Ce lien expirera dans 2 heures et 15 minutes.</p>
+            </body>
+            </html>
+        ";
         email($email, $subject, $message);
+
         $message = urlencode("Inscription terminé, consultez vos mails");
         $type = urlencode("success");
         header("Location: ../index.html?message=$message&type=$type");
