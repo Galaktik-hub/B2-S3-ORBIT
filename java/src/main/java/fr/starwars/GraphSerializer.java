@@ -44,9 +44,7 @@ public class GraphSerializer {
         try {
             // Vérifie si le fichier existe, sinon le crée
             if (!outputFile.exists()) {
-                if (outputFile.createNewFile()) {
-                    System.out.println("Fichier créé : " + outputFile.getAbsolutePath());
-                } else {
+                if (!outputFile.createNewFile()) {
                     System.err.println("Impossible de créer le fichier.");
                     return false;
                 }

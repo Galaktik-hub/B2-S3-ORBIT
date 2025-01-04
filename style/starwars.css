@@ -27,31 +27,31 @@
 .planet-small {
     width: 30px;
     height: 30px;
-    background-image: url('../images/planet1.png'); 
+    background-image: url('../assets/images/planet1.png');
 }
 
 .planet-medium {
     width: 60px;
     height: 60px;
-    background-image: url('../images/planet2.png'); 
+    background-image: url('../assets/images/planet2.png');
 }
 
 .planet-large {
     width: 100px;
     height: 100px;
-    background-image: url('../images/planet3.png'); 
+    background-image: url('../assets/images/planet3.png');
 }
 
 .planet-extra-large {
     width: 130px;
     height: 130px;
-    background-image: url('../images/planet4.png'); 
+    background-image: url('../assets/images/planet4.png');
 }
 
 .planet-giant {
     width: 160px;
     height: 160px;
-    background-image: url('../images/planet5.png'); 
+    background-image: url('../assets/images/planet5.png');
 }
 
 

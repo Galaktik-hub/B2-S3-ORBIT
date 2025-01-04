@@ -132,7 +132,7 @@ function addBotMessage(message) {
 
         const elementMSG = document.createElement("div");
         elementMSG.classList.add("massage", "bot-response");
-        elementMSG.innerHTML = `<img src="../images/droid.png" alt="OX-1" class="bot-avatar"><div class="text">${message}</div>`;
+        elementMSG.innerHTML = `<img src="../assets/images/droid.png" alt="OX-1" class="bot-avatar"><div class="text">${message}</div>`;
         bubbleContainer.appendChild(elementMSG);
 
         const botNameTag = document.createElement('div');

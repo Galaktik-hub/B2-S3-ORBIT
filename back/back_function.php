@@ -3,7 +3,7 @@ session_start();
 
 function checkLogin() {
     if (!isset($_SESSION['pseudo'])) {
-        header("Location: ../index.html?message=You must be logged in to access this page&type=error");
+        header("Location: ../index.html?message=Vous devez être connecté pour accéder à cette page&type=error");
         exit();
     }
 }

@@ -95,16 +95,32 @@
         $output = [];
         $returnCode = 0;
 
-        exec("java -jar ../java/target/but2-sae4-orbit-1.0-SNAPSHOT.jar ../c/main $start $end $faction 2>&1", $output, $returnCode);
+        exec("java -Dfile.encoding=UTF-8 -jar ../java/target/but2-sae4-orbit-1.0-SNAPSHOT.jar ../c/orbit.exe $start $end $faction 2>&1", $output, $returnCode);
 
         if ($returnCode === 0) {
-            echo "<h2>Résultat :</h2>";
-            echo "<pre>" . implode("\n", $output) . "</pre>";
+            // Extraction de la ligne de résultat
+            $resultLine = implode("\n", $output);
+            preg_match('/Distance:(\d+(\.\d+)?)\|Chemin:(.+)/', $resultLine, $matches);
+
+            if (isset($matches[1], $matches[3])) {
+                // Récupération des variables
+                $distance = floatval($matches[1]);
+                $route = array_reverse(explode('<-', $matches[3]));
+
+                // Affichage des résultats
+                echo "<h2>Résultat :</h2>";
+                echo "<p>Distance : $distance</p>";
+                echo "<p>Route : " . implode(' -> ', $route) . "</p>";
+            } else {
+                echo "<h2>Erreur :</h2>";
+                echo "<pre>Impossible de parser les résultats.</pre>";
+            }
         } else {
             echo "<h2>Erreur :</h2>";
             echo "<pre>" . implode("\n", $output) . "</pre>";
         }
     }
+
     ?>
 </div>
 

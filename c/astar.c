@@ -46,10 +46,10 @@ void reconstituerChemin(Node* nodes, int depart, int objectif) {
 
     assert(current != -1);
 
-    printf("Distance : %lf : Chemin :\n", nodes[current].cout);
+    printf("Distance:%lf|Chemin:", nodes[current].cout);
     while (current != depart) {
         assert(current != -1);
-        printf("%d <- ", current);
+        printf("%d<-", current);
         current = nodes[current].parent;
     }
     printf("%d\n", depart);
