@@ -1,6 +1,6 @@
 var map = L.map('galaxy-map', {
     crs: L.CRS.Simple,
-    minZoom: 3,
+    minZoom: 2,
     attributionControl: false
 });
 
