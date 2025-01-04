@@ -91,11 +91,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <label for="startPlanet" class="responsiveLabel">Départ :</label>
                                     </div>
                                     <select id="legion" name="legion" class="form-control" required>
-                                        <option value="" selected disabled>Légion</option>
-                                        <option value="Empire">Empire</option>
-                                        <option value="Neutre">Neutre</option>
-                                        <option value="Rebelles">Rebelles</option>
+                                        <option value="" disabled <?php echo empty($infoUser->role) ? 'selected' : ''; ?>>Légion</option>
+                                        <option value="Empire" <?php echo $infoUser->role === 'Empire' ? 'selected' : ''; ?>>Empire</option>
+                                        <option value="Neutre" <?php echo $infoUser->role === 'Neutre' ? 'selected' : ''; ?>>Neutre</option>
+                                        <option value="Rebelles" <?php echo $infoUser->role === 'Rebelles' ? 'selected' : ''; ?>>Rebelles</option>
                                     </select>
+
                                 </li>
                                 <li>
                                     <input type="submit" value="Chercher votre voyage">
@@ -106,6 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
         </div>
+        <!--
         <div class="containerBloc">
             <div class="bloc">
                 <h1>Réservation de taxi</h1>
@@ -176,6 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
         </div>
+        -->
     </main>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

@@ -38,12 +38,11 @@
             <form action="back/back_inscription.php" method="post">
                 <input type="text" name="pseudo" placeholder="Pseudo" required>
                 <input type="file" name="image" id="image" accept="image/gif, image/png, image/jpeg, image/jpg">
-                <select name="role" id="">
+                <select name="role">
                     <option value="">Non définie</option>
-                    <option value="">Sith</option>
-                    <option value="">Jedi</option>
-                    <option value="">Rebelle</option>
-                    <option value="">Espion de l'empire</option>
+                    <option value="Empire">Empire</option>
+                    <option value="Neutre">Neutre</option>
+                    <option value="Rebelles">Rebelles</option>
                 </select>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Password" required>
