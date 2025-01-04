@@ -20,7 +20,9 @@ public class GraphSerializer {
             int numberOfArete = graph.getNumberOfArete(p);
             sbPlanets.append(p.getId()).append(" ")
                     .append(counter).append(" ")
-                    .append(numberOfArete).append("\n");
+                    .append(numberOfArete).append(" ")
+                    .append(p.getRealCordX()).append(" ")
+                    .append(p.getRealCordY()).append("\n");
             counter += numberOfArete;
             lastId = p.getId();
         }

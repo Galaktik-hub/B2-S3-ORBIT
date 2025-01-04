@@ -16,6 +16,8 @@ int initialiser_graphe(Graphe* graphe, int nombre_sommets, int nombre_aretes) {
         graphe->sommets[i].id_planet = -1;
         graphe->sommets[i].debut_in_array = -1;
         graphe->sommets[i].nombre_aretes = 0;
+        graphe->sommets[i].x = 0.0;
+        graphe->sommets[i].y = 0.0;
     }
 
     for (int i = 0; i < nombre_aretes; i++) {
@@ -73,10 +75,13 @@ int lire_fichier_et_creer_graphe(const char* chemin_fichier, Graphe* graphe) {
 
         if (!lecture_arretes) {
             int id_planet, debut_in_array, nombre_aretes_sommet;
-            if (sscanf(ligne, "%d %d %d", &id_planet, &debut_in_array, &nombre_aretes_sommet) == 3) {
+            double x, y;
+            if (sscanf(ligne, "%d %d %d %lf %lf", &id_planet, &debut_in_array, &nombre_aretes_sommet, &x, &y) == 5) {
                 graphe->sommets[id_planet].id_planet = id_planet;
                 graphe->sommets[id_planet].debut_in_array = debut_in_array;
                 graphe->sommets[id_planet].nombre_aretes = nombre_aretes_sommet;
+                graphe->sommets[id_planet].x = x;
+                graphe->sommets[id_planet].y = y;
             }
         } else {
             int id_planet_depart, id_planet_arrival;
