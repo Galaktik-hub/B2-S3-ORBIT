@@ -72,10 +72,16 @@
     opacity: 0.8;
 }
 
-.legend-item:hover {
+.item-region:hover {
     background-color: #00cc99;
     color: #fff;
     cursor: pointer;
+}
+.item-region.active {
+    background-color: #f0f0f0;
+    color: #000;
+    font-weight: bold;
+    border-radius: 4px;
 }
 
 @keyframes twinkle {
