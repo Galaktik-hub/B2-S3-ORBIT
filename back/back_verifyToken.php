@@ -15,7 +15,7 @@ if ($user) {
     $update_stmt->bindParam(':id', $user['id']);
     
     if ($update_stmt->execute()) {
-        $message = urlencode("Compte activer aves succès");
+        $message = urlencode("Compte activé aves succès");
         $type = urlencode("success");
         header("Location: ../index.html?message=$message&type=$type");
         exit();

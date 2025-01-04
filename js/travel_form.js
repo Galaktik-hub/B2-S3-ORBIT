@@ -10,6 +10,8 @@ $(document).ready(function() {
     // Apply autocomplete to both input fields
     setupAutocomplete("#startPlanet");
     setupAutocomplete("#endPlanet");
+    setupAutocomplete("#startPlanet2");
+    setupAutocomplete("#endPlanet2");
 
     // Event listener to handle form submission and log search information
     // $('#searchForm').on('submit', function(event) {

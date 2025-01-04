@@ -106,6 +106,76 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
         </div>
+        <div class="containerBloc">
+            <div class="bloc">
+                <h1>Réservation de taxi</h1>
+                <h4>Service de réservation de taxi pour les voyageurs seuls.</h4>
+                <h4>Profitez de tarifs avantageux et compétitifs grâce aux différentes compagnies proposées pour vous ammener à destination.</h4>
+                <div class="blocContainer">
+                    <div class="account">
+                        <form action="cart.php" method="post">
+                            <ul>
+                                <li>
+                                    <div>
+                                        <label for="startPlanet" class="responsiveLabel">Départ :</label>
+                                    </div>
+                                    <input type="text" placeholder="Départ" name="startPlanet" id="startPlanet2" required>
+                                </li>
+                                <li>
+                                    <div>
+                                        <label for="endPlanet" class="responsiveLabel">Destination:</label>
+                                    </div>
+                                    <input type="text" placeholder="Destination" value="<?php echo $endPlanet ?? '' ?>" name="endPlanet" id="endPlanet2" required>
+                                </li>
+                                <li>
+                                    <h3>Compagnies disponibles :</h3>
+                                </li>
+                                <li>
+                                    <div class="taxi-card">
+                                        <p class="company-name">HyperRide 3000</p>
+                                        <p class="quote">"Plus rapide qu’un saut en hyperespace, et avec moins de turbulences !"</p>
+                                        <p class="price">3500</p>
+                                        <input type="submit" name="hyperide" value="Faire appel à cette compagnie">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="taxi-card">
+                                        <p class="company-name">VaderLimo</p>
+                                        <p class="quote">"Quand vous êtes avec nous, la Force est déjà là."</p>
+                                        <p class="price">5000</p>
+                                        <input type="submit" name="vaderlimo" value="Faire appel à cette compagnie">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="taxi-card">
+                                        <p class="company-name">Millennium Cab</p>
+                                        <p class="quote">"On ne battra pas le record de Kessel, mais presque !"</p>
+                                        <p class="price">2000</p>
+                                        <input type="submit" name="millennium" value="Faire appel à cette compagnie">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="taxi-card">
+                                        <p class="company-name">Tatooine Taxi Co.</p>
+                                        <p class="quote">"Des sables aux étoiles, on vous emmène partout."</p>
+                                        <p class="price">1500</p>
+                                        <input type="submit" name="tatooine" value="Faire appel à cette compagnie">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="taxi-card">
+                                        <p class="company-name">JawaFly Services</p>
+                                        <p class="quote">"Utiniiii ! Et vous voilà arrivé."</p>
+                                        <p class="price">1200</p>
+                                        <input type="submit" name="jawafly" value="Faire appel à cette compagnie">
+                                    </div>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

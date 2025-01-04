@@ -23,7 +23,7 @@ function email($email, $object, $body){
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 
-    $mail->setFrom('starwarssae@gmail.com', 'SAE-STARWARS');
+    $mail->setFrom('starwarssae@gmail.com', 'O.R.B.I.T.');
     $mail->addAddress($email);
 
     $mail->isHTML(true);

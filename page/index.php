@@ -40,9 +40,9 @@ include '../back/back_planets_search.php';
                 <?php echo svg('attention'); ?>
                 <p>Info Trafic</p>
             </a>
-            <a href="horraire.php" class="link">
+            <a href="horaire.php" class="link">
                 <?php echo svg('clock'); ?>
-                <p>Horraire des Arrêts</p>
+                <p>Horaire des Arrêts</p>
             </a>
             <a href="map.php" class="link">
                 <?php echo svg('map'); ?>
