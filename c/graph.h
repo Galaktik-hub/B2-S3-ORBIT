@@ -18,6 +18,8 @@ typedef struct {
     int id_planet;
     int debut_in_array;
     int nombre_aretes;
+    double x;
+    double y;
 } Sommet;
 
 typedef struct {

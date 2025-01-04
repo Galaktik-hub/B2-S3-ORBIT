@@ -43,6 +43,14 @@ public class Planete {
 
     public float getSub_gridY() { return sub_gridY; }
 
+    public float getRealCordX() {
+        return (coordX + sub_gridX) * 6;
+    }
+
+    public float getRealCordY() {
+        return (coordY + sub_gridY) * 6;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();

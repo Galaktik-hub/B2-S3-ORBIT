@@ -56,13 +56,12 @@ public class CExecutor {
 
             // Attendre la fin de l'exécution
             int exitCode = process.waitFor();
-            boolean deleted = true;
             if (exitCode == 0) {
                 System.out.println(sb.toString());
             } else {
                 System.err.println("Erreur lors de l'exécution du programme C, code : " + exitCode);
             }
-            deleted = graph.delete();
+            boolean deleted = graph.delete();
 
             if (!deleted) {
                 System.err.println("Erreur lors de la suppression du fichier graphe.");
