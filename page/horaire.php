@@ -9,7 +9,7 @@ checkLogin();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORBIT - Horraires</title>
+    <title>ORBIT - Horaires</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/starwars.css">
@@ -28,7 +28,7 @@ checkLogin();
 
     <main>
         <div class="topTitle">
-            <h1>Horraires</h1>
+            <h1>Horaires</h1>
         </div>
 
         <div class="infoTrafic">

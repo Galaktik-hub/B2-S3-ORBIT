@@ -53,11 +53,11 @@ $infoUser = getInfo();
             </div>
             <p>Info Trafic</p>
         </a>
-        <a href="horraire.php">
+        <a href="horaire.php">
             <div class="svg">
                 <?php echo svg('clock'); ?>
             </div>
-            <p>Horraires</p>
+            <p>Horaires</p>
         </a>
         <a href="travel_form.php">
             <div class="svg">
