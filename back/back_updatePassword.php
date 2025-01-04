@@ -3,7 +3,9 @@ include 'back_function.php';
 include 'cnx.php';
 
 if (!isset($_SESSION['pseudo'])) {
-    header("Location: ../page/account.php?message=Vous devez être connecté&type=error");
+    $message = urlencode("Vous devez être connecté");
+    $type = urlencode("error");
+    header("Location: ../page/account.php?message=$message&type=$type");
     exit();
 }
 
@@ -14,12 +16,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $new_password = $_POST['password2'];
 
     if (empty($old_password) || empty($new_password)) {
-        header("Location: ../page/account.php?message=Tous les champs doivent être remplis&type=error");
+        $message = urlencode("Tous les champs doivent être remplis");
+        $type = urlencode("error");
+        header("Location: ../page/account.php?message=$message&type=$type");
         exit();
     }
 
     if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $new_password)) {
-        header("Location: ../page/account.php?message=Le mot de passe doit contenir au moins 8 caractères, avec des lettres et des chiffres&type=error");
+        $message = urlencode("Le mot de passe doit contenir au moins 8 caractères, avec des lettres et des chiffres");
+        $type = urlencode("error");
+        header("Location: ../page/account.php?message=$message&type=$type");
         exit();
     }
 
@@ -31,7 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$user) {
-            header("Location: ../page/account.php?message=Utilisateur introuvable&type=error");
+            $message = urlencode("Utilisateur introuvable");
+            $type = urlencode("error");
+            header("Location: ../page/account.php?message=$message&type=$type");
             exit();
         }
 
@@ -40,7 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $salted_old_password = $salt . $old_password;
 
         if (!password_verify($salted_old_password, $stored_password)) {
-            header("Location: ../page/account.php?message=Ancien mot de passe incorrect&type=error");
+            $message = urlencode("Ancien mot de passe incorrect");
+            $type = urlencode("error");
+            header("Location: ../page/account.php?message=$message&type=$type");
             exit();
         }
 
@@ -53,13 +63,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':pseudo', $pseudo);
 
         if ($stmt->execute()) {
-            header("Location: ../page/account.php?message=Mot de passe mis à jour avec succès&type=success");
+            $message = urlencode("Mot de passe mis à jour avec succès");
+            $type = urlencode("success");
+            header("Location: ../page/account.php?message=$message&type=$type");
         } else {
-            header("Location: ../page/account.php?message=Erreur lors de la mise à jour&type=error");
+            $message = urlencode("Erreur lors de la mise à jour");
+            $type = urlencode("error");
+            header("Location: ../page/account.php?message=$message&type=$type");
         }
     } catch (Exception $e) {
-        header("Location: ../page/account.php?message=Erreur interne&type=error");
+        $message = urlencode("Erreur interne");
+        $type = urlencode("error");
+        header("Location: ../page/account.php?message=$message&type=$type");
     }
 } else {
-    header("Location: ../page/account.php?message=Requête invalide&type=error");
+    $message = urlencode("Requête invalide");
+    $type = urlencode("error");
+    header("Location: ../page/account.php?message=$message&type=$type");
 }
