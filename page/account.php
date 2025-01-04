@@ -59,7 +59,7 @@ checkLogin();
                                     <img src="<?php echo $infoUser->pp; ?>" alt="PP" class="pp">
                                 </li>
                                 <li>
-                                    <input type="file" name="image" id="image" required>
+                                    <input type="file" name="image" id="image" accept="image/gif, image/png, image/jpeg, image/jpg" required>
                                 </li>
                                 <li>
                                     <input type="submit" value="Mettre a jour">
