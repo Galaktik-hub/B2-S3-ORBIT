@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $password)) {
+    if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)(?=.*[&])[A-Za-z\d&]{8,}$/', $password)) {
         $message = urlencode("Le mot de passe doit comporter au moins 8 caractères et inclure des lettres et des chiffres");
         $type = urlencode("error");
         header("Location: ../index.html?message=$message&type=$type");

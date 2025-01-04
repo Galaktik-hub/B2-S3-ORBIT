@@ -80,6 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
 <body>
     <?php include '../include/navbar.php'; ?>
     <div class="container-map">
+        <div class="legend"></div>
         <div id="galaxy-map"></div>
         <div class="legend" id="legend"></div>
     </div>
