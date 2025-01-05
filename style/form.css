@@ -1,5 +1,5 @@
 .account form {
-    background: rgba(26, 26, 26, 0.95); /* Fond sombre avec légère transparence */
+    background: rgba(26, 26, 26, 0.95); 
     border-radius: 15px;
     padding: 20px;
     transition: all 0.3s ease-in-out;
@@ -20,8 +20,8 @@
 
 .account form ul li label {
     width: 100%;
-    font-size: 1rem;
-    color: #00cc99; /* Texte lumineux */
+    font-size: 1.3rem;
+    color: #00cc99; 
     margin-bottom: 5px;
     font-family: 'Montserrat', sans-serif;
 }
@@ -36,7 +36,7 @@
     padding: 10px 15px;
     border-radius: 10px;
     background-color: #1a1a1a;
-    border: 2px solid #00cc99; /* Bord lumineux */
+    border: 2px solid #00cc99; 
     color: snow;
     font-size: 1.1rem;
     font-family: 'Orbitron', sans-serif;
@@ -46,7 +46,7 @@
 
 .account form ul li input:hover,
 .account form ul li select:hover {
-    border-color: #00ffcc; /* Effet au survol */
+    border-color: #00ffcc; 
     box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
 }
 
