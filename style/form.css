@@ -19,6 +19,7 @@
 }
 
 .account form ul li label {
+    width: 100%;
     font-size: 1rem;
     color: #00cc99; /* Texte lumineux */
     margin-bottom: 5px;
