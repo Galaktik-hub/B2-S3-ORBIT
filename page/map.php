@@ -3,6 +3,7 @@ include('../back/back_function.php');
 checkLogin();
 include('../back/back_map.php');
 include '../back/back_ships_search.php';
+include '../back/cnx.php';
 
 if (
     $_SERVER['REQUEST_METHOD'] === 'POST' &&
@@ -19,6 +20,15 @@ if (
 
     $startPlanetId = null;
     $endPlanetId = null;
+    $shipId = null;
+
+    $queryShipId = "SELECT id FROM ships WHERE name = :shipName LIMIT 1";
+    $stmtShipId = $pdo->prepare($queryShipId);
+    $stmtShipId->execute(['shipName' => $shipName]);
+    $resultShip = $stmtShipId->fetch(PDO::FETCH_ASSOC);
+    if ($resultShip) {
+        $shipId = $resultShip['id'];
+    }
 
     foreach ($planetDetails as $planet) {
         if (strtolower($planet['name']) === strtolower($startPlanet)) {
@@ -96,13 +106,13 @@ if (
 
     <div class="container-map">
         <div class="legend">
-            <?php if (isset($startPlanet) && isset($endPlanet)){ ?>
-                <h4><u>Récapilutatif de la réservation:</u></h4><br>
-                    <form action="../back/back_add_order.php" method="post">
+            <?php if (isset($startPlanet) && isset($endPlanet)) { ?>
+                <h4><u>Récapilutatif de la réservation:</u></h1><br>
+                    <form action="">
                         <label for=""><u><b>Départ:</b></u> <?php echo $startPlanet ?? ''; ?></label><br>
-                        <input type="hidden" value="<?php echo $startPlanet ?? ''; ?>" id="startPlanet" readonly>
+                        <input type="hidden" value="<?php echo $startPlanetId ?? ''; ?>" id="startPlanet" readonly>
                         <label for=""><u><b>Arriver:</b></u> <?php echo $endPlanet ?? ''; ?></label><br>
-                        <input type="hidden" value="<?php echo $endPlanet ?? ''; ?>" id="endPlanet" readonly>
+                        <input type="hidden" value="<?php echo $endPlanetId ?? ''; ?>" id="endPlanet" readonly>
                         <label for=""><u><b>Légion:</b></u> <?php echo $legion ?? ''; ?></label><br>
                         <input type="hidden" value="<?php echo $legion ?? ''; ?>" id="legion" readonly>
                         <label for=""><u><b>Distance:</b></u> <?php echo $distance ?? ''; ?> Mrd KM</label><br>
@@ -110,14 +120,14 @@ if (
                         <label for=""><u><b>Nombre de Voyageur:</b></u> <?php echo $passengers ?? ''; ?></label><br>
                         <input type="hidden" value="<?php echo $passengers ?? ''; ?>" id="passengers" readonly>
                         <label for=""><u><b>Vaisseaux:</b></u> <?php echo $shipName ?? ''; ?></label><br>
-                        <input type="hidden" value="<?php echo $shipName ?? ''; ?>" id="shipName" readonly>
+                        <input type="hidden" value="<?php echo $shipId ?? ''; ?>" id="shipName" readonly>
                         <input type="submit" value="Ajouter au Panier" class="btn">
                     </form>
                     <hr>
                     <a href="travel_form.php" class="btn btn2">Modifier la résevation</a>
-                <?php }else{ ?>
+                <?php } else { ?>
                     <a href="travel_form.php" class="btn">Réserver un Voyage</a>
-                <?php }?>
+                <?php } ?>
 
         </div>
 

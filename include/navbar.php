@@ -57,18 +57,20 @@ $infoUser = getInfo();
             </div>
             <p>Info Trafic</p>
         </a>
-        <a href="horaire.php">
-            <div class="svg">
-                <?php echo svg('clock'); ?>
-            </div>
-            <p>Horaires</p>
-        </a>
         <a href="travel_form.php">
             <div class="svg">
                 <?php echo svg('route-planning'); ?>
             </div>
             <p>Planifier un voyage</p>
         </a>
+        <?php if ($infoUser->role == 'admin') : ?>
+            <a href="admin.php">
+                <div class="svg">
+                    <?php echo svg('admin'); ?>
+                </div>
+                <p>Admin</p>
+            </a>
+        <?php endif; ?>
         <a href="../back/logout.php">
             <div class="svg">
                 <?php echo svg('logout'); ?>
