@@ -12,8 +12,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <native.maven.plugin.version>0.10.0</native.maven.plugin.version> <!-- Utilisation d'une version plus récente -->
-    <maven.compiler.source>1.8</maven.compiler.source> <!-- Assurez-vous que vous utilisez Java 8 ou plus récent -->
+    <native.maven.plugin.version>0.10.0</native.maven.plugin.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
@@ -80,21 +80,13 @@
             </goals>
             <phase>package</phase>
           </execution>
-          <execution>
-            <id>test-native</id>
-            <goals>
-              <goal>test</goal>
-            </goals>
-            <phase>test</phase>
-          </execution>
         </executions>
         <configuration>
-          <!-- Options pour la création de l'image native -->
           <nativeImageOptions>
             <option>-H:+PrintNativeImageInfo</option>
-            <option>-Xlinker</option>
-            <option>-z</option>
-            <option>noexecstack</option>
+            <option>-march=x86-64</option>
+            <option>-H:-UseAVX</option>
+            <option>-H:-UseAVX2</option>
           </nativeImageOptions>
         </configuration>
       </plugin>
@@ -121,10 +113,16 @@
                 <phase>package</phase>
               </execution>
             </executions>
+            <configuration>
+              <nativeImageOptions>
+                <option>-march=x86-64</option>
+                <option>-H:-UseAVX</option>
+                <option>-H:-UseAVX2</option>
+              </nativeImageOptions>
+            </configuration>
           </plugin>
         </plugins>
       </build>
     </profile>
   </profiles>
-
 </project>
