@@ -44,9 +44,9 @@ $total = 0;
             <h1>Votre Panier</h1>
         </div>
 
-        <div class="containerBloc">
+        <div class="containerBloc bloc4">
             <?php if (isset($_SESSION['message'])) : ?>
-                <p><?php echo $_SESSION['message'];?></p>
+                <p><?php echo $_SESSION['message']; ?></p>
             <?php endif; ?>
             <?php if (empty($cartItems)): ?>
                 <p>Votre panier est vide. Ajoutez des articles pour passer à la commande.</p>
@@ -93,24 +93,48 @@ $total = 0;
                         $timeRemainingHours = $timeEstimated - ($timeEstimatedDays * 24); // Temps restant après avoir retiré les jours
                         $timeEstimatedHours = floor($timeRemainingHours); // Nombre d'heures
                         $timeEstimatedMinutes = round(($timeRemainingHours - $timeEstimatedHours) * 60); // Nombre de minutes restantes
-                        ?>
+                    ?>
                         <div class="cart-item">
                             <div class="cart-item-info">
-                                <span class="cart-item-departure"><?= htmlspecialchars($item['departure']) ?></span>
-                                <span class="cart-item-arrival"><?= htmlspecialchars($item['arrival']) ?></span>
-                                <span class="cart-item-ship"><?= htmlspecialchars($item['ship']) ?></span>
-                                <span class="cart-item-distance"><?= number_format($item['distance'], 2, ',', ' ') ?> milliards de km</span>
-                                <span class="cart-item-time"><?= $timeEstimatedDays ?>j <?= $timeEstimatedHours ?>h <?= $timeEstimatedMinutes ?>min</span>
-                                <div class="cart-item-quantity">
-                                    <form action="../back/update_cart.php" method="post">
-                                        <input type="hidden" name="product_id" value="<?= $item['id'] ?>">
-                                        <input type="number" name="quantity" value="<?= $item['number_of_ticket'] ?>" min="1" max="99">
-                                        <button type="submit" name="update" class="btn">Mettre à jour</button>
-                                    </form>
+                                <div>
+                                    <span class="cart-item-label">Planète de départ :</span>
+                                    <span class="cart-item-departure"><?= htmlspecialchars($item['departure']) ?></span>
                                 </div>
-                                <span class="cart-item-price">Prix unitaire : <?= number_format($item['price'], 2, ',', ' ') ?> €</span>
-                                <br>
-                                <span class="cart-item-total">Prix pour <?= $item['number_of_ticket'] ?> ticket(s) : <?= number_format($item['price'] * $item['number_of_ticket'], 2, ',', ' ') ?> €</span>
+                                <div>
+                                    <span class="cart-item-label">Planète d'arrivée :</span>
+                                    <span class="cart-item-arrival"><?= htmlspecialchars($item['arrival']) ?></span>
+                                </div>
+                                <div>
+                                    <span class="cart-item-label">Vaisseau :</span>
+                                    <span class="cart-item-ship"><?= htmlspecialchars($item['ship']) ?></span>
+                                </div>
+                                <div>
+                                    <span class="cart-item-label">Distance :</span>
+                                    <span class="cart-item-distance"><?= number_format($item['distance'], 2, ',', ' ') ?> milliards de km</span>
+                                </div>
+                                <div>
+                                    <span class="cart-item-label">Temps estimé :</span>
+                                    <span class="cart-item-time"><?= $timeEstimatedDays ?>j <?= $timeEstimatedHours ?>h <?= $timeEstimatedMinutes ?>min</span>
+                                </div>
+
+                                <div>
+                                    <span class="cart-item-label">Prix unitaire :</span>
+                                    <span class="cart-item-price"><?= number_format($item['price'], 2, ',', ' ') ?> €</span>
+                                </div>
+
+                                <div>
+                                    <span class="cart-item-label">Prix total :</span>
+                                    <span class="cart-item-total"><?= number_format($item['price'] * $item['number_of_ticket'], 2, ',', ' ') ?> €</span>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="cart-item-quantity">
+                                <form action="../back/update_cart.php" method="post">
+                                    <span class="cart-item-label">Quantité :</span>
+                                    <input type="hidden" name="product_id" value="<?= $item['id'] ?>">
+                                    <input type="number" name="quantity" value="<?= $item['number_of_ticket'] ?>" min="1" max="99">
+                                    <button type="submit" name="update" class="btn">Mettre à jour</button>
+                                </form>
                             </div>
                             <div class="cart-item-action">
                                 <form action="../back/update_cart.php" method="post">
@@ -119,6 +143,7 @@ $total = 0;
                                 </form>
                             </div>
                         </div>
+
                     <?php endforeach; ?>
 
                     <div class="cart-total">

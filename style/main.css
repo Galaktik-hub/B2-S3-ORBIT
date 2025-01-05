@@ -66,7 +66,7 @@ main {
     align-items: center;
     width: 100%;
     border-radius: 10px;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .input-container input[type="text"] {
@@ -91,7 +91,7 @@ main {
     padding: 7px 20px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    border-radius: 0 10px 10px 0; 
+    border-radius: 0 10px 10px 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -115,7 +115,7 @@ main {
     margin-top: 150px;
 }
 
-.bloc2{
+.bloc2 {
     margin-top: 350px;
 }
 
@@ -225,7 +225,7 @@ h2 {
 .traficInformation {
     display: grid;
     background-color: #1a1a1ad7;
-    border-radius: 20px 20px 0px 0 ;
+    border-radius: 20px 20px 0px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
@@ -263,8 +263,8 @@ h2 {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 30px; 
-    height: 30px; 
+    width: 30px;
+    height: 30px;
 }
 
 .trafic-item .svg-icon svg {
@@ -278,7 +278,7 @@ h2 {
     width: 100%;
     padding: 10px 20px;
     background-color: #1a1a1ad7;
-    border-radius: 0px 0px 20px 20px ;
+    border-radius: 0px 0px 20px 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     color: white;
     text-align: center;
@@ -369,7 +369,7 @@ ul {
         width: 90%;
     }
 
-    .bloc2{
+    .bloc2 {
         margin-top: 150px;
     }
 }
@@ -377,7 +377,8 @@ ul {
 /* Responsive pour tablettes */
 @media screen and (max-width: 768px) {
     .topTitle {
-        width: 90%; /* Réduire la largeur pour les petits écrans */
+        width: 90%;
+        /* Réduire la largeur pour les petits écrans */
         padding: 7px;
     }
 
@@ -407,21 +408,21 @@ ui-helper-hidden-accessible div {
     display: none;
 }
 
-.legend{
+.legend {
     padding: 25px 10px;
 }
 
 .legend input[type="text"] {
-    width: 100%; 
+    width: 100%;
     padding: 10px 15px;
     font-size: 1rem;
     color: snow;
     background: rgba(26, 26, 26, 0.95);
-    border: 1px solid #00cc99; 
+    border: 1px solid #00cc99;
     border-radius: 5px;
     outline: none;
     font-family: 'Orbitron', sans-serif;
-    text-align: center; 
+    text-align: center;
     transition: all 0.3s ease-in-out;
 }
 
@@ -430,10 +431,12 @@ ui-helper-hidden-accessible div {
     box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
 }
 
-b, u{
+b,
+u {
     color: #00cc99;
 }
-.btn{
+
+.btn {
     background-color: #00cc99;
     border: none;
     margin-top: 15px;
@@ -544,7 +547,8 @@ hr {
     font-size: 1rem;
 }
 
-.traffic th, .traffic td {
+.traffic th,
+.traffic td {
     border: 1px solid #00cc99;
     padding: 10px;
     text-align: center;
@@ -571,18 +575,18 @@ hr {
 }
 
 ::-webkit-scrollbar {
-    width: 12px; 
-    height: 12px; 
+    width: 12px;
+    height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #1a1a1a; 
-    border-radius: 10px; 
+    background: #1a1a1a;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #00cc99; 
-    border-radius: 10px; 
+    background: #00cc99;
+    border-radius: 10px;
     border: 2px solid #1a1a1a;
 }
 
@@ -591,10 +595,155 @@ hr {
 }
 
 ::-webkit-scrollbar-thumb:active {
-    background: #009977; 
+    background: #009977;
 }
 
 * {
     scrollbar-width: thin;
-    scrollbar-color: #00cc99 #1a1a1a; 
+    scrollbar-color: #00cc99 #1a1a1a;
+}
+
+.cart-item {
+    background: rgba(26, 26, 26, 0.9);
+    border: 1px solid #00cc99;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    color: snow;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 90%;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.cart-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
+}
+
+.cart-item-info {
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.cart-item-info span {
+    margin: 5px 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #00cc99;
+}
+
+.cart-item-info .cart-item-departure,
+.cart-item-info .cart-item-arrival,
+.cart-item-info .cart-item-ship,
+.cart-item-info .cart-item-distance,
+.cart-item-info .cart-item-time,
+.cart-item-info .cart-item-price,
+.cart-item-info .cart-item-total {
+    color: snow;
+    font-size: 1rem;
+}
+
+.cart-item-action {
+    align-self: flex-end;
+}
+
+.cart-item-action form {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+}
+
+.cart-item-action .btn {
+    background-color: #ff4444;
+    color: snow;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+.cart-item-action .btn:hover {
+    background-color: #ff6666;
+    box-shadow: 0 0 10px #ff8888, 0 0 20px #ff8888;
+}
+
+.cart-item-quantity input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    border: 2px solid #00cc99;
+    border-radius: 5px;
+    background: rgba(26, 26, 26, 0.95);
+    color: snow;
+    text-align: center;
+    font-size: 1rem;
+    outline: none;
+    font-family: 'Orbitron', sans-serif;
+    transition: all 0.3s ease-in-out;
+}
+
+.cart-item-quantity input[type="number"]:hover,
+.cart-item-quantity input[type="number"]:focus {
+    border-color: #00ff99;
+    box-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
+}
+
+.cart-total {
+    background: rgba(26, 26, 26, 0.85);
+    border: 1px solid #00cc99;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+    color: snow;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+}
+
+.cart-total h3 {
+    font-size: 1.5rem;
+    color: #00ff99;
+    margin-bottom: 7px;
+}
+
+.cart-total .btn {
+    background-color: #00cc99;
+    color: snow;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+.cart-total .btn:hover {
+    background-color: #00ff99;
+    box-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99;
+    transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+    .cart-item-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .cart-item-info {
+        grid-template-columns: 1fr;
+    }
+    .bloc4 {
+        margin-top: 250px;
+    }
 }
