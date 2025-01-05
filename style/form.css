@@ -64,13 +64,13 @@
     padding: 10px 15px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+    box-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
     transition: all 0.3s ease-in-out;
 }
 
 .account form ul li input[type="submit"]:hover {
     background-color: #00ff99;
-    box-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99;
+    box-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
     transform: scale(1.05);
 }
 
