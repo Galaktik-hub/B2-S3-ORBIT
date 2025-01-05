@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <div>
                                         <label for="shipName" class="responsiveLabel">Vaisseaux :</label>
                                     </div>
-                                    <select id="shipName" class="form-control" required>
+                                    <select id="shipName" class="form-control" required name="shipName">
                                         <option value="" selected disabled>Vaisseaux</option>
                                         <?php
                                         foreach ($shipNames as $shipName) {
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </li>
                                 <li>
                                     <div>
-                                        <label for="startPlanet" class="responsiveLabel">Départ :</label>
+                                        <label for="startPlanet" class="responsiveLabel">Légion :</label>
                                     </div>
                                     <select id="legion" name="legion" class="form-control" required>
                                         <option value="" disabled <?php echo empty($infoUser->role) ? 'selected' : ''; ?>>Légion</option>
@@ -97,7 +97,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <option value="Neutre" <?php echo $infoUser->role === 'Neutre' ? 'selected' : ''; ?>>Neutre</option>
                                         <option value="Rebelles" <?php echo $infoUser->role === 'Rebelles' ? 'selected' : ''; ?>>Rebelles</option>
                                     </select>
-
                                 </li>
                                 <li>
                                     <input type="submit" value="Chercher votre voyage">

@@ -1,6 +1,17 @@
 <?php
 include('../back/back_function.php');
+include('../back/cnx.php');
 checkLogin();
+
+$stmt = $pdo->prepare("
+    SELECT ships.name AS ship_name, perturbation.perturbation, perturbation.message, perturbation.end_date
+    FROM perturbation
+    JOIN ships ON perturbation.shipid = ships.id
+    WHERE perturbation.end_date >= CURDATE()
+    ORDER BY perturbation.end_date ASC
+");
+$stmt->execute();
+$perturbations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 include '../back/back_planets_search.php';
 ?>
@@ -14,6 +25,7 @@ include '../back/back_planets_search.php';
     <title>ORBIT - Accueil</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/modal.css">
     <link rel="stylesheet" href="../style/starwars.css">
 </head>
 
@@ -45,21 +57,95 @@ include '../back/back_planets_search.php';
                 <?php echo svg('attention'); ?>
                 <p>Info Trafic</p>
             </a>
-            <a href="horaire.php" class="link">
-                <?php echo svg('clock'); ?>
-                <p>Horaire des Arrêts</p>
+            <a href="travel_form.php" class="link">
+                <?php echo svg('route-planning'); ?>
+                <p>Planifier un voyage</p>
             </a>
             <a href="map.php" class="link">
                 <?php echo svg('map'); ?>
                 <p>Carte et Plans</p>
             </a>
         </div>
+
+        <section class="news">
+            <h2>Actualités Galactiques</h2>
+            <div class="news-item">
+                <p><strong>Alerte :</strong> Une tempête ionique prévue sur Naboo cette semaine.</p>
+            </div>
+            <div class="news-item">
+                <p><strong>Découverte :</strong> Une nouvelle route hyperspatiale sécurisée entre Tatooine et Coruscant.</p>
+            </div>
+        </section>
+
+        <section class="traffic">
+            <h2>Perturbations à venir</h2>
+            <?php if (count($perturbations) > 0): ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Vaisseau</th>
+                            <th>Perturbation</th>
+                            <th>Message</th>
+                            <th>Date de Fin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($perturbations as $perturbation): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($perturbation['ship_name']) ?></td>
+                                <td>
+                                    <?php
+                                    echo $perturbation['perturbation'] == 1
+                                        ? 'Ralentit'
+                                        : ($perturbation['perturbation'] == 2 ? 'Interrompu' : htmlspecialchars($perturbation['perturbation']));
+                                    ?>
+                                </td>
+                                <td><?= htmlspecialchars($perturbation['message']) ?></td>
+                                <td><?= htmlspecialchars($perturbation['end_date']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php else: ?>
+                <p>Aucune perturbation, trafic fluide.</p>
+            <?php endif; ?>
+        </section>
+
+        <div class="services">
+            <h2>Services Disponibles</h2>
+            <div class="service-item">
+                <p><strong>Transport :</strong> Réservez un taxi spatial ou planifiez votre voyage.</p>
+            </div>
+            <div class="service-item">
+                <p><strong>Cartes :</strong> Explorez les cartes des galaxies et planètes.</p>
+            </div>
+            <div class="service-item">
+                <p><strong>Info Trafic :</strong> Consultez les perturbations en temps réel.</p>
+            </div>
+        </div>
+
+        <div class="recent-travels">
+            <h2>Vos Voyages Récents</h2>
+            <ul>
+                <li><strong>Planète :</strong> Tatooine → Coruscant | <strong>Date :</strong> 2025-01-01</li>
+                <li><strong>Planète :</strong> Naboo → Hoth | <strong>Date :</strong> 2024-12-25</li>
+            </ul>
+        </div>
     </main>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header" id="modal-header"></div>
+            <div class="modal-body" id="modal-body"></div>
+            <button class="close-btn" id="close-modal">Fermer</button>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script src="../js/starwars.js"></script>
+    <script src="../js/modal.js"></script>
     <script src="../js/travel_form.js"></script>
 </body>
 

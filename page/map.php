@@ -3,6 +3,7 @@ include('../back/back_function.php');
 checkLogin();
 include('../back/back_map.php');
 include '../back/back_ships_search.php';
+include '../back/cnx.php';
 
 if (
     $_SERVER['REQUEST_METHOD'] === 'POST' &&
@@ -14,9 +15,20 @@ if (
     $startPlanet = htmlspecialchars($_POST["startPlanet"], ENT_QUOTES, 'UTF-8');
     $endPlanet = htmlspecialchars($_POST["endPlanet"], ENT_QUOTES, 'UTF-8');
     $legion = htmlspecialchars($_POST['legion'], ENT_QUOTES, 'UTF-8');
+    $passengers = $_POST['passengers'];
+    $shipName = $_POST['shipName'];
 
     $startPlanetId = null;
     $endPlanetId = null;
+    $shipId = null;
+
+    $queryShipId = "SELECT id FROM ships WHERE name = :shipName LIMIT 1";
+    $stmtShipId = $pdo->prepare($queryShipId);
+    $stmtShipId->execute(['shipName' => $shipName]);
+    $resultShip = $stmtShipId->fetch(PDO::FETCH_ASSOC);
+    if ($resultShip) {
+        $shipId = $resultShip['id'];
+    }
 
     foreach ($planetDetails as $planet) {
         if (strtolower($planet['name']) === strtolower($startPlanet)) {
@@ -80,6 +92,7 @@ if (
     <link rel="stylesheet" href="../style/map.css">
     <link rel="stylesheet" href="../style/starwars.css">
     <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/form.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
@@ -93,18 +106,31 @@ if (
 
     <div class="container-map">
         <div class="legend">
-            <div>
-                <label for="shipName" class="responsiveLabel">Vaisseaux :</label>
-            </div>
-            <select id="shipName" class="form-control" required>
-                <option value="" selected disabled>Vaisseaux</option>
-                <?php
-                foreach ($shipNames as $shipName) {
-                    echo "<option value=\"{$shipName['name']}\">{$shipName['name']}</option>";
-                }
-                ?>
-            </select>
+            <?php if (isset($startPlanet) && isset($endPlanet)) { ?>
+                <h4><u>Récapilutatif de la réservation:</u></h4><br>
+                    <form action="../back/back_add_order.php" method="POST">
+                        <label for=""><u><b>Départ:</b></u> <?php echo $startPlanet ?? ''; ?></label><br>
+                        <input type="hidden" value="<?php echo $startPlanetId ?? ''; ?>" name="startPlanet" id="startPlanet" readonly>
+                        <label for=""><u><b>Arriver:</b></u> <?php echo $endPlanet ?? ''; ?></label><br>
+                        <input type="hidden" value="<?php echo $endPlanetId ?? ''; ?>" name="endPlanet" id="endPlanet" readonly>
+                        <label for=""><u><b>Légion:</b></u> <?php echo $legion ?? ''; ?></label><br>
+                        <input type="hidden" value="<?php echo $legion ?? ''; ?>" name="legion" id="legion" readonly>
+                        <label for=""><u><b>Distance:</b></u> <?php echo $distance ?? ''; ?> Mrd KM</label><br>
+                        <input type="hidden" value="<?php echo $distance ?? ''; ?>" name="distance" id="distance" readonly>
+                        <label for=""><u><b>Nombre de Voyageur:</b></u> <?php echo $passengers ?? ''; ?></label><br>
+                        <input type="hidden" value="<?php echo $passengers ?? ''; ?>" name="passengers" id="passengers" readonly>
+                        <label for=""><u><b>Vaisseaux:</b></u> <?php echo $shipName ?? ''; ?></label><br>
+                        <input type="hidden" value="<?php echo $shipId ?? ''; ?>" name="shipId" id="shipId" readonly>
+                        <input type="submit" value="Ajouter au Panier" class="btn">
+                    </form>
+                    <hr>
+                    <a href="travel_form.php" class="btn btn2">Modifier la résevation</a>
+                <?php } else { ?>
+                    <a href="travel_form.php" class="btn">Réserver un Voyage</a>
+                <?php } ?>
+
         </div>
+
         <div id="galaxy-map"></div>
         <div class="legend" id="legend"></div>
     </div>
