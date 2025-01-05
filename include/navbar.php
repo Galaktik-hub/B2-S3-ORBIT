@@ -63,6 +63,12 @@ $infoUser = getInfo();
             </div>
             <p>Planifier un voyage</p>
         </a>
+        <a href="cart.php">
+            <div class="svg">
+                <?php echo svg('cart'); ?>
+            </div>
+            <p>Panier</p>
+        </a>
         <?php if ($infoUser->role == 'admin') : ?>
             <a href="admin.php">
                 <div class="svg">
