@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/starwars.css">
     <link rel="stylesheet" href="../style/trave_form.css">
+    <link rel="stylesheet" href="../style/form.css" />
 </head>
 
 <body>
