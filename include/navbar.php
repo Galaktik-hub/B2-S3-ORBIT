@@ -63,6 +63,14 @@ $infoUser = getInfo();
             </div>
             <p>Planifier un voyage</p>
         </a>
+        <?php if ($infoUser->role == 'admin') : ?>
+            <a href="admin.php">
+                <div class="svg">
+                    <?php echo svg('admin'); ?>
+                </div>
+                <p>Admin</p>
+            </a>
+        <?php endif; ?>
         <a href="../back/logout.php">
             <div class="svg">
                 <?php echo svg('logout'); ?>
