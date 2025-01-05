@@ -25,6 +25,10 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.bloc2 .blocContainer .account form{
+    margin: 25px 0;
+}
+
 .account form ul li input,
 .account form ul li select {
     width: 90%;
