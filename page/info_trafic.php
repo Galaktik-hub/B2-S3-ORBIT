@@ -4,7 +4,6 @@ checkLogin();
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -18,10 +17,7 @@ checkLogin();
 </head>
 
 <body>
-
-    <?php
-    include('../include/navbar.php');
-    ?>
+    <?php include('../include/navbar.php'); ?>
 
     <div class="space">
         <div class="stars"></div>
@@ -44,25 +40,30 @@ checkLogin();
 
             <div class="traficInformation">
                 <p id="defaultMessage">Veuillez sélectionner une faction pour afficher les vaisseaux.</p>
-
             </div>
             <div class="bottomMessageArea">
                 <p id="messageDisplay"></p>
             </div>
         </div>
-
     </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const svgIcons = {
-                settings: `<?php echo svg('settings'); ?>`,
                 validate: `<?php echo svg('validate'); ?>`,
+                warning: `<?php echo svg('warning'); ?>`,
                 attention: `<?php echo svg('attention'); ?>`
             };
+
             const shipsData = <?php echo json_encode(getShipsByCamp()); ?>;
             const traficInformation = document.querySelector('.traficInformation');
             const messageDisplay = document.getElementById('messageDisplay');
+
+            function isDatePassed(date) {
+                const today = new Date();
+                const endDate = new Date(date);
+                return endDate < today;
+            }
 
             function generateTraficInfo(camp) {
                 traficInformation.innerHTML = '';
@@ -73,16 +74,27 @@ checkLogin();
                         div.className = 'trafic-item';
 
                         const textNode = document.createElement('span');
-                        textNode.textContent = ship;
+                        textNode.textContent = ship.name;
                         div.appendChild(textNode);
 
                         const svgWrapper = document.createElement('div');
                         svgWrapper.className = 'svg-icon';
-                        svgWrapper.innerHTML = svgIcons.validate;
+
+                        if (ship.perturbation && !isDatePassed(ship.end_date)) {
+                            // Perturbation active
+                            svgWrapper.innerHTML = ship.perturbation == 1 ? svgIcons.warning : svgIcons.attention;
+                        } else {
+                            // Perturbation passée ou trafic fluide
+                            svgWrapper.innerHTML = svgIcons.validate;
+                        }
                         div.appendChild(svgWrapper);
 
                         div.addEventListener('click', function() {
-                            showTrafficMessage('Trafic fluide', ship);
+                            if (ship.perturbation && !isDatePassed(ship.end_date)) {
+                                showTrafficMessage(ship.message, ship.name, ship.end_date);
+                            } else {
+                                showTrafficMessage('Trafic fluide', ship.name);
+                            }
                         });
 
                         traficInformation.appendChild(div);
@@ -92,7 +104,7 @@ checkLogin();
                 }
             }
 
-            function showTrafficMessage(message, ship) {
+            function showTrafficMessage(message, ship, endDate = null) {
                 messageDisplay.innerHTML = '';
 
                 const messageContainer = document.createElement('div');
@@ -119,10 +131,16 @@ checkLogin();
                 textSpan2.style.marginRight = '10px';
 
                 const svgIcon = document.createElement('div');
-                svgIcon.innerHTML = `<?php echo svg('validate'); ?>`;
+                svgIcon.innerHTML = message === 'Trafic fluide' ? svgIcons.validate : svgIcons.warning;
                 svgIcon.style.width = '24px';
                 svgIcon.style.height = '24px';
-                svgIcon.style.fill = '#4CAF50';
+
+                if (endDate) {
+                    const endDateSpan = document.createElement('span');
+                    endDateSpan.textContent = `Reprise prévue : ${endDate}`;
+                    endDateSpan.style.marginTop = '5px';
+                    messageContainer.appendChild(endDateSpan);
+                }
 
                 messageIconContainer.appendChild(textSpan2);
                 messageIconContainer.appendChild(svgIcon);
@@ -131,16 +149,6 @@ checkLogin();
                 messageContainer.appendChild(messageIconContainer);
 
                 messageDisplay.appendChild(messageContainer);
-            }
-
-            document.body.addEventListener('click', function(e) {
-                if (!e.target.closest('.trafic-item')) {
-                    hideTrafficMessage();
-                }
-            }, true);
-
-            function hideTrafficMessage() {
-                messageDisplay.textContent = '';
             }
 
             document.getElementById('contrebandier').addEventListener('click', () => {

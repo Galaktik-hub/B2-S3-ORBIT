@@ -456,3 +456,116 @@ hr {
     width: 100%;
     margin: 20px 0;
 }
+
+.news {
+    background: rgba(26, 26, 26, 0.85);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    margin-top: 50px;
+    width: 90%;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+    text-align: center;
+}
+
+.news h2 {
+    font-size: 1.5rem;
+    color: #00cc99;
+    margin-bottom: 15px;
+}
+
+.news-item {
+    font-size: 1rem;
+    color: snow;
+    margin-bottom: 10px;
+}
+
+.services {
+    background: rgba(26, 26, 26, 0.85);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+    text-align: center;
+}
+
+.services h2 {
+    font-size: 1.5rem;
+    color: #00cc99;
+    margin-bottom: 15px;
+}
+
+.service-item {
+    font-size: 1rem;
+    color: snow;
+    margin-bottom: 10px;
+}
+
+.recent-travels {
+    background: rgba(26, 26, 26, 0.85);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.recent-travels h2 {
+    font-size: 1.5rem;
+    color: #00cc99;
+    margin-bottom: 15px;
+}
+
+.recent-travels ul {
+    list-style: none;
+    padding: 0;
+    color: snow;
+    font-size: 1rem;
+}
+
+.traffic {
+    background: rgba(26, 26, 26, 0.85);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+    text-align: center;
+}
+
+.traffic table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    color: snow;
+    font-size: 1rem;
+}
+
+.traffic th, .traffic td {
+    border: 1px solid #00cc99;
+    padding: 10px;
+    text-align: center;
+}
+
+.traffic th {
+    background-color: #1a1a1a;
+    color: #00ffcc;
+    font-size: 1.2rem;
+}
+
+.traffic tr:nth-child(even) {
+    background-color: rgba(26, 26, 26, 0.9);
+}
+
+.traffic tr:nth-child(odd) {
+    background-color: rgba(26, 26, 26, 0.7);
+}
+
+.traffic tbody tr:hover {
+    background-color: #00cc99;
+    color: #1a1a1a;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
