@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/starwars.css">
+    <link rel="stylesheet" href="../style/trave_form.css">
 </head>
 
 <body>
@@ -35,9 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <main>
-        <div class="containerBloc">
+        <div class="containerBloc" id="search-travel">
             <div class="bloc">
-                <!-- Changer le nom des sections/balises car c'est un simple copier/coller de account.php -->
                 <h1>Planifier un voyage</h1>
                 <div class="blocContainer">
                     <div class="account">
@@ -103,12 +103,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </li>
                             </ul>
                         </form>
+                        <p style="margin-top: 10px;">Chercher un <a href="#" id="show-taxi-reservation">taxi privé</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        <!--
-        <div class="containerBloc">
+        <div class="containerBloc" id="taxi-reservation" style="display:none;">
             <div class="bloc">
                 <h1>Réservation de taxi</h1>
                 <h4>Service de réservation de taxi pour les voyageurs seuls.</h4>
@@ -174,11 +174,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </li>
                             </ul>
                         </form>
+                        <p style="margin-top: 10px;">Chercher un <a href="#" id="show-search-travel">transport public</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        -->
     </main>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
