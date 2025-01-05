@@ -115,9 +115,11 @@
             </executions>
             <configuration>
               <nativeImageOptions>
-                <option>-march=x86-64</option>
+                <option>-march=x86-64-v1</option> <!-- Architecture minimale -->
                 <option>-H:-UseAVX</option>
                 <option>-H:-UseAVX2</option>
+                <option>-H:-UseSSE4.1</option>
+                <option>-H:-UseSSE4.2</option>
               </nativeImageOptions>
             </configuration>
           </plugin>
