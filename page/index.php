@@ -54,6 +54,37 @@ include '../back/back_planets_search.php';
                 <p>Carte et Plans</p>
             </a>
         </div>
+
+        <section class="news">
+            <h2>Actualités Galactiques</h2>
+            <div class="news-item">
+                <p><strong>Alerte :</strong> Une tempête ionique prévue sur Naboo cette semaine.</p>
+            </div>
+            <div class="news-item">
+                <p><strong>Découverte :</strong> Une nouvelle route hyperspatiale sécurisée entre Tatooine et Coruscant.</p>
+            </div>
+        </section>
+
+        <div class="services">
+            <h2>Services Disponibles</h2>
+            <div class="service-item">
+                <p><strong>Transport :</strong> Réservez un taxi spatial ou planifiez votre voyage.</p>
+            </div>
+            <div class="service-item">
+                <p><strong>Cartes :</strong> Explorez les cartes des galaxies et planètes.</p>
+            </div>
+            <div class="service-item">
+                <p><strong>Info Trafic :</strong> Consultez les perturbations en temps réel.</p>
+            </div>
+        </div>
+
+        <div class="recent-travels">
+            <h2>Vos Voyages Récents</h2>
+            <ul>
+                <li><strong>Planète :</strong> Tatooine → Coruscant | <strong>Date :</strong> 2025-01-01</li>
+                <li><strong>Planète :</strong> Naboo → Hoth | <strong>Date :</strong> 2024-12-25</li>
+            </ul>
+        </div>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

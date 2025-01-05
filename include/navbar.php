@@ -57,12 +57,6 @@ $infoUser = getInfo();
             </div>
             <p>Info Trafic</p>
         </a>
-        <a href="horaire.php">
-            <div class="svg">
-                <?php echo svg('clock'); ?>
-            </div>
-            <p>Horaires</p>
-        </a>
         <a href="travel_form.php">
             <div class="svg">
                 <?php echo svg('route-planning'); ?>
