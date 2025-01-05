@@ -6,7 +6,7 @@
 
 html,
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #fff;
     background-color: #000000;
     overflow-x: hidden;
@@ -407,35 +407,52 @@ ui-helper-hidden-accessible div {
     display: none;
 }
 
-.legend div label.responsiveLabel {
-    font-size: 1rem;
-    color: #00cc99; 
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: 5px;
+.legend{
+    padding: 25px 10px;
 }
 
-.legend select.form-control {
-    width: 100%;
+.legend input[type="text"] {
+    width: 100%; 
     padding: 10px 15px;
-    font-size: 1.1rem;
-    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
     color: snow;
-    background-color: #1a1a1a;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+    background: rgba(26, 26, 26, 0.95);
+    border: 1px solid #00cc99; 
+    border-radius: 5px;
     outline: none;
-    transition: all 0.3s ease-in-out;
-    appearance: none; 
-    margin-top: 10px;
-}
-
-.legend select.form-control::-ms-expand {
-    display: none; 
-}
-
-.legend select.form-control option {
-    background-color: #1a1a1a; 
-    color: snow;
     font-family: 'Orbitron', sans-serif;
-    padding: 10px;
+    text-align: center; 
+    transition: all 0.3s ease-in-out;
+}
+
+.legend input[type="text"]:hover {
+    border-color: #00ffcc;
+    box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+}
+
+b, u{
+    color: #00cc99;
+}
+.btn{
+    background-color: #00cc99;
+    border: none;
+    margin-top: 15px;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #00ff99;
+    box-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
+}
+
+hr {
+    border: 1px solid #00cc99;
+    width: 100%;
+    margin: 20px 0;
 }
