@@ -45,9 +45,9 @@ include '../back/back_planets_search.php';
                 <?php echo svg('attention'); ?>
                 <p>Info Trafic</p>
             </a>
-            <a href="horaire.php" class="link">
-                <?php echo svg('clock'); ?>
-                <p>Horaire des Arrêts</p>
+            <a href="travel_form.php" class="link">
+                <?php echo svg('route-planning'); ?>
+                <p>Planifier un voyage</p>
             </a>
             <a href="map.php" class="link">
                 <?php echo svg('map'); ?>
