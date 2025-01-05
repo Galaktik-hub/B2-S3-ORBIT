@@ -343,3 +343,36 @@ ul {
 ui-helper-hidden-accessible div {
     display: none;
 }
+
+.legend div label.responsiveLabel {
+    font-size: 1rem;
+    color: #00cc99; 
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 5px;
+}
+
+.legend select.form-control {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    font-family: 'Orbitron', sans-serif;
+    color: snow;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    appearance: none; 
+    margin-top: 10px;
+}
+
+.legend select.form-control::-ms-expand {
+    display: none; 
+}
+
+.legend select.form-control option {
+    background-color: #1a1a1a; 
+    color: snow;
+    font-family: 'Orbitron', sans-serif;
+    padding: 10px;
+}

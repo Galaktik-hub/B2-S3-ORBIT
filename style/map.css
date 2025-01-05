@@ -18,7 +18,7 @@
 
 .legend {
     margin: 0 20px;
-    width: 200px;
+    width: 25%;
     padding: 10px;
     background-color: #1a1a1a;
     border-radius: 8px;
@@ -45,14 +45,17 @@
     .container-map {
         flex-direction: column;
         width: 90vw;
-        height: 90vh;
+        height: auto;
+        margin-top: 100px;
+        margin-bottom: 50px;
     }
     #galaxy-map, .legend {
         width: 100%;
         height: auto;
+        margin-top: 20px;
     }
     #galaxy-map{
-        height: 50vh;
+        height: 70vh;
     }
     #legend {
         position: relative;
