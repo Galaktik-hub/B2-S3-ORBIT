@@ -12,6 +12,9 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <native.maven.plugin.version>0.10.0</native.maven.plugin.version> <!-- Utilisation d'une version plus récente -->
+    <maven.compiler.source>1.8</maven.compiler.source> <!-- Assurez-vous que vous utilisez Java 8 ou plus récent -->
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -26,11 +29,11 @@
       <artifactId>mysql-connector-j</artifactId>
       <version>9.1.0</version>
     </dependency>
-
   </dependencies>
 
   <build>
     <plugins>
+      <!-- Plugin pour générer le jar exécutable -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
@@ -44,13 +47,84 @@
             <configuration>
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>fr.starwars.CExecutor</mainClass>
+                  <mainClass>fr.starwars.CExecutor</mainClass> <!-- Changez ceci si nécessaire -->
                 </transformer>
               </transformers>
             </configuration>
           </execution>
         </executions>
       </plugin>
+
+      <!-- Plugin Maven pour compiler le projet -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+
+      <!-- Plugin GraalVM Native Image -->
+      <plugin>
+        <groupId>org.graalvm.buildtools</groupId>
+        <artifactId>native-maven-plugin</artifactId>
+        <version>${native.maven.plugin.version}</version>
+        <extensions>true</extensions>
+        <executions>
+          <execution>
+            <id>build-native</id>
+            <goals>
+              <goal>compile-no-fork</goal>
+            </goals>
+            <phase>package</phase>
+          </execution>
+          <execution>
+            <id>test-native</id>
+            <goals>
+              <goal>test</goal>
+            </goals>
+            <phase>test</phase>
+          </execution>
+        </executions>
+        <configuration>
+          <!-- Options pour la création de l'image native -->
+          <nativeImageOptions>
+            <option>-H:+PrintNativeImageInfo</option>
+            <option>-Xlinker</option>
+            <option>-z</option>
+            <option>noexecstack</option>
+          </nativeImageOptions>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>native</id>
+      <build>
+        <plugins>
+          <!-- Plugin GraalVM Native pour générer l'image native -->
+          <plugin>
+            <groupId>org.graalvm.buildtools</groupId>
+            <artifactId>native-maven-plugin</artifactId>
+            <version>${native.maven.plugin.version}</version>
+            <extensions>true</extensions>
+            <executions>
+              <execution>
+                <id>build-native</id>
+                <goals>
+                  <goal>compile-no-fork</goal>
+                </goals>
+                <phase>package</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
 </project>
