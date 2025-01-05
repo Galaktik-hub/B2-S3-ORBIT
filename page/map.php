@@ -29,10 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
         $output = [];
         $returnCode = 0;
         $exeFile = "../c/orbit.exe";
+        $exePrefix = "";
         if (isOnProd()) {
             $exeFile = "../c/orbit";
+            $exePrefix = "prod-";
         }
-        exec("java -Dfile.encoding=UTF-8 -jar ../java/target/but2-sae4-orbit-1.0-SNAPSHOT.jar $exeFile $startPlanetId $endPlanetId $legion 2>&1", $output, $returnCode);
+        exec("java -Dfile.encoding=UTF-8 -jar ../java/target/{$exePrefix}but2-sae4-orbit-1.0-SNAPSHOT.jar $exeFile $startPlanetId $endPlanetId $legion 2>&1", $output, $returnCode);
 
         if ($returnCode === 0) {
             $resultLine = implode("\n", $output);
