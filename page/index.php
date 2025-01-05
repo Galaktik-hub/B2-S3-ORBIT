@@ -31,9 +31,14 @@ include '../back/back_planets_search.php';
 
     <main>
         <form action="travel_form.php" method="post" class="topTitle">
-            <input type="text" name="endPlanet" id="endPlanet" placeholder="Votre destination" required>
-            <input type="submit" value="Voyager" class="submit-button">
+            <div class="input-container">
+                <input type="text" name="endPlanet" id="endPlanet" placeholder="Votre destination" required>
+                <button type="submit" class="submit-button">
+                    &#8594; <!-- Flèche droite -->
+                </button>
+            </div>
         </form>
+
 
         <div class="containerLink">
             <a href="info_trafic.php" class="link">
