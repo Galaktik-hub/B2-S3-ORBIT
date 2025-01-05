@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 05 jan. 2025 à 15:27
+-- Généré le : dim. 05 jan. 2025 à 16:29
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -32,6 +32,7 @@ CREATE TABLE `orders` (
   `user_id` int(11) NOT NULL,
   `departure_planet_id` int(11) UNSIGNED NOT NULL,
   `arrival_planet_id` int(11) UNSIGNED NOT NULL,
+  `distance` double NOT NULL,
   `time_of_order` datetime NOT NULL,
   `ship_id` int(11) UNSIGNED NOT NULL,
   `number_of_ticket` int(11) UNSIGNED NOT NULL,

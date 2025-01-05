@@ -97,8 +97,8 @@ if (
     <div class="container-map">
         <div class="legend">
             <?php if (isset($startPlanet) && isset($endPlanet)){ ?>
-                <h4><u>Récapilutatif de la réservation:</u></h1><br>
-                    <form action="">
+                <h4><u>Récapilutatif de la réservation:</u></h4><br>
+                    <form action="../back/back_add_order.php" method="post">
                         <label for=""><u><b>Départ:</b></u> <?php echo $startPlanet ?? ''; ?></label><br>
                         <input type="hidden" value="<?php echo $startPlanet ?? ''; ?>" id="startPlanet" readonly>
                         <label for=""><u><b>Arriver:</b></u> <?php echo $endPlanet ?? ''; ?></label><br>
