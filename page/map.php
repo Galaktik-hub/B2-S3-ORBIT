@@ -2,11 +2,14 @@
 include('../back/back_function.php');
 checkLogin();
 include('../back/back_map.php');
+include '../back/back_ships_search.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
+if (
+    $_SERVER['REQUEST_METHOD'] === 'POST' &&
     isset($_POST["startPlanet"]) &&
     isset($_POST["endPlanet"]) &&
-    isset($_POST['legion'])) {
+    isset($_POST['legion'])
+) {
 
     $startPlanet = htmlspecialchars($_POST["startPlanet"], ENT_QUOTES, 'UTF-8');
     $endPlanet = htmlspecialchars($_POST["endPlanet"], ENT_QUOTES, 'UTF-8');
@@ -73,14 +76,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
     <title>Carte Galactique Étoilée</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/map.css">
+    <link rel="stylesheet" href="../style/starwars.css">
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
 <body>
     <?php include '../include/navbar.php'; ?>
+
+    <div class="space">
+        <div class="stars"></div>
+        <div class="planets"></div>
+    </div>
+
     <div class="container-map">
-        <div class="legend"></div>
+        <div class="legend">
+            <div>
+                <label for="shipName" class="responsiveLabel">Vaisseaux :</label>
+            </div>
+            <select id="shipName" class="form-control" required>
+                <option value="" selected disabled>Vaisseaux</option>
+                <?php
+                foreach ($shipNames as $shipName) {
+                    echo "<option value=\"{$shipName['name']}\">{$shipName['name']}</option>";
+                }
+                ?>
+            </select>
+        </div>
         <div id="galaxy-map"></div>
         <div class="legend" id="legend"></div>
     </div>
@@ -89,13 +111,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         // Only for php variables
-        var bounds = [[<?php echo $minY; ?>, <?php echo $minX; ?>], [<?php echo $maxY; ?>, <?php echo $maxX; ?>]];
+        var bounds = [
+            [<?php echo $minY; ?>, <?php echo $minX; ?>],
+            [<?php echo $maxY; ?>, <?php echo $maxX; ?>]
+        ];
         var points = <?php echo json_encode($planetDetails); ?>;
         var startPlanet = <?php echo json_encode(strtolower($startPlanet ?? '')); ?>;
         var endPlanet = <?php echo json_encode(strtolower($endPlanet ?? '')); ?>;
 
         var routePlanets = <?php echo json_encode($routeNames ?? ''); ?>;
     </script>
+    <script src="../js/starwars.js"></script>
     <script src="../js/galaxy.js"></script>
 </body>
 
