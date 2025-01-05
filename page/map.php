@@ -111,7 +111,7 @@ if (
                     <form action="../back/back_add_order.php" method="POST">
                         <label for=""><u><b>Départ:</b></u> <?php echo $startPlanet ?? ''; ?></label><br>
                         <input type="hidden" value="<?php echo $startPlanetId ?? ''; ?>" name="startPlanet" id="startPlanet" readonly>
-                        <label for=""><u><b>Arriver:</b></u> <?php echo $endPlanet ?? ''; ?></label><br>
+                        <label for=""><u><b>Arrivée:</b></u> <?php echo $endPlanet ?? ''; ?></label><br>
                         <input type="hidden" value="<?php echo $endPlanetId ?? ''; ?>" name="endPlanet" id="endPlanet" readonly>
                         <label for=""><u><b>Légion:</b></u> <?php echo $legion ?? ''; ?></label><br>
                         <input type="hidden" value="<?php echo $legion ?? ''; ?>" name="legion" id="legion" readonly>
