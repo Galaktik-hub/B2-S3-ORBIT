@@ -57,6 +57,10 @@ function isOnProd()
     return false;
 }
 
+function isUsingExe() {
+    return false;
+}
+
 function getShipsByCamp()
 {
     include('cnx.php');
