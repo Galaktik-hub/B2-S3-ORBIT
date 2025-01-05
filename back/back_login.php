@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (password_verify($hashed_password_input, $user['password'])) {
             $_SESSION['pseudo'] = $user['pseudo'];
             $_SESSION['id'] = $user['id'];
+            $_SESSION['role'] = $user['role'];
             header("Location: ../page/index.php");
             exit();
         } else {
