@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 05 jan. 2025 à 16:29
+-- Généré le : dim. 05 jan. 2025 à 17:14
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -58,6 +58,20 @@ INSERT INTO `order_type` (`id`, `label`) VALUES
 (00000000001, 'En cours'),
 (00000000002, 'Valide'),
 (00000000003, 'Passe');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `perturbation`
+--
+
+CREATE TABLE `perturbation` (
+  `id` int(11) NOT NULL,
+  `shipid` int(11) NOT NULL,
+  `perturbation` varchar(50) NOT NULL,
+  `message` varchar(500) NOT NULL,
+  `end_date` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -158,6 +172,13 @@ ALTER TABLE `order_type`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `perturbation`
+--
+ALTER TABLE `perturbation`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_shipid` (`shipid`);
+
+--
 -- Index pour la table `planets`
 --
 ALTER TABLE `planets`
@@ -199,6 +220,12 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `order_type`
   MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `perturbation`
+--
+ALTER TABLE `perturbation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `planets`
