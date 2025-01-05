@@ -1,5 +1,6 @@
 target/*
 !target/but2-sae4-orbit-1.0-SNAPSHOT.jar
+!target/prod-but2-sae4-orbit-1.0-SNAPSHOT.jar
 
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
