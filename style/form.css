@@ -136,37 +136,62 @@
 }
 
 p a#show-taxi-reservation {
-    color: #00cc99; /* Couleur lumineuse pour le lien */
+    color: #00cc99; 
     font-size: 1.2rem;
     font-family: 'Orbitron', sans-serif;
-    text-decoration: none; /* Retirer le soulignement */
+    text-decoration: none;
     transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
 
 p a#show-taxi-reservation:hover {
-    color: #00ffcc; /* Couleur plus vive au survol */
+    color: #00ffcc; 
     text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
 }
 
 p a#show-taxi-reservation:active {
-    color: #009977; /* Couleur sombre lors du clic */
+    color: #009977; 
     text-shadow: none;
 }
 
 p a#show-search-travel {
-    color: #00cc99; /* Couleur lumineuse pour le lien */
+    color: #00cc99;
     font-size: 1.2rem;
     font-family: 'Orbitron', sans-serif;
-    text-decoration: none; /* Retirer le soulignement */
+    text-decoration: none; 
     transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
 
 p a#show-search-travel:hover {
-    color: #00ffcc; /* Couleur plus vive au survol */
+    color: #00ffcc; 
     text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
 }
 
 p a#show-search-travel:active {
-    color: #009977; /* Couleur sombre lors du clic */
+    color: #009977; 
     text-shadow: none;
+}
+
+.account form ul li textarea {
+    width: 90%;
+    height: 120px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    background-color: #1a1a1a;
+    border: 2px solid #00cc99;
+    color: snow;
+    font-size: 1.1rem;
+    font-family: 'Orbitron', sans-serif;
+    outline: none;
+    resize: vertical; 
+    transition: all 0.3s ease;
+}
+
+.account form ul li textarea:hover {
+    border-color: #00ffcc; 
+    box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+}
+
+.account form ul li textarea:focus {
+    border-color: #00ff99;
+    box-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99;
 }
