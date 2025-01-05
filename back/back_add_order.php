@@ -5,7 +5,6 @@ checkLogin();
 
 // Vérification que les informations nécessaires sont présentes dans le formulaire
 if (
-    $_SERVER['REQUEST_METHOD'] === 'POST' &&
     isset($_POST["startPlanet"]) &&
     isset($_POST["endPlanet"]) &&
     isset($_POST['distance']) &&
@@ -18,9 +17,9 @@ if (
     $passengers = (int) $_POST['passengers']; // Nombre de passagers
     $ship = htmlspecialchars($_POST['shipId'], ENT_QUOTES, 'UTF-8');
     $distance = $_POST['distance'];
-
+    
     // Insérer l'article dans la table "orders"
-    $insertOrderQuery = "INSERT INTO orders (user_id, departure_planet_id, arrival_planet_id, distance, time_of_order, ship_id, number_of_tickets, order_type) 
+    $insertOrderQuery = "INSERT INTO orders (user_id, departure_planet_id, arrival_planet_id, distance, time_of_order, ship_id, number_of_ticket, order_type) 
                          VALUES (:user_id, :start_planet_id, :end_planet_id, :distance, NOW(), :ship_id, :nb_tickets, 1)";
     $stmtInsert = $pdo->prepare($insertOrderQuery);
     $stmtInsert->execute([
@@ -36,3 +35,6 @@ if (
     header('Location: ../page/cart.php');
     exit;
 }
+
+header('Location: ../page/map.php');
+exit;
