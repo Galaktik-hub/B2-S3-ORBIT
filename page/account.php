@@ -15,6 +15,7 @@ checkLogin();
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/starwars.css">
     <link rel="stylesheet" href="../style/modal.css">
+    <link rel="stylesheet" href="../style/form.css">
 </head>
 
 <body>
@@ -30,7 +31,7 @@ checkLogin();
 
     <main>
         <div class="containerBloc">
-            <div class="bloc">
+            <div class="bloc bloc2">
                 <h1>Compte</h1>
                 <div class="blocContainer">
                     <div class="account">
