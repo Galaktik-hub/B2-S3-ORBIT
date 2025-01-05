@@ -1,0 +1,177 @@
+.account form {
+    background: rgba(26, 26, 26, 0.95); /* Fond sombre avec légère transparence */
+    border-radius: 15px;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.account form ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.account form ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.account form ul li label {
+    font-size: 1rem;
+    color: #00cc99; /* Texte lumineux */
+    margin-bottom: 5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.bloc2 .blocContainer .account form{
+    margin: 25px 0;
+}
+
+.account form ul li input,
+.account form ul li select {
+    width: 90%;
+    padding: 10px 15px;
+    border-radius: 10px;
+    background-color: #1a1a1a;
+    border: 2px solid #00cc99; /* Bord lumineux */
+    color: snow;
+    font-size: 1.1rem;
+    font-family: 'Orbitron', sans-serif;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.account form ul li input:hover,
+.account form ul li select:hover {
+    border-color: #00ffcc; /* Effet au survol */
+    box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+}
+
+.account form ul li input:focus,
+.account form ul li select:focus {
+    border-color: #00ff99;
+    box-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99;
+}
+
+.account form ul li input[type="submit"] {
+    background-color: #00cc99;
+    color: snow;
+    font-size: 1rem;
+    border: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+    transition: all 0.3s ease-in-out;
+}
+
+.account form ul li input[type="submit"]:hover {
+    background-color: #00ff99;
+    box-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99;
+    transform: scale(1.05);
+}
+
+.account form ul li input[type="submit"]:active {
+    background-color: #009977;
+    box-shadow: inset 0 0 10px #007755;
+    transform: scale(0.95);
+}
+
+/* Cartes de taxi */
+.taxi-card {
+    background: rgba(26, 26, 26, 0.9); /* Fond sombre */
+    border: 2px solid #00cc99; /* Bord lumineux */
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    color: snow;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+}
+
+.taxi-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.8), 0 0 30px rgba(0, 255, 204, 0.6);
+}
+
+.taxi-card .company-name {
+    font-size: 1.2rem;
+    color: #00ffcc;
+    font-weight: bold;
+}
+
+.taxi-card .quote {
+    font-size: 1rem;
+    color: #ccc;
+    font-style: italic;
+    margin: 10px 0;
+}
+
+.taxi-card .price {
+    font-size: 1.5rem;
+    color: #00ff99;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.taxi-card input[type="submit"] {
+    background-color: #00cc99;
+    border: none;
+    color: snow;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.taxi-card input[type="submit"]:hover {
+    background-color: #00ff99;
+    box-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
+}
+
+.taxi-card input[type="submit"]:active {
+    background-color: #009977;
+    box-shadow: inset 0 0 10px #007755;
+}
+
+p a#show-taxi-reservation {
+    color: #00cc99; /* Couleur lumineuse pour le lien */
+    font-size: 1.2rem;
+    font-family: 'Orbitron', sans-serif;
+    text-decoration: none; /* Retirer le soulignement */
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+p a#show-taxi-reservation:hover {
+    color: #00ffcc; /* Couleur plus vive au survol */
+    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+}
+
+p a#show-taxi-reservation:active {
+    color: #009977; /* Couleur sombre lors du clic */
+    text-shadow: none;
+}
+
+p a#show-search-travel {
+    color: #00cc99; /* Couleur lumineuse pour le lien */
+    font-size: 1.2rem;
+    font-family: 'Orbitron', sans-serif;
+    text-decoration: none; /* Retirer le soulignement */
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+p a#show-search-travel:hover {
+    color: #00ffcc; /* Couleur plus vive au survol */
+    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+}
+
+p a#show-search-travel:active {
+    color: #009977; /* Couleur sombre lors du clic */
+    text-shadow: none;
+}

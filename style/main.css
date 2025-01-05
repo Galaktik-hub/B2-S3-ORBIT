@@ -52,23 +52,60 @@ main {
 
 .topTitle {
     text-align: center;
-    background-color: #1a1a1abe;
+    background: rgba(26, 26, 26, 0.75);
     width: 600px;
-    height: 75px;
+    height: auto;
     border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+    padding: 10px;
 }
 
-.topTitle input {
+.input-container {
+    display: flex;
+    align-items: center;
     width: 100%;
-    text-align: center;
-    height: 100%;
     border-radius: 10px;
-    background-color: #1a1a1ad7;
-    font-size: 200%;
+    overflow: hidden; 
+}
+
+.input-container input[type="text"] {
+    flex: 1;
+    text-align: center;
+    padding: 10px 15px;
+    font-size: 1.2rem;
     color: snow;
+    background: rgba(26, 26, 26, 0.85);
+    border: none;
+    outline: none;
+    font-family: 'Orbitron', sans-serif;
+    transition: all 0.3s ease-in-out;
+    border-radius: 10px 0 0 10px;
+}
+
+.input-container .submit-button {
+    background: #00cc99;
+    border: none;
+    color: snow;
+    font-size: 1.5rem;
+    padding: 7px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border-radius: 0 10px 10px 0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-container .submit-button:hover {
+    background: #00ff99;
+    box-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
+}
+
+.input-container .submit-button:active {
+    background: #009977;
+    box-shadow: inset 0 0 10px #007755;
+    transform: scale(0.95);
 }
 
 .containerLink {
@@ -76,6 +113,10 @@ main {
     width: 100%;
     justify-content: space-around;
     margin-top: 150px;
+}
+
+.bloc2{
+    margin-top: 350px;
 }
 
 .containerLink .link {
@@ -117,12 +158,12 @@ main {
 
 .bloc {
     width: 100%;
-    background-color: #1a1a1aee;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     border-radius: 10px;
+    padding: 10px 0;
 }
 
 .bloc h1 {
@@ -134,73 +175,8 @@ h2 {
 }
 
 .blocContainer {
-    width: 100%;
+    width: 60%;
     padding: 20px;
-}
-
-.account {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.account form ul {
-    list-style-type: none;
-}
-
-.account form ul li {
-    display: flex;
-    justify-content: center;
-    margin: 30px;
-}
-
-.account form ul li svg {
-    width: 35px;
-    height: 35px;
-}
-
-.account form ul li input,
-.account form ul li select {
-    width: 100%;
-    text-align: center;
-    border-radius: 10px;
-    background-color: #1a1a1ad7;
-    color: snow;
-    font-size: 1.2rem;
-    margin-left: 10px;
-    padding: 10px;
-}
-
-.account form ul li input[type="submit"] {
-    width: 100%;
-    text-align: center;
-    border-radius: 10px;
-    background-color: #1a1a1ad7;
-    color: #fff;
-    font-size: 150%;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
-    transition: all 0.3s ease-in-out;
-    font-weight: bold;
-}
-
-.account form ul li input[type="submit"]:hover {
-    background-color: #00cc99;
-    color: snow;
-    box-shadow: 0 0 5px #00ffcc, 0 0 15px #00ffcc;
-    transform: scale(1.05);
-}
-
-.account form ul li input[type="submit"]:active {
-    background-color: #009977;
-    box-shadow: inset 0 0 10px #007755;
-    transform: scale(0.95);
-}
-
-.account form ul li div label.responsiveLabel {
-    display: none;
 }
 
 .pp {
@@ -380,31 +356,41 @@ ul {
         font-size: 150%;
     }
 
-    .account {
-        flex-direction: column;
-    }
-
-    .account form ul li input {
-        font-size: 100%;
-    }
-
-    .account form ul li {
-        flex-direction: column;
-    }
-
-    .account form ul li div label.responsiveLabel {
-        display: block;
-    }
-
-    .account form ul li div {
-        display: flex;
-        align-items: center;
-    }
-
     .containerBloc {
         margin: 150px 0;
     }
+
+    .blocContainer {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .containerBloc {
+        width: 90%;
+    }
+
+    .bloc2{
+        margin-top: 150px;
+    }
 }
+
+/* Responsive pour tablettes */
+@media screen and (max-width: 768px) {
+    .topTitle {
+        width: 90%; /* Réduire la largeur pour les petits écrans */
+        padding: 7px;
+    }
+
+    .input-container input[type="text"] {
+        font-size: 10px;
+    }
+
+    .input-container .submit-button {
+        font-size: 1.2rem;
+        padding: 7px 15px;
+    }
+}
+
 
 .ui-autocomplete {
     position: absolute;
@@ -419,4 +405,37 @@ ul {
 
 ui-helper-hidden-accessible div {
     display: none;
+}
+
+.legend div label.responsiveLabel {
+    font-size: 1rem;
+    color: #00cc99; 
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 5px;
+}
+
+.legend select.form-control {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    font-family: 'Orbitron', sans-serif;
+    color: snow;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    appearance: none; 
+    margin-top: 10px;
+}
+
+.legend select.form-control::-ms-expand {
+    display: none; 
+}
+
+.legend select.form-control option {
+    background-color: #1a1a1a; 
+    color: snow;
+    font-family: 'Orbitron', sans-serif;
+    padding: 10px;
 }
