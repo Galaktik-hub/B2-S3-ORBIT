@@ -28,7 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
         // Exécution du fichier .jar
         $output = [];
         $returnCode = 0;
-        exec("java -Dfile.encoding=UTF-8 -jar ../java/target/but2-sae4-orbit-1.0-SNAPSHOT.jar ../c/orbit.exe $startPlanetId $endPlanetId $legion 2>&1", $output, $returnCode);
+        $exeFile = "../c/orbit.exe";
+        if (isOnProd()) {
+            $exeFile = "../c/orbit";
+        }
+        exec("java -Dfile.encoding=UTF-8 -jar ../java/target/but2-sae4-orbit-1.0-SNAPSHOT.jar $exeFile $startPlanetId $endPlanetId $legion 2>&1", $output, $returnCode);
 
         if ($returnCode === 0) {
             $resultLine = implode("\n", $output);
@@ -76,6 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&
 <body>
     <?php include '../include/navbar.php'; ?>
     <div class="container-map">
+        <div class="legend"></div>
         <div id="galaxy-map"></div>
         <div class="legend" id="legend"></div>
     </div>

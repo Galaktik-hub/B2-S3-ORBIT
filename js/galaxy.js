@@ -1,6 +1,6 @@
 var map = L.map('galaxy-map', {
     crs: L.CRS.Simple,
-    minZoom: 3,
+    minZoom: 2,
     attributionControl: false
 });
 
@@ -46,62 +46,80 @@ function generatePlanetImageUrl(image) {
     return "No image available";
 }
 
+function clearPoints() {
+    // Supprimer tous les points de la carte
+    map.eachLayer(function(layer) {
+        if (layer instanceof L.Circle) {
+            map.removeLayer(layer);
+        }
+    });
+}
+
+function displayPoints(targetRegion = null) {
+    clearPoints();
+
+    points.forEach(function(point) {
+        if (targetRegion === null || point.region === targetRegion) {
+            var diameter = point.diameter || 0;
+            var region = point.region;
+            var name = point.name.trim().toLowerCase();
+            var color = regionColors[region] || defaultColor;
+            var imageUrl = generatePlanetImageUrl(point.image);
+            var content = '';
+
+            if (name === startPlanet) {
+                content = `
+            <b>Type:</b> Departure<br>
+            <b>Name:</b> ${point.name}<br>
+            <img src="${imageUrl}" alt="${point.name}" style="width: 100px; height: 100px; object-fit: cover;">
+        `;
+            } else if (name === endPlanet) {
+                content = `
+            <b>Type:</b> Arrival<br>
+            <b>Name:</b> ${point.name}<br>
+            <img src="${imageUrl}" alt="${point.name}" style="width: 100px; height: 100px; object-fit: cover;">
+        `;
+            } else {
+                content = `
+            <b>Name:</b> ${point.name}<br>
+            <img src="${imageUrl}" alt="${point.name}" style="width: 100px; height: 100px; object-fit: cover;">
+        `;
+            }
+
+            var x = (point.x + point.sub_grid_x) * 6;
+            var y = (point.y + point.sub_grid_y) * 6;
+            var radius = getDiameterScale(diameter);
+
+            // Créer le cercle pour chaque planète
+            var planetInRoute = routePlanets.includes(name);
+            var circle = L.circle([y, x], {
+                radius: name === startPlanet || name === endPlanet ? getPlanetRadius(diameter) : radius,
+                color: planetInRoute ? '#cdcdcd' : color,
+                fillColor: planetInRoute ? '#cdcdcd' : color,
+                fillOpacity: 1
+            }).bindPopup(content).addTo(map);
+
+            if (name === startPlanet) {
+                xDepart = x;
+                yDepart = y;
+                departCircle = circle;
+            } else if (name === endPlanet) {
+                xArrive = x;
+                yArrive = y;
+                arriveCircle = circle;
+            }
+        }
+    });
+}
+
 var defaultColor = 'gray';
 
 var departCircle, arriveCircle;
 var xDepart, yDepart, xArrive, yArrive;
 var latlngs = [];
 
-points.forEach(function(point) {
-    var diameter = point.diameter || 0;
-    var region = point.region;
-    var name = point.name.trim().toLowerCase();
-    var color = regionColors[region] || defaultColor;
-    var imageUrl = generatePlanetImageUrl(point.image);
-    var content = '';
+displayPoints();
 
-    if (name === startPlanet) {
-        content = `
-            <b>Type:</b> Departure<br>
-            <b>Name:</b> ${point.name}<br>
-            <img src="${imageUrl}" alt="${point.name}" style="width: 100px; height: 100px; object-fit: cover;">
-        `;
-    } else if (name === endPlanet) {
-        content = `
-            <b>Type:</b> Arrival<br>
-            <b>Name:</b> ${point.name}<br>
-            <img src="${imageUrl}" alt="${point.name}" style="width: 100px; height: 100px; object-fit: cover;">
-        `;
-    } else {
-        content = `
-            <b>Name:</b> ${point.name}<br>
-            <img src="${imageUrl}" alt="${point.name}" style="width: 100px; height: 100px; object-fit: cover;">
-        `;
-    }
-
-    var x = (point.x + point.sub_grid_x) * 6;
-    var y = (point.y + point.sub_grid_y) * 6;
-    var radius = getDiameterScale(diameter);
-
-    // Créer le cercle pour chaque planète
-    var planetInRoute = routePlanets.includes(name);
-    var circle = L.circle([y, x], {
-        radius: name === startPlanet || name === endPlanet ? getPlanetRadius(diameter) : radius,
-        color: planetInRoute ? '#cdcdcd' : color,
-        fillColor: planetInRoute ? '#cdcdcd' : color,
-        fillOpacity: 1
-    }).bindPopup(content).addTo(map);
-
-    if (name === startPlanet) {
-        xDepart = x;
-        yDepart = y;
-        departCircle = circle;
-    } else if (name === endPlanet) {
-        xArrive = x;
-        yArrive = y;
-        arriveCircle = circle;
-    }
-});
 if (routePlanets) {
     routePlanets.forEach(function(routePlanet) {
         var planet = points.find(function(point) {
@@ -131,12 +149,36 @@ var legend = document.getElementById("legend");
 legend.innerHTML += "<br><strong>Region</strong><br>";
 for (var region in regionColors) {
     var color = regionColors[region];
-    var item = `<div class="legend-item">
+    var item = `<div class="legend-item item-region" data-region="${region}">
                 <span class="color-box" style="background-color: ${color}; width: 10px; height: 10px; border: none"></span>
                 <span class="legend-text">${region}</span>
             </div>`;
     legend.innerHTML += item;
 }
+
+document.addEventListener("click", function (event) {
+    if (event.target.closest(".legend-item")) {
+        var legendItem = event.target.closest(".legend-item");
+        var selectedRegion = legendItem.getAttribute("data-region");
+
+        // Si la région est déjà active, réinitialiser l'affichage
+        if (legendItem.classList.contains("active")) {
+            legendItem.classList.remove("active");
+            console.log("Reset all regions"); // Debugging
+            displayPoints();
+
+        } else {
+            // Sinon, activer la région et masquer les autres
+            document.querySelectorAll(".legend-item").forEach(function (item) {
+                item.classList.remove("active"); // Retirer l'ancienne classe active
+            });
+            legendItem.classList.add("active");
+            console.log("Selected region:", selectedRegion); // Debugging
+            displayPoints(selectedRegion);
+        }
+    }
+});
+
 
 // Add diameter legend section
 legend.innerHTML += "<br><strong>Diameter</strong><br>";
@@ -163,7 +205,7 @@ function getLegendDiameterScale(diameter) {
 // Add diameter items to legend
 diameterSizes.forEach(function(size) {
     var diameterScale = getLegendDiameterScale(size.diameter);
-    var diameterItem = `<div class="legend-item">
+    var diameterItem = `<div class="legend-item item-diameter">
                             <span class="color-box" style="width: ${diameterScale}px; height: ${diameterScale}px; background-color: black; border: none"></span>
                             <span class="legend-text">${size.label}</span>
                         </div>`;

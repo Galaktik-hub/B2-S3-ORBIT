@@ -4,6 +4,10 @@ include('../include/svg.php');
 $infoUser = getInfo();
 ?>
 
+<head>
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
+</head>
+
 <nav class="navbar">
     <div class="container-nav">
         <div class="logo">

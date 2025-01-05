@@ -2,29 +2,6 @@
 include('../back/back_function.php');
 checkLogin();
 
-function getShipsByCamp()
-{
-    include('../back/cnx.php');
-    $sql = "SELECT name, camp FROM ships ORDER BY camp";
-    $result = $pdo->query($sql);
-
-    $ships = array('contrebandier' => [], 'empire' => [], 'rebelle' => []);
-
-    if ($result->rowCount() > 0) {
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $normalizedCamp = strtolower($row['camp']);
-            $normalizedCamp = rtrim($normalizedCamp, 's');
-            if (isset($ships[$normalizedCamp])) {
-                $ships[$normalizedCamp][] = $row['name'];
-            }
-        }
-    } else {
-        echo "0 results";
-    }
-
-    return $ships;
-}
-
 ?>
 
 
