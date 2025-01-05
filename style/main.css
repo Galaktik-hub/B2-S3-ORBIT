@@ -620,7 +620,6 @@ hr {
 }
 
 .cart-item:hover {
-    transform: scale(1.02);
     box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
 }
 
