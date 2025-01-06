@@ -34,13 +34,13 @@ function getInfo()
     return $result ?: null;
 }
 
-function getId()
+function getId($pseudo)
 {
     include 'cnx.php';
 
     $sql = "SELECT id FROM users WHERE pseudo = :pseudo LIMIT 1";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':pseudo', $_SESSION['pseudo'], PDO::PARAM_INT);
+    $stmt->bindParam(':pseudo', $pseudo, PDO::PARAM_INT);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
