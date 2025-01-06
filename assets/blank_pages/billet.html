@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billet Galactique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Press Start 2P', monospace;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .ticket {
+            width: 350px;
+            margin: 20px auto;
+            padding: 15px;
+            border: 2px solid #ffcc00;
+            border-radius: 8px;
+            background: linear-gradient(145deg, #0c0c0c, #1a1a1a);
+            box-shadow: 0 4px 6px rgba(255, 204, 0, 0.2), 0 1px 3px rgba(255, 204, 0, 0.4);
+            text-align: center;
+            position: relative;
+        }
+
+        .ticket::before, .ticket::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffcc00;
+            border-radius: 50%;
+            background: #000;
+            box-shadow: 0 0 10px #ffcc00;
+        }
+
+        .ticket::before {
+            top: -10px;
+            left: -10px;
+        }
+
+        .ticket::after {
+            bottom: -10px;
+            right: -10px;
+        }
+
+        .ticket h2 {
+            font-size: 18px;
+            color: #ffcc00;
+            margin: 0 0 10px;
+            text-transform: uppercase;
+        }
+
+        .ticket p {
+            margin: 5px 0;
+            color: #eee;
+            font-size: 12px;
+        }
+
+        .ticket .highlight {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+
+        .ticket-footer {
+            margin-top: 15px;
+            font-size: 10px;
+            color: #aaa;
+        }
+
+        .orbit-logo {
+            width: 80%;
+            margin: 10px auto;
+            opacity: 0.8;
+        }
+
+        .qr-code {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="ticket-template">
+        <div class="ticket">
+            <h2>Billet de Voyage Galactique</h2>
+            <p><strong>Départ :</strong> <span class="highlight" id="departure"></span></p>
+            <p><strong>Arrivée :</strong> <span class="highlight" id="arrival"></span></p>
+            <p><strong>Distance :</strong> <span id="distance"></span> Milliards de kms</p>
+            <p><strong>Date :</strong> <span id="time_of_order"></span></p>
+            <p><strong>Vaisseau :</strong> <span class="highlight" id="ship"></span></p>
+            <p><strong>Passagers :</strong> <span id="number_of_ticket"></span></p>
+            <div class="qr-code">
+                <img src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=StarWars" alt="QR Code">
+            </div>
+            <div class="ticket-footer">Que la Force soit avec vous !</div>
+        </div>
+    </div>
+</body>
+</html>

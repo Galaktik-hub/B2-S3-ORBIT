@@ -1,24 +1,24 @@
-.account form {
+.account form, .account .buttonContainer {
     background: rgba(26, 26, 26, 0.95); 
     border-radius: 15px;
     padding: 20px;
     transition: all 0.3s ease-in-out;
 }
 
-.account form ul {
+.account form ul, .account .buttonContainer ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.account form ul li {
+.account form ul li, .account .buttonContainer ul li {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.account form ul li label {
+.account form ul li label, .account .buttonContainer ul li label {
     width: 100%;
     font-size: 1.3rem;
     color: #00cc99; 
@@ -26,12 +26,13 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.bloc2 .blocContainer .account form{
+.bloc2 .blocContainer .account form, .bloc2 .blocContainer .account .buttonContainer {
     margin: 25px 0;
 }
 
 .account form ul li input,
-.account form ul li select {
+.account form ul li select,
+.account .buttonContainer ul li button {
     width: 90%;
     padding: 10px 15px;
     border-radius: 10px;
@@ -45,18 +46,21 @@
 }
 
 .account form ul li input:hover,
-.account form ul li select:hover {
-    border-color: #00ffcc; 
+.account form ul li select:hover,
+.account .buttonContainer ul li button:hover {
+    border-color: #00ffcc;
     box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
 }
 
 .account form ul li input:focus,
-.account form ul li select:focus {
+.account form ul li select:focus,
+.account .buttonContainer ul li button:focus {
     border-color: #00ff99;
     box-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99;
 }
 
-.account form ul li input[type="submit"] {
+.account form ul li input[type="submit"],
+.account .buttonContainer ul li button {
     background-color: #00cc99;
     color: snow;
     font-size: 1rem;
@@ -68,13 +72,15 @@
     transition: all 0.3s ease-in-out;
 }
 
-.account form ul li input[type="submit"]:hover {
+.account form ul li input[type="submit"]:hover,
+.account .buttonContainer ul li button:hover {
     background-color: #00ff99;
     box-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
     transform: scale(1.05);
 }
 
-.account form ul li input[type="submit"]:active {
+.account form ul li input[type="submit"]:active,
+.account .buttonContainer ul li button:active {
     background-color: #009977;
     box-shadow: inset 0 0 10px #007755;
     transform: scale(0.95);
