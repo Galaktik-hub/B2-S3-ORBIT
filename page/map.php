@@ -60,7 +60,7 @@ $routeNames = isset($_GET['routeNames']) ? json_decode($_GET['routeNames'], true
                         <input type="submit" value="Ajouter au Panier" class="btn">
                     </form>
                     <hr>
-                    <a href="travel_form.php" class="btn btn2">Modifier la résevation</a>
+                    <a href="travel_form.php" class="btn btn2">Modifier la réservation</a>
                 <?php } else { ?>
                     <a href="travel_form.php" class="btn">Réserver un Voyage</a>
                 <?php } ?>
