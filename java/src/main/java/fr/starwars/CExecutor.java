@@ -17,13 +17,13 @@ public class CExecutor {
             String graph_path = "";
             switch (args[3]) {
                 case "Neutre":
-                    graph_path = "data/serialized_graph_neutral.txt";
+                    graph_path = "../data/serialized_graph_neutral.txt";
                     break;
                 case "Rebelles":
-                    graph_path = "data/serialized_graph_rebelles.txt";
+                    graph_path = "../data/serialized_graph_rebelles.txt";
                     break;
                 case "Empire":
-                    graph_path = "data/serialized_graph_empires.txt";
+                    graph_path = "../data/serialized_graph_empires.txt";
                     break;
                 default:
                     System.err.println("Invalid legion name. Choose between Neutre, Rebelles, Empire.");
