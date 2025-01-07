@@ -17,13 +17,13 @@ public class CExecutor {
             String graph_path = "";
             switch (args[3]) {
                 case "Neutre":
-                    graph_path = "../data/serialized_graph_neutral.txt";
+                    graph_path = "data/serialized_graph_neutral.txt";
                     break;
                 case "Rebelles":
-                    graph_path = "../data/serialized_graph_rebelles.txt";
+                    graph_path = "data/serialized_graph_rebelles.txt";
                     break;
                 case "Empire":
-                    graph_path = "../data/serialized_graph_empires.txt";
+                    graph_path = "data/serialized_graph_empires.txt";
                     break;
                 default:
                     System.err.println("Invalid legion name. Choose between Neutre, Rebelles, Empire.");
@@ -61,9 +61,9 @@ public class CExecutor {
             } else {
                 System.err.println("Erreur lors de l'exécution du programme C, code : " + exitCode);
             }
-            //boolean deleted = graph.delete();
+            boolean deleted = graph.delete();
 
-            if (!true) {
+            if (!deleted) {
                 System.err.println("Erreur lors de la suppression du fichier graphe.");
             }
         } catch (Exception e) {
