@@ -1,5 +1,11 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+global $pdo;
+include("cnx.php");
+include ("back_function.php");
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SERVER['CONTENT_TYPE'] === 'application/json') {
+    $_POST = json_decode(file_get_contents('php://input'), true);
+
     // Récupération et validation des données
     $startPlanet = htmlspecialchars($_POST["startPlanet"], ENT_QUOTES, 'UTF-8');
     $endPlanet = htmlspecialchars($_POST["endPlanet"], ENT_QUOTES, 'UTF-8');
@@ -19,6 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($resultShip) {
         $shipId = $resultShip['id'];
     }
+
+    $stmt = $pdo->prepare("SELECT * FROM planets");
+    $stmt->execute();
+    $planetDetails = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($planetDetails as $planet) {
         if (strtolower($planet['name']) === strtolower($startPlanet)) {
@@ -42,18 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if (isUsingExe()) {
-            $startTime = microtime(true);
             putenv("LANG=fr_FR.UTF-8");
             exec("./../java/but2-sae4-orbit $exeFile $startPlanetId $endPlanetId $legion 2>&1", $output, $returnCode);
-            $endTime = microtime(true);
-            $executionTime = $endTime - $startTime;
-            echo "<script>console.log('Temps d’exécution (exécutable natif) : " . round($executionTime, 2) . " secondes');</script>";
         } else {
-            $startTime = microtime(true);
             exec("java -Dfile.encoding=UTF-8 -jar ../java/target/{$exePrefix}but2-sae4-orbit-1.0-SNAPSHOT.jar $exeFile $startPlanetId $endPlanetId $legion 2>&1", $output, $returnCode);
-            $endTime = microtime(true);
-            $executionTime = $endTime - $startTime;
-            echo "<script>console.log('Temps d’exécution (JAR Java) : " . round($executionTime, 2) . " secondes');</script>";
         }
 
         if ($returnCode === 0) {

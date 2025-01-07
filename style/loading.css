@@ -34,10 +34,6 @@
   animation-delay: -2s;
 }
 
-body {
-  background-color: #4c4c4c;
-}
-
 html,
 body {
     font-family: 'Orbitron', sans-serif;
@@ -55,6 +51,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 #universe {
@@ -228,5 +226,16 @@ body {
   }
   100% {
     -webkit-transform: rotate3d(1, 1, 0, 360deg);
+  }
+}
+
+h2 {
+  padding-top: 15%;
+  text-align: center;
+}
+
+@media screen and (max-width: 900px) {
+  h2 {
+    padding-top: 70%;
   }
 }
