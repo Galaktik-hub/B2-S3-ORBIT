@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h1>Planifier un voyage</h1>
                 <div class="blocContainer">
                     <div class="account">
-                        <form action="map.php" method="post">
+                        <form action="search.php" method="post">
                             <ul>
                                 <li>
                                     <div>
