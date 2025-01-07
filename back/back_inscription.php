@@ -37,6 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
+    if (empty($role)) {
+        $role = NULL;
+    }
+
     $default_image = '../assets/images/pp/account.png';
     $image_path = $default_image; 
 
