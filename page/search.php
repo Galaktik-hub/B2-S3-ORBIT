@@ -57,7 +57,7 @@ checkLogin();
     <script src="../js/starwars.js"></script>
     <script>
         const fetchResults = async () => {
-            const response = await fetch('../back/back_find_shortest_pathsearch.php', {
+            const response = await fetch('../back/back_find_shortest_path.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

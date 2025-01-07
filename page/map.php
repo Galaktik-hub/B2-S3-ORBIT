@@ -55,7 +55,7 @@ $routeNames = isset($_GET['routeNames']) ? json_decode($_GET['routeNames'], true
                         <input type="hidden" value="<?php echo $distance ?? ''; ?>" name="distance" id="distance" readonly>
                         <label for=""><u><b>Nombre de Voyageur:</b></u> <?php echo $passengers ?? ''; ?></label><br>
                         <input type="hidden" value="<?php echo $passengers ?? ''; ?>" name="passengers" id="passengers" readonly>
-                        <label for=""><u><b>Vaisseaux:</b></u> <?php echo $shipName ?? ''; ?></label><br>
+                        <label for=""><u><b>Vaisseaux:</b></u> <?php echo $ship ?? ''; ?></label><br>
                         <input type="hidden" value="<?php echo $shipId ?? ''; ?>" name="shipId" id="shipId" readonly>
                         <input type="submit" value="Ajouter au Panier" class="btn">
                     </form>
