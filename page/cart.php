@@ -7,7 +7,8 @@ checkLogin();
 // Récupération du panier depuis la base de données
 $userId = $_SESSION['id']; // Assurez-vous d'avoir l'ID utilisateur dans la session
 $cartQuery = "SELECT * FROM orders o
-              WHERE o.user_id = :user_id";
+              WHERE o.user_id = :user_id
+              AND o.order_type = 1";
 $stmt = $pdo->prepare($cartQuery);
 $stmt->execute(['user_id' => $userId]);
 $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -53,10 +54,6 @@ $total = 0;
             <?php else: ?>
                 <div class="bloc">
                     <?php foreach ($cartItems as $item):
-                        if ($item['order_type'] > 1) {
-                            continue;   // Si le type de la commande n'est pas 1 (en cours), on continue
-                        }
-
                         // Récupération des informations du vaisseau
                         $speedQuery = "SELECT speed_kmh FROM ships WHERE id = :ship_id";
                         $stmt = $pdo->prepare($speedQuery);
@@ -148,7 +145,8 @@ $total = 0;
 
                     <div class="cart-total">
                         <h3>Total: <?= number_format($total, 2, ',', ' ') ?> €</h3>
-                        <form action="../back/checkout.php" method="post">
+                        <form action="../back/back_checkout.php" method="post">
+                            <input type="hidden" name="item_ids" value="<?= implode(',', array_column($cartItems, 'id')) ?>">
                             <button type="submit" class="btn">Passer à la commande</button>
                         </form>
                     </div>
