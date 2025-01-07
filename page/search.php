@@ -1,6 +1,9 @@
 <?php
 include('../back/back_function.php');
 checkLogin();
+if (!isset($_POST['startPlanet']) && isset($_POST['endPlanet']) && isset($_POST['legion']) && isset($_POST['passengers'])) {
+    header('Location: index.php');
+}
 ?>
 
 <!DOCTYPE html>

@@ -61,9 +61,9 @@ public class CExecutor {
             } else {
                 System.err.println("Erreur lors de l'exécution du programme C, code : " + exitCode);
             }
-            //boolean deleted = graph.delete();
+            boolean deleted = graph.delete();
 
-            if (!true) {
+            if (!deleted) {
                 System.err.println("Erreur lors de la suppression du fichier graphe.");
             }
         } catch (Exception e) {
