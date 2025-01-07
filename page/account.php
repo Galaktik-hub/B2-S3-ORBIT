@@ -86,6 +86,13 @@ checkLogin();
                                 </li>
                             </ul>
                         </form>
+                        <div class="buttonContainer">
+                            <ul>
+                                <li>
+                                    <button id="generate-pdf">Téléchargez mes commandes passées</button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -102,6 +109,62 @@ checkLogin();
 
     <script src="../js/starwars.js"></script>
     <script src="../js/modal.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+    <script>
+        document.getElementById('generate-pdf').addEventListener('click', async () => {
+            try {
+                // Charger le fichier billet.html
+                const htmlResponse = await fetch('../assets/blank_pages/billet.html');
+                if (!htmlResponse.ok) throw new Error('Erreur lors du chargement de billet.html');
+                const htmlTemplate = await htmlResponse.text();
+
+                // Récupérer les données de l'API
+                const response = await fetch('../back/back_download_orders.php');
+                if (!response.ok) throw new Error('Erreur lors de la récupération des données de l\'API');
+                const tickets = await response.json();
+
+                if (!tickets.length) {
+                    alert('Aucun billet à générer.');
+                    return;
+                }
+
+                // Créer un conteneur temporaire pour manipuler le contenu
+                const container = document.createElement('div');
+                container.innerHTML = htmlTemplate;
+
+                const ticketTemplate = container.querySelector('#ticket-template').innerHTML;
+                const ticketsContainer = document.createElement('div');
+
+                tickets.forEach(ticket => {
+                    const ticketHTML = ticketTemplate
+                        .replace('<span id="departure"></span>', ticket.departure)
+                        .replace('<span id="arrival"></span>', ticket.arrival)
+                        .replace('<span id="distance"></span>', ticket.distance)
+                        .replace('<span id="time_of_order"></span>', ticket.time_of_order)
+                        .replace('<span id="ship"></span>', ticket.ship)
+                        .replace('<span id="number_of_ticket"></span>', ticket.number_of_ticket);
+                    ticketsContainer.innerHTML += ticketHTML;
+                });
+
+                // Options pour html2pdf.js
+                const options = {
+                    margin: 0.5,
+                    filename: 'récapitulatif_commandes.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                };
+
+                // Générer le PDF
+                await html2pdf().from(ticketsContainer).set(options).save();
+            } catch (error) {
+                console.error('Erreur :', error);
+                alert('Une erreur est survenue. Consultez la console pour plus de détails.');
+            }
+        });
+    </script>
 </body>
 
 </html>
