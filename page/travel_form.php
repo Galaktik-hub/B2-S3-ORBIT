@@ -4,6 +4,7 @@ checkLogin();
 
 include '../back/back_planets_search.php';
 include '../back/back_ships_search.php';
+include '../back/back_map.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //    $_SESSION['endPlanet'] = $_POST["endPlanet"];
@@ -136,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <div class="taxi-card">
                                         <p class="company-name">HyperRide 3000</p>
                                         <p class="quote">"Plus rapide qu’un saut en hyperespace, et avec moins de turbulences !"</p>
-                                        <p class="price">3500</p>
+                                        <p class="price" id="hyperride-price">-</p>
                                         <input type="submit" name="hyperide" value="Faire appel à cette compagnie">
                                     </div>
                                 </li>
@@ -144,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <div class="taxi-card">
                                         <p class="company-name">VaderLimo</p>
                                         <p class="quote">"Quand vous êtes avec nous, la Force est déjà là."</p>
-                                        <p class="price">5000</p>
+                                        <p class="price" id="vaderlimo-price">-</p>
                                         <input type="submit" name="vaderlimo" value="Faire appel à cette compagnie">
                                     </div>
                                 </li>
@@ -152,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <div class="taxi-card">
                                         <p class="company-name">Millennium Cab</p>
                                         <p class="quote">"On ne battra pas le record de Kessel, mais presque !"</p>
-                                        <p class="price">2000</p>
+                                        <p class="price" id="millennium-price">-</p>
                                         <input type="submit" name="millennium" value="Faire appel à cette compagnie">
                                     </div>
                                 </li>
@@ -160,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <div class="taxi-card">
                                         <p class="company-name">Tatooine Taxi Co.</p>
                                         <p class="quote">"Des sables aux étoiles, on vous emmène partout."</p>
-                                        <p class="price">1500</p>
+                                        <p class="price" id="tatooine-price">-</p>
                                         <input type="submit" name="tatooine" value="Faire appel à cette compagnie">
                                     </div>
                                 </li>
@@ -168,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <div class="taxi-card">
                                         <p class="company-name">JawaFly Services</p>
                                         <p class="quote">"Utiniiii ! Et vous voilà arrivé."</p>
-                                        <p class="price">1200</p>
+                                        <p class="price" id="jawafly-price">-</p>
                                         <input type="submit" name="jawafly" value="Faire appel à cette compagnie">
                                     </div>
                                 </li>
@@ -185,6 +186,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script src="../js/starwars.js"></script>
+    <script>
+        // Injecter les détails des planètes en JS
+        const planetDetails = <?php echo json_encode($planetDetails); ?>;
+        const companyRates = {
+            hyperride: 1.5,
+            vaderlimo: 2,
+            millennium: 1.2,
+            tatooine: 1,
+            jawafly: 0.8,
+        };
+    </script>
     <script src="../js/travel_form.js"></script>
 </body>
 

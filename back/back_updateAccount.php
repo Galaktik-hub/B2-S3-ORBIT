@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $pseudo = $_POST['pseudo'];
     $email = $_POST['email'];
-    $id = getId();
+    $id = $_SESSION['id'];
 
     $sql = "SELECT COUNT(*) FROM users WHERE pseudo = :pseudo";
     $stmt = $pdo->prepare($sql);
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pseudo_count = $stmt->fetchColumn();
 
     if ($pseudo_count > 0) {
-        $message = urlencode("Pseudo Invalide");
+        $message = urlencode("Pseudo déjà utilisé");
         $type = urlencode("error");
         header("Location: ../page/account.php?message=$message&type=$type");
         exit();

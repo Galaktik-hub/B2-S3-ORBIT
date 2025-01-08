@@ -2,18 +2,11 @@
 include 'back_function.php';
 include 'cnx.php';
 
-if (!isset($_SESSION['pseudo'])) {
-    $message = urlencode("Vous devez être connecté");
-    $type = urlencode("error");
-    header("Location: ../page/account.php?message=$message&type=$type");
-    exit();
-}
-
-$pseudo = $_SESSION['pseudo'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $old_password = $_POST['password'];
     $new_password = $_POST['password2'];
+    $pseudo = $_SESSION['pseudo'];
 
     if (empty($old_password) || empty($new_password)) {
         $message = urlencode("Tous les champs doivent être remplis");

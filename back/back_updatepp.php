@@ -1,4 +1,5 @@
 <?php
+include 'back_function.php';
 include 'cnx.php';
 
 $pseudo = $_SESSION['pseudo'];
