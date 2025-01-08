@@ -19,11 +19,24 @@
 }
 
 .account form ul li label, .account .buttonContainer ul li label {
-    width: 100%;
     font-size: 1.3rem;
     color: #00cc99; 
     margin-bottom: 5px;
     font-family: 'Montserrat', sans-serif;
+}
+
+.account form ul li label, .account ul li div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 4px;
+    padding-left: 5px;
+}
+
+.account form ul li label, .account ul li div svg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .bloc2 .blocContainer .account form, .bloc2 .blocContainer .account .buttonContainer {
@@ -98,6 +111,8 @@
     box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .taxi-card .company-name {
