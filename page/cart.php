@@ -6,9 +6,18 @@ checkLogin();
 
 // Récupération du panier depuis la base de données
 $userId = $_SESSION['id']; // Assurez-vous d'avoir l'ID utilisateur dans la session
-$cartQuery = "SELECT * FROM orders o
-              WHERE o.user_id = :user_id
-              AND o.order_type = 1";
+$cartQuery = "SELECT o.*, 
+       d.name AS departure_name, 
+       a.name AS arrival_name, 
+       s.name AS ship_name, 
+       s.speed_kmh 
+FROM orders o
+JOIN planets d ON o.departure_planet_id = d.id
+JOIN planets a ON o.arrival_planet_id = a.id
+JOIN ships s ON o.ship_id = s.id
+WHERE o.user_id = :user_id
+  AND o.order_type = 1;
+";
 $stmt = $pdo->prepare($cartQuery);
 $stmt->execute(['user_id' => $userId]);
 $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -90,6 +99,12 @@ $total = 0;
                         $timeRemainingHours = $timeEstimated - ($timeEstimatedDays * 24); // Temps restant après avoir retiré les jours
                         $timeEstimatedHours = floor($timeRemainingHours); // Nombre d'heures
                         $timeEstimatedMinutes = round(($timeRemainingHours - $timeEstimatedHours) * 60); // Nombre de minutes restantes
+
+                        $routeQuery = "SELECT planet_name, route_order FROM order_routes WHERE order_id = :order_id ORDER BY route_order ASC";
+                        $stmtRoute = $pdo->prepare($routeQuery);
+                        $stmtRoute->execute(['order_id' => $item['id']]);
+                        $routes = $stmtRoute->fetchAll(PDO::FETCH_ASSOC);
+
                     ?>
                         <div class="cart-item">
                             <div class="cart-item-info">
@@ -123,6 +138,16 @@ $total = 0;
                                     <span class="cart-item-label">Prix total :</span>
                                     <span class="cart-item-total"><?= number_format($item['price'] * $item['number_of_ticket'], 2, ',', ' ') ?> €</span>
                                 </div>
+
+                                <div>
+                                    <span class="cart-item-label">Planètes traversées :</span>
+                                    <ul>
+                                        <?php foreach ($routes as $route): ?>
+                                            <li>Étape <?= $route['route_order'] ?> : <?= htmlspecialchars($route['planet_name']) ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+
                             </div>
                             <br>
                             <div class="cart-item-quantity">
