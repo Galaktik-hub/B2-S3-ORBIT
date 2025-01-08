@@ -20,8 +20,8 @@ if (
     $distance = $_POST['distance'];
     $routeNames = json_decode($_POST['routeNames'], true);
 
-    $insertOrderQuery = "INSERT INTO orders (user_id, departure_planet_id, arrival_planet_id, distance, time_of_order, ship_id, number_of_ticket, order_type) 
-                     VALUES (:user_id, :start_planet_id, :end_planet_id, :distance, NOW(), :ship_id, :nb_tickets, 1)";
+    $insertOrderQuery = "INSERT INTO orders (user_id, departure_planet_id, arrival_planet_id, distance, time_of_order, ship_id, number_of_ticket, order_type, taxi) 
+                     VALUES (:user_id, :start_planet_id, :end_planet_id, :distance, NOW(), :ship_id, :nb_tickets, 1, 0)";
     $stmtInsert = $pdo->prepare($insertOrderQuery);
     if (!$stmtInsert->execute([
         'user_id' => $userId,

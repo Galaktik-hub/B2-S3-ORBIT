@@ -36,7 +36,8 @@ CREATE TABLE `orders` (
   `time_of_order` datetime NOT NULL,
   `ship_id` int(11) UNSIGNED NOT NULL,
   `number_of_ticket` int(11) UNSIGNED NOT NULL,
-  `order_type` int(10) UNSIGNED NOT NULL
+  `order_type` int(10) UNSIGNED NOT NULL,
+  `taxi` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -176,7 +177,6 @@ CREATE TABLE news (
     content TEXT NOT NULL,
     created_at DATETIME NOT NULL
 );
-
 
 --
 -- Index pour les tables déchargées

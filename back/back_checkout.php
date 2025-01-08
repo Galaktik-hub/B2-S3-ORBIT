@@ -6,8 +6,7 @@ checkLogin();
 try {
     // Récupérer les IDs des tickets depuis le POST
     if (empty($_POST['item_ids'])) {
-        $_SESSION['message'] = "Aucun article sélectionné pour la commande.";
-        header("Location: ../page/cart.php");
+        header("Location: ../page/cart.php?message=Aucun article sélectionné pour la commande.&type=error");
         exit();
     }
 
@@ -16,8 +15,7 @@ try {
 
     // Vérifier si des IDs ont bien été fournis
     if (empty($itemIds)) {
-        $_SESSION['message'] = "Aucun article valide trouvé.";
-        header("Location: ../page/cart.php");
+        header("Location: ../page/cart.php.message=Aucun article valide trouvé.&type=error");
         exit();
     }
 
@@ -33,18 +31,15 @@ try {
 
     // Vérifier si la mise à jour a réussi
     if ($stmt->rowCount() > 0) {
-        $_SESSION['message'] = "Commande validée avec succès. Merci pour votre achat !";
+        header("Location: ../page/cart.php?message=Commande validée avec succès. Merci pour votre achat !&type=success");
+        exit();
     } else {
-        $_SESSION['message'] = "Une erreur est survenue lors de la validation de votre commande.";
+        header("Location: ../page/cart.php?message=Une erreur est survenue lors de la validation de votre commande.&type=error");
+        exit();
     }
-
-    // Rediriger vers la page panier
-    header("Location: ../page/cart.php");
-    exit();
 } catch (PDOException $e) {
     // Gestion des erreurs de la base de données
     error_log("Erreur lors de la validation de commande : " . $e->getMessage());
-    $_SESSION['message'] = "Une erreur est survenue. Veuillez réessayer.";
-    header("Location: ../page/cart.php");
+    header("Location: ../page/cart.php?message=Une erreur est survenue lors de la validation de votre commande.&type=error");
     exit();
 }
