@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 05 jan. 2025 à 17:14
+-- Généré le : mer. 08 jan. 2025 à 23:09
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -24,20 +24,59 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `cache`
+--
+
+CREATE TABLE `cache` (
+  `id` int(11) UNSIGNED ZEROFILL NOT NULL,
+  `departure_planet_id` int(11) UNSIGNED ZEROFILL NOT NULL,
+  `arrival_planet_id` int(11) UNSIGNED ZEROFILL NOT NULL,
+  `distance` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `news`
+--
+
+CREATE TABLE `news` (
+  `id` int(11) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `content` text NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `orders`
 --
 
 CREATE TABLE `orders` (
   `id` int(11) UNSIGNED ZEROFILL NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `departure_planet_id` int(11) UNSIGNED NOT NULL,
-  `arrival_planet_id` int(11) UNSIGNED NOT NULL,
+  `user_id` int(11) UNSIGNED ZEROFILL NOT NULL,
+  `departure_planet_id` int(11) UNSIGNED ZEROFILL NOT NULL,
+  `arrival_planet_id` int(11) UNSIGNED ZEROFILL NOT NULL,
   `distance` double NOT NULL,
   `time_of_order` datetime NOT NULL,
-  `ship_id` int(11) UNSIGNED NOT NULL,
-  `number_of_ticket` int(11) UNSIGNED NOT NULL,
-  `order_type` int(10) UNSIGNED NOT NULL,
-  `taxi` int(11) UNSIGNED NOT NULL
+  `ship_id` int(11) UNSIGNED ZEROFILL NOT NULL,
+  `number_of_ticket` int(11) UNSIGNED ZEROFILL NOT NULL,
+  `order_type` int(11) UNSIGNED ZEROFILL NOT NULL,
+  `taxi` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `order_routes`
+--
+
+CREATE TABLE `order_routes` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) UNSIGNED ZEROFILL NOT NULL,
+  `planet_name` varchar(255) NOT NULL,
+  `route_order` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -51,29 +90,6 @@ CREATE TABLE `order_type` (
   `label` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `order_type`
---
-
-INSERT INTO `order_type` (`id`, `label`) VALUES
-(00000000001, 'En cours'),
-(00000000002, 'Valide'),
-(00000000003, 'Passe');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `order_routes`
---
-
-CREATE TABLE order_routes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT NOT NULL,
-    planet_name VARCHAR(255) NOT NULL,
-    route_order INT NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
-);
-
 -- --------------------------------------------------------
 
 --
@@ -86,7 +102,7 @@ CREATE TABLE `perturbation` (
   `perturbation` varchar(50) NOT NULL,
   `message` varchar(500) NOT NULL,
   `end_date` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -153,8 +169,8 @@ CREATE TABLE `trips` (
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `pseudo` varchar(255) DEFAULT NULL,
+  `id` int(11) UNSIGNED ZEROFILL NOT NULL,
+  `pseudo` varchar(255) NOT NULL,
   `role` varchar(50) DEFAULT NULL,
   `pp` varchar(500) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
@@ -163,35 +179,43 @@ CREATE TABLE `users` (
   `token` varchar(64) DEFAULT NULL,
   `token_expiry` datetime DEFAULT NULL,
   `is_active` tinyint(1) DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `news`
---
-
-CREATE TABLE news (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    type VARCHAR(50) NOT NULL,
-    content TEXT NOT NULL,
-    created_at DATETIME NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Index pour les tables déchargées
 --
 
 --
+-- Index pour la table `cache`
+--
+ALTER TABLE `cache`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `arrival_planet_id` (`arrival_planet_id`),
+  ADD KEY `departure_planet_id` (`departure_planet_id`);
+
+--
+-- Index pour la table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id_fk` (`user_id`),
-  ADD KEY `departure_planet_id_fk` (`departure_planet_id`),
-  ADD KEY `arrival_planet_id_fk` (`arrival_planet_id`),
-  ADD KEY `ship_id_fk` (`ship_id`),
-  ADD KEY `order_type_fk` (`order_type`);
+  ADD KEY `arrival_planet_id` (`arrival_planet_id`),
+  ADD KEY `departure_planet_id` (`departure_planet_id`),
+  ADD KEY `order_type` (`order_type`),
+  ADD KEY `ship_id` (`ship_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Index pour la table `order_routes`
+--
+ALTER TABLE `order_routes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_id` (`order_id`);
 
 --
 -- Index pour la table `order_type`
@@ -231,11 +255,24 @@ ALTER TABLE `trips`
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `pseudo` (`pseudo`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `cache`
+--
+ALTER TABLE `cache`
+  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `orders`
@@ -244,10 +281,16 @@ ALTER TABLE `orders`
   MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `order_routes`
+--
+ALTER TABLE `order_routes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `order_type`
 --
 ALTER TABLE `order_type`
-  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `perturbation`
@@ -271,11 +314,34 @@ ALTER TABLE `trips`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `cache`
+--
+ALTER TABLE `cache`
+  ADD CONSTRAINT `cache_ibfk_1` FOREIGN KEY (`arrival_planet_id`) REFERENCES `planets` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `cache_ibfk_2` FOREIGN KEY (`departure_planet_id`) REFERENCES `planets` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`arrival_planet_id`) REFERENCES `planets` (`id`) ON DELETE NO ACTION,
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`departure_planet_id`) REFERENCES `planets` (`id`) ON DELETE NO ACTION,
+  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`order_type`) REFERENCES `order_type` (`id`) ON DELETE NO ACTION,
+  ADD CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`ship_id`) REFERENCES `ships` (`id`) ON DELETE NO ACTION,
+  ADD CONSTRAINT `orders_ibfk_5` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Contraintes pour la table `order_routes`
+--
+ALTER TABLE `order_routes`
+  ADD CONSTRAINT `order_routes_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `trips`
