@@ -164,6 +164,20 @@ CREATE TABLE `users` (
   `is_active` tinyint(1) DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `news`
+--
+
+CREATE TABLE news (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    type VARCHAR(50) NOT NULL,
+    content TEXT NOT NULL,
+    created_at DATETIME NOT NULL
+);
+
+
 --
 -- Index pour les tables déchargées
 --

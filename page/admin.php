@@ -7,17 +7,28 @@ $stmt = $pdo->prepare("SELECT id, name FROM ships");
 $stmt->execute();
 $ships = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+// Gestion de l'insertion d'une perturbation
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['form_type']) && $_POST['form_type'] === 'perturbation') {
     $shipid = $_POST['shipid'];
     $perturbation = $_POST['perturbation'];
     $message = $_POST['message'];
     $end_date = $_POST['end_date'];
 
-    // Insérer la perturbation dans la base de données
     $stmt = $pdo->prepare("INSERT INTO perturbation (shipid, perturbation, message, end_date) VALUES (?, ?, ?, ?)");
     $stmt->execute([$shipid, $perturbation, $message, $end_date]);
 
-    echo "<script>alert('Perturbation ajoutée avec succès !');</script>";
+    header('Location: admin.php?message=Perturbation ajouté !&type=success');
+}
+
+// Gestion de l'insertion d'une actualité
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['form_type']) && $_POST['form_type'] === 'actualite') {
+    $news_type = $_POST['news_type'];
+    $news_content = $_POST['news_content'];
+
+    $stmt = $pdo->prepare("INSERT INTO news (type, content, created_at) VALUES (?, ?, NOW())");
+    $stmt->execute([$news_type, $news_content]);
+
+    header('Location: admin.php?message=Actualité ajouté !&type=success');
 }
 ?>
 
@@ -49,11 +60,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <main>
         <div class="containerBloc" id="search-travel">
             <div class="bloc">
-                <h1>Planifier un voyage</h1>
+                <h1>Ajouter une Perturbation</h1>
                 <div class="blocContainer">
                     <div class="account">
                         <h2>Ajouter une perturbation</h2>
                         <form action="" method="POST">
+                            <input type="hidden" name="form_type" value="perturbation">
                             <ul>
                                 <li>
                                     <div>
@@ -97,8 +109,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </form>
                     </div>
                 </div>
+                <div class="blocContainer">
+                    <div class="account">
+                        <h1>Ajouter une Actualité</h1>
+                        <div class="blocContainer">
+                            <form action="" method="POST">
+                                <input type="hidden" name="form_type" value="actualite">
+                                <ul>
+                                    <li>
+                                        <label for="news_type">Type d'Actualité :</label>
+                                        <select name="news_type" id="news_type" required>
+                                            <option value="alerte">Alerte</option>
+                                            <option value="decouverte">Découverte</option>
+                                            <option value="info">Information</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <label for="news_content">Contenu de l'Actualité :</label>
+                                        <textarea id="news_content" name="news_content" rows="4" required></textarea>
+                                    </li>
+                                    <li>
+                                        <input type="submit" value="Ajouter l'actualité">
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
     </main>
 
     <div id="modal" class="modal">
