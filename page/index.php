@@ -13,6 +13,35 @@ $stmt = $pdo->prepare("
 $stmt->execute();
 $perturbations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+// Récupération des voyages récents
+$recentTravelsQuery = "
+    SELECT 
+        orders.time_of_order, 
+        dp.name AS departure_planet, 
+        ap.name AS arrival_planet 
+    FROM orders
+    JOIN planets dp ON orders.departure_planet_id = dp.id
+    JOIN planets ap ON orders.arrival_planet_id = ap.id
+    WHERE orders.user_id = :user_id 
+      AND orders.order_type = 2 
+      AND orders.time_of_order >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+    ORDER BY orders.time_of_order DESC
+";
+$stmtRecentTravels = $pdo->prepare($recentTravelsQuery);
+$stmtRecentTravels->execute(['user_id' => $_SESSION['id']]);
+$recentTravels = $stmtRecentTravels->fetchAll(PDO::FETCH_ASSOC);
+
+// Récupération des actualités récentes
+$newsQuery = "
+    SELECT type, content, created_at 
+    FROM news
+    WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+    ORDER BY created_at DESC
+";
+$stmtNews = $pdo->prepare($newsQuery);
+$stmtNews->execute();
+$newsItems = $stmtNews->fetchAll(PDO::FETCH_ASSOC);
+
 include '../back/back_planets_search.php';
 ?>
 
@@ -69,13 +98,17 @@ include '../back/back_planets_search.php';
 
         <section class="news">
             <h2>Actualités Galactiques</h2>
-            <div class="news-item">
-                <p><strong>Alerte :</strong> Une tempête ionique prévue sur Naboo cette semaine.</p>
-            </div>
-            <div class="news-item">
-                <p><strong>Découverte :</strong> Une nouvelle route hyperspatiale sécurisée entre Tatooine et Coruscant.</p>
-            </div>
+            <?php if (!empty($newsItems)): ?>
+            <?php foreach ($newsItems as $news): ?>
+                <div class="news-item">
+                    <p>(<?= htmlspecialchars(date('d-m-Y', strtotime($news['created_at']))) ?>) <strong><?= htmlspecialchars(ucfirst($news['type'])) ?> :</strong> <?= htmlspecialchars($news['content']) ?></p>
+                </div>
+            <?php endforeach; ?>
+            <?php else: ?>
+                <p>Aucune actualité récente disponible.</p>
+            <?php endif; ?>
         </section>
+
 
         <section class="traffic">
             <h2>Perturbations à venir</h2>
@@ -124,13 +157,32 @@ include '../back/back_planets_search.php';
             </div>
         </div>
 
-        <div class="recent-travels">
+        <section class="traffic">
             <h2>Vos Voyages Récents</h2>
-            <ul>
-                <li><strong>Planète :</strong> Tatooine → Coruscant | <strong>Date :</strong> 2025-01-01</li>
-                <li><strong>Planète :</strong> Naboo → Hoth | <strong>Date :</strong> 2024-12-25</li>
-            </ul>
-        </div>
+            <?php if (!empty($recentTravels)): ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Planète de départ</th>
+                            <th>Planète d'arrivée</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($recentTravels as $travel): ?>
+                            <tr>
+                                <td><?= htmlspecialchars(date('d-m-Y', strtotime($travel['time_of_order']))) ?></td>
+                                <td><?= htmlspecialchars($travel['departure_planet']) ?></td>
+                                <td><?= htmlspecialchars($travel['arrival_planet']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php else: ?>
+                <p>Aucun voyage récent dans les 30 derniers jours.</p>
+            <?php endif; ?>
+        </section>
+
     </main>
 
     <div id="modal" class="modal">
