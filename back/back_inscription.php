@@ -147,14 +147,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $subject = "Email de vérification - Activez votre compte";
-        $message = "
+        $message = '
             <!DOCTYPE html>
             <html>
             <head>
                 <title>Email de vérification</title>
                 <style>
                     body {
-                        font-family: 'Orbitron', sans-serif;
+                        font-family: "Orbitron", sans-serif;
                         color: #ffffff;
                         background-color: #000000;
                         box-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
@@ -163,12 +163,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
 
                     h2{
-                        font-family: 'Orbitron', sans-serif;
+                        font-family: "Orbitron", sans-serif;
                         color: #00cc99;
                     }
 
                     a {
-                        font-family: 'Orbitron', sans-serif;
+                        font-family: "Orbitron", sans-serif;
                         color: #00cc99;
                         text-decoration: none;
                         padding: 10px 15px;
@@ -187,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
 
                     p {
-                        font-family: 'Orbitron', sans-serif;
+                        font-family: "Orbitron", sans-serif;
                         font-size: 1.1rem;
                         line-height: 1.6;
                         color: #ffffff;
@@ -204,15 +204,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </style>
             </head>
             <body>
-                <div class='email-container'>
+                <div class="email-container">
                     <h2>Bonjour $pseudo,</h2>
                     <p>Merci de vous être inscrit. Veuillez cliquer sur le lien ci-dessous pour vérifier votre adresse mail et activer votre compte :</p>
-                    <a href='$verification_link'>Vérifiez mon mail</a>
+                    <a href="$verification_link">Vérifiez mon mail</a>
                     <p>Ce lien expirera dans 2 heures et 15 minutes.</p>
                 </div>
             </body>
             </html>
-        ";
+        ';
         email($email, $subject, $message);
 
         $message = urlencode("Inscription terminé, consultez vos mails");
