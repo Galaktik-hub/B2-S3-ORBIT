@@ -11,6 +11,7 @@ require '../lib/PHPMailer/src/Exception.php';
 function email($email, $object, $body){
 
     include 'cnx.php';
+    global $e_mail;
 
     $mail = new PHPMailer(true);
 
@@ -18,12 +19,12 @@ function email($email, $object, $body){
     $mail->SMTPAuth = true;
     $mail->Host = "smtp.gmail.com";
     $mail->Port = "465";
-    $mail->Username = "starwarssae@gmail.com";
+    $mail->Username = $e_mail;
     $mail->Password = $password_mail;
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 
-    $mail->setFrom('starwarssae@gmail.com', 'O.R.B.I.T.');
+    $mail->setFrom($e_mail, 'O.R.B.I.T.');
     $mail->addAddress($email);
 
     $mail->isHTML(true);
