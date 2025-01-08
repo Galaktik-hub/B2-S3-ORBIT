@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/starwars.css">
+    <link rel="stylesheet" href="../style/modal.css">
     <link rel="stylesheet" href="../style/trave_form.css">
     <link rel="stylesheet" href="../style/form.css" />
 </head>
@@ -39,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <main>
         <div class="containerBloc" id="search-travel">
-            <div class="bloc">
+            <div class="bloc bloc2">
                 <h1>Planifier un voyage</h1>
                 <div class="blocContainer">
                     <div class="account">
@@ -116,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h4>Profitez de tarifs avantageux et compétitifs grâce aux différentes compagnies proposées pour vous ammener à destination.</h4>
                 <div class="blocContainer">
                     <div class="account">
-                        <form action="cart.php" method="post">
+                        <form action="../back/taxi_reservation.php" method="post">
                             <ul>
                                 <li>
                                     <div>
@@ -138,7 +139,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <p class="company-name">HyperRide 3000</p>
                                         <p class="quote">"Plus rapide qu’un saut en hyperespace, et avec moins de turbulences !"</p>
                                         <p class="price" id="hyperride-price">-</p>
-                                        <input type="submit" name="hyperide" value="Faire appel à cette compagnie">
+                                        <input type="hidden" name="company" value="HyperRide 3000">
+                                        <input type="submit" value="Faire appel à cette compagnie">
                                     </div>
                                 </li>
                                 <li>
@@ -146,6 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <p class="company-name">VaderLimo</p>
                                         <p class="quote">"Quand vous êtes avec nous, la Force est déjà là."</p>
                                         <p class="price" id="vaderlimo-price">-</p>
+                                        <input type="hidden" name="company" value="VaderLimo">
                                         <input type="submit" name="vaderlimo" value="Faire appel à cette compagnie">
                                     </div>
                                 </li>
@@ -154,6 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <p class="company-name">Millennium Cab</p>
                                         <p class="quote">"On ne battra pas le record de Kessel, mais presque !"</p>
                                         <p class="price" id="millennium-price">-</p>
+                                        <input type="hidden" name="company" value="Millennium Cab">
                                         <input type="submit" name="millennium" value="Faire appel à cette compagnie">
                                     </div>
                                 </li>
@@ -162,6 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <p class="company-name">Tatooine Taxi Co.</p>
                                         <p class="quote">"Des sables aux étoiles, on vous emmène partout."</p>
                                         <p class="price" id="tatooine-price">-</p>
+                                        <input type="hidden" name="company" value="Tatooine Taxi Co.">
                                         <input type="submit" name="tatooine" value="Faire appel à cette compagnie">
                                     </div>
                                 </li>
@@ -170,6 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <p class="company-name">JawaFly Services</p>
                                         <p class="quote">"Utiniiii ! Et vous voilà arrivé."</p>
                                         <p class="price" id="jawafly-price">-</p>
+                                        <input type="hidden" name="company" value="JawaFly Services">
                                         <input type="submit" name="jawafly" value="Faire appel à cette compagnie">
                                     </div>
                                 </li>
@@ -181,6 +187,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </main>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header" id="modal-header"></div>
+            <div class="modal-body" id="modal-body"></div>
+            <button class="close-btn" id="close-modal">Fermer</button>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -197,6 +211,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             jawafly: 0.8,
         };
     </script>
+    <script src="../js/modal.js"></script>
     <script src="../js/travel_form.js"></script>
 </body>
 

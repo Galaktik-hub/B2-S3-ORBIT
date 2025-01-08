@@ -35,6 +35,7 @@ $total = 0;
     <title>ORBIT - Panier</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/modal.css">
     <link rel="stylesheet" href="../style/starwars.css">
 </head>
 
@@ -55,11 +56,10 @@ $total = 0;
         </div>
 
         <div class="containerBloc bloc4">
-            <?php if (isset($_SESSION['message'])) : ?>
-                <p><?php echo $_SESSION['message']; ?></p>
-            <?php endif; ?>
             <?php if (empty($cartItems)): ?>
-                <p>Votre panier est vide. Ajoutez des articles pour passer à la commande.</p>
+                <div class="cart-item">
+                    <p style="text-align: center;">Votre panier est vide. Ajoutez des articles pour passer à la commande.</p>   
+                </div>
             <?php else: ?>
                 <div class="bloc">
                     <?php foreach ($cartItems as $item):
@@ -139,14 +139,23 @@ $total = 0;
                                     <span class="cart-item-total"><?= number_format($item['price'] * $item['number_of_ticket'], 2, ',', ' ') ?> €</span>
                                 </div>
 
-                                <div>
-                                    <span class="cart-item-label">Planètes traversées :</span>
-                                    <ul>
-                                        <?php foreach ($routes as $route): ?>
-                                            <li>Étape <?= $route['route_order'] ?> : <?= htmlspecialchars($route['planet_name']) ?></li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </div>
+                                <?php if ($item['taxi'] == 1) { ?>
+                                    <div>
+                                        <span class="cart-item-label">Réservation de taxi :</span>
+                                        <span class="cart-item-taxi">Oui</span>
+                                    </div>
+                                <?php } ?>
+
+                                <?php if ($item['taxi'] == 0) { ?>
+                                    <div>
+                                        <span class="cart-item-label">Planètes traversées :</span>
+                                        <ul>
+                                            <?php foreach ($routes as $route): ?>
+                                                <li>Étape <?= $route['route_order'] ?> : <?= htmlspecialchars($route['planet_name']) ?></li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </div>
+                                <?php } ?>
 
                             </div>
                             <br>
@@ -180,6 +189,15 @@ $total = 0;
         </div>
     </main>
 
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header" id="modal-header"></div>
+            <div class="modal-body" id="modal-body"></div>
+            <button class="close-btn" id="close-modal">Fermer</button>
+        </div>
+    </div>
+
+    <script src="../js/modal.js"></script>
     <script src="../js/starwars.js"></script>
 </body>
 

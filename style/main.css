@@ -144,8 +144,8 @@ main {
 }
 
 .containerBloc {
+    margin: 50px 0;
     width: 70%;
-    height: 90vh;
     display: flex;
     flex-direction: column;
 }
@@ -158,6 +158,7 @@ main {
     align-items: center;
     border-radius: 10px;
     padding: 10px 0;
+    margin-top: 50px;
 }
 
 .bloc h1 {
@@ -348,10 +349,6 @@ ul {
 
     .topTitle input {
         font-size: 150%;
-    }
-
-    .containerBloc {
-        margin: 150px 0;
     }
 
     .blocContainer {
@@ -732,4 +729,8 @@ hr {
     .cart-item-info {
         grid-template-columns: 1fr;
     }
+}
+
+.bloc2{
+    margin-top: 0;
 }
