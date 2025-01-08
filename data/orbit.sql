@@ -62,6 +62,20 @@ INSERT INTO `order_type` (`id`, `label`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `order_routes`
+--
+
+CREATE TABLE order_routes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    planet_name VARCHAR(255) NOT NULL,
+    route_order INT NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `perturbation`
 --
 
