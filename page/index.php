@@ -31,6 +31,17 @@ $stmtRecentTravels = $pdo->prepare($recentTravelsQuery);
 $stmtRecentTravels->execute(['user_id' => $_SESSION['id']]);
 $recentTravels = $stmtRecentTravels->fetchAll(PDO::FETCH_ASSOC);
 
+// Récupération des actualités récentes
+$newsQuery = "
+    SELECT type, content, created_at 
+    FROM news
+    WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+    ORDER BY created_at DESC
+";
+$stmtNews = $pdo->prepare($newsQuery);
+$stmtNews->execute();
+$newsItems = $stmtNews->fetchAll(PDO::FETCH_ASSOC);
+
 include '../back/back_planets_search.php';
 ?>
 
@@ -87,13 +98,17 @@ include '../back/back_planets_search.php';
 
         <section class="news">
             <h2>Actualités Galactiques</h2>
-            <div class="news-item">
-                <p><strong>Alerte :</strong> Une tempête ionique prévue sur Naboo cette semaine.</p>
-            </div>
-            <div class="news-item">
-                <p><strong>Découverte :</strong> Une nouvelle route hyperspatiale sécurisée entre Tatooine et Coruscant.</p>
-            </div>
+            <?php if (!empty($newsItems)): ?>
+            <?php foreach ($newsItems as $news): ?>
+                <div class="news-item">
+                    <p>(<?= htmlspecialchars(date('d-m-Y', strtotime($news['created_at']))) ?>) <strong><?= htmlspecialchars(ucfirst($news['type'])) ?> :</strong> <?= htmlspecialchars($news['content']) ?></p>
+                </div>
+            <?php endforeach; ?>
+            <?php else: ?>
+                <p>Aucune actualité récente disponible.</p>
+            <?php endif; ?>
         </section>
+
 
         <section class="traffic">
             <h2>Perturbations à venir</h2>

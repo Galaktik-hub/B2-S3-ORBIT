@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['form_type']) && $_POS
     $stmt = $pdo->prepare("INSERT INTO perturbation (shipid, perturbation, message, end_date) VALUES (?, ?, ?, ?)");
     $stmt->execute([$shipid, $perturbation, $message, $end_date]);
 
-    echo "<script>alert('Perturbation ajoutée avec succès !');</script>";
+    header('Location: admin.php?message=Perturbation ajouté !&type=success');
 }
 
 // Gestion de l'insertion d'une actualité
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['form_type']) && $_POS
     $stmt = $pdo->prepare("INSERT INTO news (type, content, created_at) VALUES (?, ?, NOW())");
     $stmt->execute([$news_type, $news_content]);
 
-    echo "<script>alert('Actualité ajoutée avec succès !');</script>";
+    header('Location: admin.php?message=Actualité ajouté !&type=success');
 }
 ?>
 
