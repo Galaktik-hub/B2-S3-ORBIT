@@ -44,26 +44,37 @@ $routeNames = isset($_GET['routeNames']) ? json_decode($_GET['routeNames'], true
         <div class="legend">
             <?php if (isset($startPlanet) && isset($endPlanet)) { ?>
                 <h4><u>Récapilutatif de la réservation:</u></h4><br>
-                    <form action="../back/back_add_order.php" method="POST">
-                        <label for=""><u><b>Départ:</b></u> <?php echo $startPlanet ?? ''; ?></label><br>
-                        <input type="hidden" value="<?php echo $startPlanetId ?? ''; ?>" name="startPlanet" id="startPlanet" readonly>
-                        <label for=""><u><b>Arrivée:</b></u> <?php echo $endPlanet ?? ''; ?></label><br>
-                        <input type="hidden" value="<?php echo $endPlanetId ?? ''; ?>" name="endPlanet" id="endPlanet" readonly>
-                        <label for=""><u><b>Légion:</b></u> <?php echo $legion ?? ''; ?></label><br>
-                        <input type="hidden" value="<?php echo $legion ?? ''; ?>" name="legion" id="legion" readonly>
-                        <label for=""><u><b>Distance:</b></u> <?php echo $distance ?? ''; ?> Mrd KM</label><br>
-                        <input type="hidden" value="<?php echo $distance ?? ''; ?>" name="distance" id="distance" readonly>
-                        <label for=""><u><b>Nombre de Voyageur:</b></u> <?php echo $passengers ?? ''; ?></label><br>
-                        <input type="hidden" value="<?php echo $passengers ?? ''; ?>" name="passengers" id="passengers" readonly>
-                        <label for=""><u><b>Vaisseaux:</b></u> <?php echo $ship ?? ''; ?></label><br>
-                        <input type="hidden" value="<?php echo $shipId ?? ''; ?>" name="shipId" id="shipId" readonly>
-                        <input type="submit" value="Ajouter au Panier" class="btn">
-                    </form>
-                    <hr>
-                    <a href="travel_form.php" class="btn btn2">Modifier la réservation</a>
-                <?php } else { ?>
-                    <a href="travel_form.php" class="btn">Réserver un Voyage</a>
-                <?php } ?>
+                <form action="../back/back_add_order.php" method="POST">
+                    <label for=""><u><b>Départ:</b></u> <?php echo $startPlanet ?? ''; ?></label><br>
+                    <input type="hidden" value="<?php echo $startPlanetId ?? ''; ?>" name="startPlanet" id="startPlanet" readonly>
+                    <label for=""><u><b>Arrivée:</b></u> <?php echo $endPlanet ?? ''; ?></label><br>
+                    <input type="hidden" value="<?php echo $endPlanetId ?? ''; ?>" name="endPlanet" id="endPlanet" readonly>
+                    <label for=""><u><b>Légion:</b></u> <?php echo $legion ?? ''; ?></label><br>
+                    <input type="hidden" value="<?php echo $legion ?? ''; ?>" name="legion" id="legion" readonly>
+                    <label for=""><u><b>Distance:</b></u> <?php echo $distance ?? ''; ?> Mrd KM</label><br>
+                    <input type="hidden" value="<?php echo $distance ?? ''; ?>" name="distance" id="distance" readonly>
+                    <label for=""><u><b>Nombre de Voyageur:</b></u> <?php echo $passengers ?? ''; ?></label><br>
+                    <input type="hidden" value="<?php echo $passengers ?? ''; ?>" name="passengers" id="passengers" readonly>
+                    <label for=""><u><b>Vaisseaux:</b></u> <?php echo $ship ?? ''; ?></label><br>
+                    <input type="hidden" value="<?php echo $shipId ?? ''; ?>" name="shipId" id="shipId" readonly>
+                    <label for=""><u><b>Trajet:</b></u>
+                        <?php
+                        if (!empty($routeNames)) {
+                            echo htmlspecialchars(implode(' → ', $routeNames), ENT_QUOTES, 'UTF-8');
+                        } else {
+                            echo 'Aucune escale';
+                        }
+                        ?>
+                    </label><br>
+                    <input type="hidden" name="routeNames" value="<?php echo htmlspecialchars(json_encode($routeNames), ENT_QUOTES, 'UTF-8'); ?>" readonly>
+
+                    <input type="submit" value="Ajouter au Panier" class="btn">
+                </form>
+                <hr>
+                <a href="travel_form.php" class="btn btn2">Modifier la réservation</a>
+            <?php } else { ?>
+                <a href="travel_form.php" class="btn">Réserver un Voyage</a>
+            <?php } ?>
 
         </div>
 

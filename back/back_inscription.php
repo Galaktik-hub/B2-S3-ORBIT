@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $default_image = '../assets/images/pp/account.png';
-    $image_path = $default_image; 
+    $image_path = $default_image;
 
     if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
         $upload_dir = '../assets/images/pp/';
@@ -98,11 +98,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $messageAdmin = "
                 <html>
                 <head>
-                <title>Information de création de compte</title>
+                    <title>Information de création de compte</title>
+                    <style>
+                        body {
+                            font-family: 'Orbitron', sans-serif;
+                            color: #ffffff;
+                            background-color: #000000;
+                            margin: 0;
+                            padding: 20px;
+                        }
+
+                        a {
+                            font-family: 'Orbitron', sans-serif;
+                            color: #00cc99;
+                            text-decoration: none;
+                        }
+
+                        a:hover {
+                            text-decoration: underline;
+                        }
+
+                        p {
+                            font-family: 'Orbitron', sans-serif;
+                            font-size: 1.1rem;
+                            line-height: 1.6;
+                            color: #ffffff;
+                        }
+
+                        .email-container {
+                            background-color: rgba(26, 26, 26, 0.85);
+                            padding: 20px;
+                            border-radius: 10px;
+                            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+                            margin: 20px auto;
+                            max-width: 600px;
+                        }
+                    </style>
                 </head>
                 <body>
-                <p>Bonjour Admin,</p>
-                <p>\"$pseudo\" vient tout juste de créer son compte sur le site <a href='http://orbit.julien-synaeve.fr/'>O.R.B.I.T.</a></p>
+                    <div class='email-container'>
+                        <p>Bonjour Admin,</p>
+                        <p>'$pseudo' vient tout juste de créer son compte sur le site <a href='http://orbit.julien-synaeve.fr/'>O.R.B.I.T.</a></p>
+                    </div>
                 </body>
                 </html>
             ";
@@ -111,15 +148,68 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $subject = "Email de vérification - Activez votre compte";
         $message = "
+            <!DOCTYPE html>
             <html>
             <head>
-            <title>Email de vérification</title>
+                <title>Email de vérification</title>
+                <style>
+                    body {
+                        font-family: 'Orbitron', sans-serif;
+                        color: #ffffff;
+                        background-color: #000000;
+                        box-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
+                        margin: 0;
+                        padding: 20px;
+                    }
+
+                    h2{
+                        font-family: 'Orbitron', sans-serif;
+                        color: #00cc99;
+                    }
+
+                    a {
+                        font-family: 'Orbitron', sans-serif;
+                        color: #00cc99;
+                        text-decoration: none;
+                        padding: 10px 15px;
+                        background-color: #292929;
+                        border-radius: 5px;
+                        transition: all 0.3s ease-in-out;
+                        display: inline-block;
+                        margin-top: 10px;
+                        cursor: pointer;
+                    }
+
+                    a:hover {
+                        background-color: #00ff99;
+                        color: #000000;
+                        text-decoration: none;
+                    }
+
+                    p {
+                        font-family: 'Orbitron', sans-serif;
+                        font-size: 1.1rem;
+                        line-height: 1.6;
+                        color: #ffffff;
+                    }
+
+                    .email-container {
+                        background-color: rgba(26, 26, 26, 0.85);
+                        padding: 20px;
+                        border-radius: 10px;
+                        box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+                        margin: 20px auto;
+                        max-width: 600px;
+                    }
+                </style>
             </head>
             <body>
-            <p>Bonjour $pseudo,</p>
-            <p>Merci de vous être inscrit. Veuillez cliquer sur le lien ci-dessous pour vérifier votre adresse mail et activer votre compte :</p>
-            <a href='$verification_link'>Vérifiez mon mail</a>
-            <p>Ce lien expirera dans 2 heures et 15 minutes.</p>
+                <div class='email-container'>
+                    <h2>Bonjour $pseudo,</h2>
+                    <p>Merci de vous être inscrit. Veuillez cliquer sur le lien ci-dessous pour vérifier votre adresse mail et activer votre compte :</p>
+                    <a href='$verification_link'>Vérifiez mon mail</a>
+                    <p>Ce lien expirera dans 2 heures et 15 minutes.</p>
+                </div>
             </body>
             </html>
         ";
