@@ -111,6 +111,8 @@
     box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .taxi-card .company-name {

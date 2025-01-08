@@ -41,13 +41,13 @@ checkLogin();
                                     <div>
                                         <?php echo svg('account'); ?> <label for="pseudo" class="responsiveLabel">Pseudo:</label>
                                     </div>
-                                    <input type="text" value="<?php echo $infoUser->pseudo; ?>" name="pseudo">
+                                    <input type="text" placeholder="<?php echo $infoUser->pseudo; ?>" name="pseudo" required>
                                 </li>
                                 <li>
                                     <div>
                                         <?php echo svg('email'); ?> <label for="email" class="responsiveLabel">Email :</label>
                                     </div>
-                                    <input type="email" value="<?php echo $infoUser->email; ?>" name="email">
+                                    <input type="email" placeholder="<?php echo $infoUser->email; ?>" name="email" required>
                                 </li>
                                 <li>
                                     <input type="submit" value="Mettre a jour">
