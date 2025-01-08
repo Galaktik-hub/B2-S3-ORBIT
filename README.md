@@ -115,7 +115,11 @@ Les technologies et outils utilisés incluent :
 git clone https://github.com/AbdelRMB/sae-starwars.git
 ```
 - 📦 Importez la base de données MySQL à l'aide du fichier `data/orbit.sql`.
-- Dans votre IDE Java, faites un clic droit sur le fichier `java/pom.xml` puis `Utiliser le projet Maven`.
+- Dans votre IDE Java, faites un clic droit sur le fichier `java/pom.xml` puis `Utiliser le projet Maven`, ou lancer en console la commande :
+
+```bash
+mvn clean install
+```
 
 
 ### 3️⃣ **Fichiers de configuration** :
@@ -140,7 +144,8 @@ $host = '';             // Le nom de votre serveur de base de données, localhos
 $dbname = '';           // Le nom de votre base de données
 $username = '';         // Le nom d'utilisateur utilisé sur la base de données
 $password = '';         // Le mot de passe utilisateur
-$password_mail = '';    // L'email utilisé pour se connecter au mail
+$mail = '';             // Le nom de l'email
+$password_mail = '';    // Le code secret utilisé pour se connecter au mail
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
