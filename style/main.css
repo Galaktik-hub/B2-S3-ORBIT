@@ -733,3 +733,40 @@ hr {
 .bloc2{
     margin-top: 0;
 }
+
+.ticket-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.ticket-table thead {
+    background-color: #00cc99;
+    color: #000000;
+}
+
+.ticket-table th,
+.ticket-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border: 1px solid #00cc99;
+}
+
+.ticket-table th {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+.ticket-table tr:nth-child(even) {
+    background-color: rgba(0, 204, 153, 0.1);
+}
+
+.ticket-table tr:hover {
+    background-color: rgba(0, 204, 153, 0.2);
+}
+
+.ticket-table td {
+    font-size: 0.95rem;
+    color: #ffffff;
+}
