@@ -207,7 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="email-container">
                     <h2>Bonjour $pseudo,</h2>
                     <p>Merci de vous être inscrit. Veuillez cliquer sur le lien ci-dessous pour vérifier votre adresse mail et activer votre compte :</p>
-                    <a href="$verification_link">Vérifiez mon mail</a>
+                    <a href="'.$verification_link.'">Vérifiez mon mail</a>
                     <p>Ce lien expirera dans 2 heures et 15 minutes.</p>
                 </div>
             </body>
