@@ -163,7 +163,7 @@ $total = 0;
                                 <form action="../back/update_cart.php" method="post">
                                     <span class="cart-item-label">Quantité :</span>
                                     <input type="hidden" name="product_id" value="<?= $item['id'] ?>">
-                                    <input type="number" name="quantity" value="<?= $item['number_of_ticket'] ?>" min="1" max="99">
+                                    <input type="number" name="quantity" value="<?= round($item['number_of_ticket']) ?>" min="1" max="99">
                                     <button type="submit" name="update" class="btn">Mettre à jour</button>
                                 </form>
                             </div>
