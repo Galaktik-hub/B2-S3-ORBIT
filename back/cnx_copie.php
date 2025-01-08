@@ -4,7 +4,7 @@ $dbname = '';
 $username = '';
 $password = '';
 $password_mail = '';
-$mail = '';
+$e_mail = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
