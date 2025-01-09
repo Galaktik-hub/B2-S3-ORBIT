@@ -58,18 +58,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SERVER['CONTENT_TYPE'] === 'appli
             $output = [];
             $returnCode = 0;
             $exeFile = "../c/orbit.exe";
-            $exePrefix = "";
+            $jarPrefix = "";
 
             if (isOnProd()) {
                 $exeFile = "../c/orbit";
-                $exePrefix = "prod-";
+                $jarPrefix = "prod-";
             }
 
-            if (isUsingExe()) {
+            if (isUsingGraalVMExe()) {
                 putenv("LANG=fr_FR.UTF-8");
                 exec("./../java/but2-sae4-orbit $exeFile $startPlanetId $endPlanetId $legion 2>&1", $output, $returnCode);
             } else {
-                exec("java -Dfile.encoding=UTF-8 -jar ../java/target/{$exePrefix}but2-sae4-orbit-1.0-SNAPSHOT.jar $exeFile $startPlanetId $endPlanetId $legion 2>&1", $output, $returnCode);
+                exec("java -Dfile.encoding=UTF-8 -jar ../java/target/{$jarPrefix}but2-sae4-orbit-1.0-SNAPSHOT.jar $exeFile $startPlanetId $endPlanetId $legion 2>&1", $output, $returnCode);
             }
 
             if ($returnCode === 0) {

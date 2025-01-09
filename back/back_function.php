@@ -57,7 +57,7 @@ function isOnProd()
     return false;
 }
 
-function isUsingExe() {
+function isUsingGraalVMExe() {
     return false;
 }
 
