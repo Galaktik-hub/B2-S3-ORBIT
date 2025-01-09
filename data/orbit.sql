@@ -31,7 +31,10 @@ CREATE TABLE `cache` (
   `id` int(11) UNSIGNED ZEROFILL NOT NULL,
   `departure_planet_id` int(11) UNSIGNED ZEROFILL NOT NULL,
   `arrival_planet_id` int(11) UNSIGNED ZEROFILL NOT NULL,
-  `distance` double NOT NULL
+  `distance` double NOT NULL,
+  `legion` enum('Empire','Neutre','Rebelles') NOT NULL,
+  `routeNames` text NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -350,6 +353,14 @@ ALTER TABLE `trips`
   ADD CONSTRAINT `trips_planets` FOREIGN KEY (`planet_id`) REFERENCES `planets` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `trips_ships` FOREIGN KEY (`ship_id`) REFERENCES `ships` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
+
+
+CREATE EVENT clean_cache
+ON SCHEDULE EVERY 1 DAY
+STARTS '2025-01-09 19:58:05'
+ON COMPLETION NOT PRESERVE
+ENABLE
+DO DELETE FROM cache WHERE created_at < NOW() - INTERVAL 7 DAY;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
