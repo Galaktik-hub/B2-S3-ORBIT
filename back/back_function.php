@@ -21,6 +21,10 @@ function checkAdmin()
     }
 }
 
+function cacheUsed() {
+    return false;
+}
+
 function getInfo()
 {
     include 'cnx.php';
