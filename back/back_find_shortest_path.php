@@ -40,21 +40,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SERVER['CONTENT_TYPE'] === 'appli
     }
 
     if ($startPlanetId !== null && $endPlanetId !== null) {
-        // On vérifie si le trajet n'a pas déjà été cherché
-//        $stmt = $pdo->prepare("SELECT id FROM cache
-//                                     WHERE departure_planet_id = :departure
-//                                     AND arrival_planet_id = :final LIMIT 1;");
-//        $stmt->execute(['departure' => $startPlanetId, 'final' => $endPlanetId]);
-//        $pathCache = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Vérification dans le cache
+        $stmt = $pdo->prepare("SELECT * FROM cache 
+                           WHERE departure_planet_id = :departure 
+                           AND arrival_planet_id = :arrival 
+                           AND legion = :legion 
+                           ORDER BY distance LIMIT 1");
+        $stmt->execute([
+            'departure' => $startPlanetId,
+            'arrival' => $endPlanetId,
+            'legion' => $legion,
+        ]);
+        $cacheResult = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (false) {
-            // Récupure le cache
-            $stmt = $pdo->prepare("SELECT * FROM cache_route
-                                         WHERE id = :cacheId");
-            $stmt->execute(['cacheId' => $pathCache[0]['id']]);
-            $path = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($cacheResult) {
+            // Retourner les résultats du cache
+            $routeNames = explode(',', $cacheResult['routeNames']);
+            echo json_encode([
+                'success' => true,
+                'startPlanetId' => $startPlanetId,
+                'endPlanetId' => $endPlanetId,
+                'shipId' => $shipId,
+                'startPlanet' => $startPlanet,
+                'endPlanet' => $endPlanet,
+                'ship' => $shipName,
+                'legion' => $legion,
+                'passengers' => $passengers,
+                'distance' => $cacheResult['distance'],
+                'routeNames' => $routeNames,
+            ]);
         } else {
-            // Exécution du fichier .jar
+            // Exécution du JAR
             $output = [];
             $returnCode = 0;
             $exeFile = "../c/orbit.exe";
@@ -79,16 +95,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SERVER['CONTENT_TYPE'] === 'appli
                     $distance = floatval($matches[1]);
                     $routeIds = array_reverse(explode('<-', $matches[3]));
 
-                    $routeNames = [];
+                    $routeNamesArray = [];
                     foreach ($routeIds as $routeId) {
                         foreach ($planetDetails as $planet) {
                             if ((int)$planet['id'] === (int)$routeId) {
-                                $routeNames[] = $planet['name'];
+                                $routeNamesArray[] = $planet['name'];
                                 break;
                             }
                         }
                     }
 
+                    $routeNames = implode(',', $routeNamesArray);
+
+                    $stmtInsert = $pdo->prepare("INSERT INTO cache 
+                                     (id, departure_planet_id, arrival_planet_id, distance, legion, routeNames) 
+                                     VALUES (NULL, :departure, :arrival, :distance, :legion, :routeNames)");
+                    $stmtInsert->execute([
+                        'departure' => $startPlanetId,
+                        'arrival' => $endPlanetId,
+                        'distance' => $distance,
+                        'legion' => $legion,
+                        'routeNames' => $routeNames,
+                    ]);
+
+                    // Préparer la réponse
                     echo json_encode([
                         'success' => true,
                         'startPlanetId' => $startPlanetId,
@@ -100,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SERVER['CONTENT_TYPE'] === 'appli
                         'legion' => $legion,
                         'passengers' => $passengers,
                         'distance' => $distance,
-                        'routeNames' => $routeNames,
+                        'routeNames' => $routeNamesArray,
                     ]);
                 } else {
                     echo json_encode(['success' => false, 'message' => 'Erreur de parsing des résultats.']);
@@ -112,5 +142,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SERVER['CONTENT_TYPE'] === 'appli
     } else {
         echo json_encode(['success' => false, 'message' => 'Planètes invalides.']);
     }
-    exit;
 }
