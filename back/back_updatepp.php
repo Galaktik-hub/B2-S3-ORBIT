@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
             chmod($file_path, 0644); // Permissions correctes pour le fichier
             $new_profile_image = '../assets/images/pp/' . $file_name;;
 
-            if ($old_profile_image && $old_profile_image !== $default_image && file_exists($old_profile_image)) {
+            if ($old_profile_image && realpath($old_profile_image) !== $default_image && file_exists($old_profile_image)) {
                 unlink($old_profile_image);
             }
 

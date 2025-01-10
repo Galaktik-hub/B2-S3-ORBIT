@@ -21,6 +21,10 @@ function checkAdmin()
     }
 }
 
+function cacheUsed() {
+    return false;
+}
+
 function getInfo()
 {
     include 'cnx.php';
@@ -57,7 +61,7 @@ function isOnProd()
     return false;
 }
 
-function isUsingExe() {
+function isUsingGraalVMExe() {
     return false;
 }
 
