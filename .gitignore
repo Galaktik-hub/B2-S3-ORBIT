@@ -1,0 +1,5 @@
+lib
+cnx.php
+.idea/
+
+cmake-build-debug/

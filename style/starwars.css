@@ -1,0 +1,76 @@
+.space {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: starTwinkle 5s infinite ease-in-out, starMove 10s linear infinite;
+}
+
+.planet {
+    position: absolute;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
+    background-size: cover;
+    background-position: center;
+    animation: planetOrbit 20s infinite linear;
+}
+
+.planet-small {
+    width: 30px;
+    height: 30px;
+    background-image: url('../assets/images/planet1.png');
+}
+
+.planet-medium {
+    width: 60px;
+    height: 60px;
+    background-image: url('../assets/images/planet2.png');
+}
+
+.planet-large {
+    width: 100px;
+    height: 100px;
+    background-image: url('../assets/images/planet3.png');
+}
+
+.planet-extra-large {
+    width: 130px;
+    height: 130px;
+    background-image: url('../assets/images/planet4.png');
+}
+
+.planet-giant {
+    width: 160px;
+    height: 160px;
+    background-image: url('../assets/images/planet5.png');
+}
+
+
+@keyframes starTwinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+@keyframes starMove {
+    0% {
+        transform: translateX(100vw); 
+    }
+    100% {
+        transform: translateX(-100vw); 
+    }
+}
+
+@keyframes planetOrbit {
+    0% { transform: translate(-200px, -200px) scale(1); }
+    50% { transform: translate(200px, 200px) scale(1.2); }
+    100% { transform: translate(-200px, -200px) scale(1); }
+}

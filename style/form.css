@@ -1,0 +1,218 @@
+.account form, .account .buttonContainer {
+    background: rgba(26, 26, 26, 0.95); 
+    border-radius: 15px;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.account form ul, .account .buttonContainer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.account form ul li, .account .buttonContainer ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.account form ul li label, .account .buttonContainer ul li label {
+    font-size: 1.3rem;
+    color: #00cc99; 
+    margin-bottom: 5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.account form ul li label, .account ul li div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 4px;
+    padding-left: 5px;
+}
+
+.account form ul li label, .account ul li div svg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bloc2 .blocContainer .account form, .bloc2 .blocContainer .account .buttonContainer {
+    margin: 25px 0;
+}
+
+.account form ul li input,
+.account form ul li select,
+.account .buttonContainer ul li button {
+    width: 90%;
+    padding: 10px 15px;
+    border-radius: 10px;
+    background-color: #1a1a1a;
+    border: 2px solid #00cc99; 
+    color: snow;
+    font-size: 1.1rem;
+    font-family: 'Orbitron', sans-serif;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.account form ul li input:hover,
+.account form ul li select:hover,
+.account .buttonContainer ul li button:hover {
+    border-color: #00ffcc;
+    box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+}
+
+.account form ul li input:focus,
+.account form ul li select:focus,
+.account .buttonContainer ul li button:focus {
+    border-color: #00ff99;
+    box-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99;
+}
+
+.account form ul li input[type="submit"],
+.account .buttonContainer ul li button {
+    background-color: #00cc99;
+    color: snow;
+    font-size: 1rem;
+    border: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+    transition: all 0.3s ease-in-out;
+}
+
+.account form ul li input[type="submit"]:hover,
+.account .buttonContainer ul li button:hover {
+    background-color: #00ff99;
+    box-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
+    transform: scale(1.05);
+}
+
+.account form ul li input[type="submit"]:active,
+.account .buttonContainer ul li button:active {
+    background-color: #009977;
+    box-shadow: inset 0 0 10px #007755;
+    transform: scale(0.95);
+}
+
+.taxi-card {
+    background: rgba(26, 26, 26, 0.9); 
+    border: 2px solid #00cc99; 
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    color: snow;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.taxi-card .company-name {
+    font-size: 1.2rem;
+    color: #00ffcc;
+    font-weight: bold;
+}
+
+.taxi-card .quote {
+    font-size: 1rem;
+    color: #ccc;
+    font-style: italic;
+    margin: 10px 0;
+}
+
+.taxi-card .price {
+    font-size: 1.5rem;
+    color: #00ff99;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.taxi-card input[type="submit"] {
+    background-color: #00cc99;
+    border: none;
+    color: snow;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.taxi-card input[type="submit"]:hover {
+    background-color: #00ff99;
+    box-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
+}
+
+.taxi-card input[type="submit"]:active {
+    background-color: #009977;
+    box-shadow: inset 0 0 10px #007755;
+}
+
+p a#show-taxi-reservation {
+    color: #00cc99; 
+    font-size: 1.2rem;
+    font-family: 'Orbitron', sans-serif;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+p a#show-taxi-reservation:hover {
+    color: #00ffcc; 
+    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+}
+
+p a#show-taxi-reservation:active {
+    color: #009977; 
+    text-shadow: none;
+}
+
+p a#show-search-travel {
+    color: #00cc99;
+    font-size: 1.2rem;
+    font-family: 'Orbitron', sans-serif;
+    text-decoration: none; 
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+p a#show-search-travel:hover {
+    color: #00ffcc; 
+    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+}
+
+p a#show-search-travel:active {
+    color: #009977; 
+    text-shadow: none;
+}
+
+.account form ul li textarea {
+    width: 90%;
+    height: 120px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    background-color: #1a1a1a;
+    border: 2px solid #00cc99;
+    color: snow;
+    font-size: 1.1rem;
+    font-family: 'Orbitron', sans-serif;
+    outline: none;
+    resize: vertical; 
+    transition: all 0.3s ease;
+}
+
+.account form ul li textarea:hover {
+    border-color: #00ffcc; 
+    box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+}
+
+.account form ul li textarea:focus {
+    border-color: #00ff99;
+    box-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99;
+}

@@ -1,0 +1,93 @@
+.container-map {
+    margin: auto;
+    position: relative;
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#galaxy-map {
+    border: 2px solid #00ffcc;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 4px 8px rgba(0, 204, 153, 0.5);
+}
+
+.legend {
+    margin: 0 20px;
+    width: 25%;
+    padding: 10px;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 204, 153, 0.5);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.color-box {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+}
+@media screen and (max-width: 900px) {
+    .container-map {
+        flex-direction: column;
+        width: 90vw;
+        height: auto;
+        margin-top: 100px;
+        margin-bottom: 50px;
+    }
+    #galaxy-map, .legend {
+        width: 100%;
+        height: auto;
+        margin-top: 20px;
+    }
+    #galaxy-map{
+        height: 70vh;
+    }
+    #legend {
+        position: relative;
+        top: 20px;
+        right: 0;
+        transform: translateY(0);
+    }
+}
+
+.star {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    width: 2px;
+    height: 2px;
+    animation: twinkle 3s infinite;
+    opacity: 0.8;
+}
+
+.item-region:hover {
+    background-color: #00cc99;
+    color: #fff;
+    cursor: pointer;
+}
+.item-region.active {
+    background-color: #f0f0f0;
+    color: #000;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
