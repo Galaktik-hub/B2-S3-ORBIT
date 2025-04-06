@@ -26,7 +26,7 @@ Permettre aux utilisateurs de trouver le meilleur itinéraire entre deux points 
 
 Vous pouvez retrouver le projet final hébergé à l'adresse ci-dessous :
 
-🔗 [https://orbit.julien-synaeve.fr](https://orbit.julien-synaeve.fr)
+🔗 [https://orbit.alexis-telle.fr](https://orbit.alexis-telle.fr)
 
 💻 Il vous suffit de vous inscrire pour accèder au site.
 
@@ -112,7 +112,7 @@ Les technologies et outils utilisés incluent :
 ### 2️⃣ **Installation**
 - Clonez ce dépôt : 
 ```bash
-git clone https://github.com/AbdelRMB/sae-starwars.git
+git clone https://github.com/Galaktik-hub/B2-S3-ORBIT.git
 ```
 - 📦 Importez la base de données MySQL à l'aide du fichier `data/orbit.sql`.
 - Dans votre IDE Java, faites un clic droit sur le fichier `java/pom.xml` puis `Utiliser le projet Maven`, ou lancer en console la commande :
